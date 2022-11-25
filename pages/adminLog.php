@@ -2,10 +2,6 @@
 session_start();
 include "connect.php";
 include_once "utils.php";
-
-
-
-
 ?> -->
 <!DOCTYPE html>
 <html lang = "en">
@@ -19,9 +15,7 @@ include_once "utils.php";
 <body>
     <div class = "header">
         <div class = "logo">Service IT</div>
-        <button1 name = "admin" onclick="document.location='adminLog.php'">admin</button1>
- </body>
-</html>
+        <button1 name = "client" onclick="document.location='logInPage.php'">client</button1>
 
     </div>
     <div class = "container" id = "container"> 
@@ -33,7 +27,6 @@ include_once "utils.php";
             <input type = "password" name = "Password" placeholder = "Enter a password"/>
             <p>Forgot your password?</p>
             <button name = "Sign_In">Sign In</button>
-            <p>Don't have an account? <a href = "registration.php">SignUp</a></p>
         </form>
     </div>
 </body>

@@ -20,20 +20,16 @@ include_once "utils.php";
     <div class = "header">
         <div class = "logo">Service IT</div>
         <button1 name = "admin" onclick="document.location='adminLog.php'">admin</button1>
- </body>
-</html>
-
     </div>
     <div class = "container" id = "container"> 
         <h1>Welcome to Service IT</h1>
-        <h2>Log in</h2>
-
+        <h2>Register</h2>
         <form> 
             <input type = "text" name = "Username" placeholder = "Enter a username"/>
+            <input type = "text" name = "Email" placeholder = "Enter an email"/>
             <input type = "password" name = "Password" placeholder = "Enter a password"/>
-            <p>Forgot your password?</p>
-            <button name = "Sign_In">Sign In</button>
-            <p>Don't have an account? <a href = "registration.php">SignUp</a></p>
+            <button name = "Sign_Up">Sign Up</button>
+            <p>Alredy have an account? <a href = "logInPage.php">SignIn</a></p>
         </form>
     </div>
 </body>
