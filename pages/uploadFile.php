@@ -80,7 +80,7 @@ function deleteStoredFile($contractId){
             if (mysqli_stmt_num_rows($statement) == 1) {
                 while (mysqli_stmt_fetch($statement))
                 {
-                    if (file_exists(SITE_ROOT.$_FILES["uploadedFile"]["name"]))
+                    if (file_exists(SITE_ROOT.$fileToBeDeleted))
                     {
                         unlink(SITE_ROOT.$fileToBeDeleted);
                         echo "<p>".$fileToBeDeleted." deleted from database</p>";
@@ -150,164 +150,14 @@ function insertFileIntoDatabase($contractId,$filePath){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(isset($_POST['contractID'])) {
-        $contractId = filter_input(INPUT_POST, 'contractID');
-        fileUpload($contractId);
+    if(isset($_POST['upload'])){
+        if(isset($_POST['contractID'])) {
+            if(in_array($_POST['contractID'],$_SESSION['acceptedContractId'])){
+                $contractId = filter_input(INPUT_POST, 'contractID');
+                fileUpload($contractId);
+            }else{
+                echo "invalid contractID";
+            }
+        }
     }
 }
-
-//
-//function putFileIntoDatabase($contractId,$filePath){
-//    if(!$_SESSION ['adminId'] == null) {
-//        if (!empty($_SESSION ['adminId'])) {
-//            echo "<p>ContractId: ".$contractId."</p>";
-//            echo "<p>File: ".$filePath."</p>";
-//            echo "<p>Operated by the admin--AdminId: ".$_SESSION ['adminId']."</p>";
-//            // Create connection
-//            //Selecting the database (assuming it has already been created)
-//            //Open a connection to MySQL...
-//            $query = "UPDATE `contract`
-//                            SET `file_path` = ?
-//                            WHERE contract.id = ?";
-//            prepare($query);
-//        }
-//    }
-//}
-//
-//static class PrepareQ(){
-//function prepare($query, $types, $param1, $param2, $param3, $param4, $param5) {
-//    if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
-//        //Prepare query as a statement
-//        if ($statement = mysqli_prepare($conn, $query)) {
-//            //Fill in ? parameters!
-//            mysqli_stmt_bind_param($statement, $types, $param1, $param2, $param3, $param4, $param5);
-//            //Execute statement and check success
-//            if (mysqli_stmt_execute($statement)) {
-//                echo "Query executed";
-//            } else {
-//                echo "Error executing query";
-//                die(mysqli_error($conn));
-//            }
-//            echo "<br><br>--------------<br><br>";
-//            echo "<p>" . $filePath . " stored in database</p>";
-//            //Close the statement and free memory
-//            mysqli_stmt_close($statement);
-//        } else {
-//            die(mysqli_error($conn));
-//        }
-//        // Step #10: Close the connection!
-//        mysqli_close($conn);
-//    } else {
-//        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-//    }
-//}
-//
-//    function prepare($query, $types, $param1, $param2, $param3, $param4)
-//    {
-//        if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
-//            //Prepare query as a statement
-//            if ($statement = mysqli_prepare($conn, $query)) {
-//                //Fill in ? parameters!
-//                mysqli_stmt_bind_param($statement, $types, $param1, $param2, $param3, $param4);
-//                //Execute statement and check success
-//                if (mysqli_stmt_execute($statement)) {
-//                    echo "Query executed";
-//                } else {
-//                    echo "Error executing query";
-//                    die(mysqli_error($conn));
-//                }
-//                echo "<br><br>--------------<br><br>";
-//                echo "<p>" . $filePath . " stored in database</p>";
-//                //Close the statement and free memory
-//                mysqli_stmt_close($statement);
-//            } else {
-//                die(mysqli_error($conn));
-//            }
-//            // Step #10: Close the connection!
-//            mysqli_close($conn);
-//        } else {
-//            die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-//        }
-//    }
-//    function prepare($query, $types, $param1, $param2, $param3)
-//    {
-//        if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
-//            //Prepare query as a statement
-//            if ($statement = mysqli_prepare($conn, $query)) {
-//                //Fill in ? parameters!
-//                mysqli_stmt_bind_param($statement, $types, $param1, $param2, $param3);
-//                //Execute statement and check success
-//                if (mysqli_stmt_execute($statement)) {
-//                    echo "Query executed";
-//                } else {
-//                    echo "Error executing query";
-//                    die(mysqli_error($conn));
-//                }
-//                echo "<br><br>--------------<br><br>";
-//                echo "<p>" . $filePath . " stored in database</p>";
-//                //Close the statement and free memory
-//                mysqli_stmt_close($statement);
-//            } else {
-//                die(mysqli_error($conn));
-//            }
-//            // Step #10: Close the connection!
-//            mysqli_close($conn);
-//        } else {
-//            die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-//        }
-//    }
-//    function prepare($query, $types, $param1, $param2)
-//    {
-//        if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
-//            //Prepare query as a statement
-//            if ($statement = mysqli_prepare($conn, $query)) {
-//                //Fill in ? parameters!
-//                mysqli_stmt_bind_param($statement, $types, $param1, $param2);
-//                //Execute statement and check success
-//                if (mysqli_stmt_execute($statement)) {
-//                    echo "Query executed";
-//                } else {
-//                    echo "Error executing query";
-//                    die(mysqli_error($conn));
-//                }
-//                echo "<br><br>--------------<br><br>";
-//                echo "<p>" . $filePath . " stored in database</p>";
-//                //Close the statement and free memory
-//                mysqli_stmt_close($statement);
-//            } else {
-//                die(mysqli_error($conn));
-//            }
-//            // Step #10: Close the connection!
-//            mysqli_close($conn);
-//        } else {
-//            die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-//        }
-//    }
-//    function prepare($query, $types, $param1)
-//    {
-//        if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
-//            //Prepare query as a statement
-//            if ($statement = mysqli_prepare($conn, $query)) {
-//                //Fill in ? parameters!
-//                mysqli_stmt_bind_param($statement, $types, $param1);
-//                //Execute statement and check success
-//                if (mysqli_stmt_execute($statement)) {
-//                    echo "Query executed";
-//                } else {
-//                    echo "Error executing query";
-//                    die(mysqli_error($conn));
-//                }
-//                echo "<br><br>--------------<br><br>";
-//                echo "<p>" . $filePath . " stored in database</p>";
-//                //Close the statement and free memory
-//                mysqli_stmt_close($statement);
-//            } else {
-//                die(mysqli_error($conn));
-//            }
-//            // Step #10: Close the connection!
-//            mysqli_close($conn);
-//        } else {
-//            die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-//        }
-//    }
-//}
