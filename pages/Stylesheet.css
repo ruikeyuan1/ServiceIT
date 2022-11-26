@@ -100,4 +100,15 @@ a {
     font-weight: bold;
 }
 
+.errorBox {
+    width: 100%;
+    background-color: rgb(241, 74, 74);
+    padding: 10px;
+    margin: 10px;
+}
+
+.errorBox a {
+    color: white;
+}
+
 

@@ -1,12 +1,9 @@
-<!-- <?php
+<?php
 session_start();
 include "connect.php";
-include_once "utils.php";
 
 
-
-
-?> -->
+?> 
 <!DOCTYPE html>
 <html lang = "en">
 <head>
