@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ServiceIT.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/adminContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/databaseConnect.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dropDownBox.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/getAdminArray.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/getContractFile.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/upload/PresentationUnitestWorkshop.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/upload/projeOnintemplate.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/uploadFile.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/userContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firstCommitTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/firstCommitTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Stylesheet.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -111,6 +97,7 @@
       <workItem from="1668257121193" duration="1508000" />
       <workItem from="1668955117353" duration="2350000" />
       <workItem from="1669051960953" duration="338000" />
+      <workItem from="1669561122744" duration="180000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommitToMain">
       <created>1668206818332</created>
