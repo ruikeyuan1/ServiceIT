@@ -112,3 +112,309 @@ a {
 }
 
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.adminPanelPage{
+    background-color: #125C90;
+}
+
+.userProfilePage{
+    background-color: white;
+}
+
+.userProfileMain{
+    padding: 50px;
+    width: 100%;
+}
+
+.userProfileContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.userProfileDescription{
+    color: #125C90;
+    width: 400px;
+}
+
+.userProfileDescription h3 span{
+    color: gray;
+}
+
+.userProfileDescription h1{
+    margin-top: 0px;
+    font-size: 50px;
+}
+
+.userProfileDescription form{
+    height: 50px;
+}
+
+.userProfileDescription form select{
+    width: 30%;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.userProfileDescription form input[type=submit]{
+    background-color: #125C90;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.userProfileDescription h3{
+    margin-top: 0px;
+    font-size: 25px;
+}
+
+.userProfileActionLinks{
+    color: #125C90;
+}
+
+.userProfileActionLinks a:link, a:visited {
+    border-radius: 8px;
+    color: white;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.userProfileActionLinks p a{
+    background-color: #125C90;
+}
+
+.userProfileActionLinks a:hover, a:active {
+    background-color: #125C90;
+}
+
+.userProfileTable table{
+    padding: 10px;
+    border-style: solid;
+    border-color: #125C90;
+    border-width: 2px;
+    border-radius: 10px;
+    color: #125C90;
+    font-size: 25px;
+    text-align: left;
+    width: 90%;
+}
+
+.userProfileTable a:link, a:visited {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.userProfileTable table th{
+    font-size: 25px;
+}
+
+.userProfileTable table tr{
+    height: 50px;
+}
+
+.userContractActionForm{
+    color: #125C90;
+}
+
+.userContractDescription h1{
+    margin-top: 0;
+    color: #125C90;
+    font-size: 50px;
+    height: 30px;
+}
+
+.userContractDescription h3{
+    color: #125C90;
+    margin-top: 60px;
+    font-size: 25px;
+}
+
+.contractActionForm a:hover, a:active {
+    background-color: white;
+}
+sss
+.userContractActionForm a{
+    color: white;
+}
+
+.userContractDescription{
+    float: left;
+    color: white;
+}
+
+.userContractMain{
+    padding: 50px;
+    width: 100%;
+}
+
+.userContractActionForm a:hover, a:active {
+    background-color: #125C90;
+}
+
+.userContractActionForm a:link, a:visited {
+    border-radius: 8px;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.userContractActionForm p a{
+    background-color: #125C90;
+}
+
+.userContractAction{
+    display: flex;
+    flex-direction: column;
+}
+
+.userContractContent{
+    display: flex;
+    justify-content: space-between;
+}
+
+<!-- -->
+
+.adminPanelMain h3{
+    font-weight:lighter;
+    color: white;
+    text-align: center;
+}
+
+.adminPanelMain h1, h2 {
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.adminPanelMain .header {
+    width: 100%;
+    height: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.adminTable{
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.adminTable a{
+    color: white;
+}
+
+.adminTable a:link, a:visited {
+    text-align: center;
+    text-decoration: underline;
+}
+
+
+.adminPanelMain{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.adminPanelMain th{
+    font-size: 25px;
+}
+
+.adminPanelMain tr{
+    height: 50px;
+}
+
+.adminPanelMain tr:hover{
+    background-color:lightgreen;
+    box-shadow: 9px 9px 10px gray;
+}
+
+.adminPanelMain table{
+    border: none;
+    color: white;
+    font-size: 25px;
+    text-align: left;
+    width: 800px;
+}
+
+.adminTable table{
+    color: white;
+}
+
+.contractMain{
+    padding: 50px;
+    width: 100%;
+}
+
+.contractActionForm{
+    display: flex;
+    flex-direction: column;
+    float: right;
+}
+
+
+.contractDescription{
+    float: left;
+    color: white;
+}
+
+
+.contractDescription h1{
+    margin-top: 0;
+    font-size: 50px;
+    height: 30px;
+}
+
+
+
+.contractDescription h3{
+    margin-top: 60px;
+    font-size: 25px;
+}
+
+
+.contractAction{
+    display: flex;
+    flex-direction: column;
+}
+
+.contractActionForm a:link, a:visited {
+    border-radius: 8px;
+    background-color: white;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.contractActionForm a{
+    color: #125C90;
+}
+
+
+.contractActionForm{
+    color: white;
+}
