@@ -13,7 +13,7 @@
 
     <title>Admin Panel</title>
 </head>
-<body>
+<body class="adminPanelPage">
     <div class="contractMain">
 
         <?php
