@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/adminPanel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ServiceIT.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/adminContract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/databaseConnect.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dropDownBox.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/getAdminArray.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/getContractFile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/upload/PresentationUnitestWorkshop.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/upload/projeOnintemplate.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/uploadFile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/userContract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firstCommitTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/firstCommitTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
