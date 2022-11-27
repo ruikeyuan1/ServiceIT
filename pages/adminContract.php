@@ -34,9 +34,10 @@ function loadAdminContractActionForm(){
         if(isset($_GET['contractId'])) {
             if (in_array($_GET['contractId'], $_SESSION['acceptedContractId'])) {
                 $contractId = filter_input(INPUT_GET, 'contractId');
-
+                $dirName = "upload";
                 echo "<div class='contractAction'>";
                 echo "<div class='contractContent'>";
+
                 echo '<div class="contractDescription">     
                             <h1>Contract: </h1>                    
                             <h3>Contract ID: '.$contractId.'</h3>
@@ -44,18 +45,19 @@ function loadAdminContractActionForm(){
                       <div class="contractActionForm">
                             <form action="uploadFile.php" method="post" enctype="multipart/form-data">
                                 <label for="file">Filename:</label><input type="file" name="uploadedFile" id="file" />
-                                <input type="hidden" name="contractID" value='.$contractId.'>
+                                <input type="hidden" name="contractID" value='.$contractId.'>                          
                                 <p><input type="submit" name="upload" value="upload"/></p>
                             </form>
                               <p><a href="adminPanel.php">Back to adminPanel</a></p>
-                                <p><a href='.SITE_ROOT.'ServiceIT'.getContractFileName($contractId).'>Download Contract</a></p>
+                                <p><a href='.$dirName."/".getContractFileName($contractId).'>Download Contract</a></p>
                       </div>';
                 echo "</div>";
 
                 echo '<div class="contractView">
-                            <iframe src='.SITE_ROOT.'ServiceIT'.getContractFileName($contractId).' width="100%" height="500px"></iframe>
+                            <iframe src='.$dirName."/".getContractFileName($contractId).' width="100%" height="500px"></iframe>
                       </div>';
                 echo "</div>";
+
             }else{
                 echo "Contract ID input invalid: ".$contractId;
             }

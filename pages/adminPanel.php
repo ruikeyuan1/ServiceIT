@@ -127,7 +127,10 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
         }elseif ($serviceNameSelected == "ticket") {
             $query = "UPDATE `service_ticket` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
         }
-
+//
+//echo $adminIdSelected."</br>";
+//        echo $serviceIdSelected."</br>";
+//        echo $serviceStatusSelected."</br>";
         if ($statement = mysqli_prepare($conn, $query)) {
             //Fill in ? parameters!
             mysqli_stmt_bind_param($statement, 'isi',$adminIdSelected, $serviceStatusSelected, $serviceIdSelected);
@@ -159,7 +162,7 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
     <link rel = "stylesheet" href="style/stylesheet.css" type="text/css">
     <title>Admin Panel</title>
 </head>
-<body>
+<body class="adminPanelPage">
 
     <div class="adminPanelMain">
         <div class="header">
@@ -215,31 +218,31 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
             // Open a connection to MySQL...
             // Create connection
             // Selecting the database (assuming it has already been created)
-            if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
+            if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
                 // Step #3: Create the query
                 $query = "";
                 if ($serviceNameSelected == "newRequest") {
                     if($serviceTypeSelected == "all"){
-                        $query = "SELECT service_request.id, service_request.admin_id, service_request.service_type, service_request.status, user.name, contract.id
-                        FROM service_request
-                        JOIN user ON user.id = service_request.user_id JOIN contract ON user.contract_id = contract.id;";
+                        $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id 
+                        FROM service_request 
+                        INNER JOIN user ON user.id = service_request.user_id INNER JOIN contract ON user.id = contract.user_id;";
                     }else{
-                        $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id
-                        FROM service_request
-                        JOIN user ON user.id = service_request.user_id JOIN contract ON user.contract_id = contract.id AND service_request.service_type = ?;";
+                        $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id 
+                        FROM service_request 
+                        INNER JOIN user ON user.id = service_request.user_id INNER JOIN contract ON user.id = contract.user_id AND service_request.service_type = ?;";
                         $para = "";
                         $para = $serviceTypeSelected;
                         $checkBindPara = true;
                     }
                 }else{
                     if($serviceTypeSelected == "all"){
-                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.name, contract.id
-                        FROM service_ticket
-                        JOIN user ON user.id = service_ticket.user_id JOIN contract ON user.contract_id = contract.id;";
+                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.name, contract.id 
+                        FROM service_ticket 
+                        INNER JOIN user ON user.id = service_ticket.user_id INNER JOIN contract ON user.id = contract.user_id";
                     }else{
-                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.name, contract.id
-                        FROM service_ticket
-                        JOIN user ON user.id = service_ticket.user_id JOIN contract ON user.contract_id = contract.id AND service_ticket.service_type = ?;";
+                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.name, contract.id 
+                        FROM service_ticket 
+                        INNER JOIN user ON user.id = service_ticket.user_id INNER JOIN contract ON user.id = contract.user_id  AND service_ticket.service_type = ?;";
                         $para = "";
                         $para = $serviceTypeSelected;
                         $checkBindPara = true;
@@ -339,7 +342,7 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
                         $_SESSION['acceptedContractId'] = $acceptedContractId;
 
                     } else {
-                        echo "No tickets found";
+                        echo "No tickets or requests found";
                     }
                     //Close the statement and free memory
                     mysqli_stmt_close($statement);

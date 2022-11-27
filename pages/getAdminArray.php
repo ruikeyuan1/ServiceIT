@@ -1,5 +1,7 @@
 
 <?php
+
+
 function getAdminArray() : array{
     $adminArray = array();
 
@@ -10,7 +12,7 @@ function getAdminArray() : array{
         die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
     }
 
-    if(mysqli_select_db($conn, "ServiceIT"))
+    if(mysqli_select_db($conn, "serviceIT"))
     {
         $query = "SELECT `id`, `name` FROM `administrator`";
 

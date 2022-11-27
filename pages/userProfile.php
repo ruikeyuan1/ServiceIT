@@ -21,8 +21,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $userID = 1;
 $_SESSION ['userID'] = $userID;
-
-
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +28,9 @@ $_SESSION ['userID'] = $userID;
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>UserProfile</title>
-    <link rel = "stylesheet" href="style/userProfile.css" type="text/css">
+    <link rel = "stylesheet" href="style/stylesheet.css" type="text/css">
 </head>
-<body>
+<body class="userProfilePage">
 <div class="userProfileMain">
     <div class="userProfileContent">
         <div class="userProfileDescription">
@@ -69,12 +67,12 @@ $_SESSION ['userID'] = $userID;
 //loadUserServiceTable($_SESSION ['userID'],$selectedNameType);
 
 function loadUserInfo(){
-
-
-    if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
+    if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
         // Step #3: Create the query
 
-        $query = "SELECT `name`, `email`, `contract_id` FROM `user` WHERE `id` = ?";
+        $query = "SELECT user.name, user.email, contract.id 
+FROM `contract` , user 
+WHERE contract.user_id = user.id And user_id = ?";
 
         //Prepare query as a statement
         if ($statement = mysqli_prepare($conn, $query)) {

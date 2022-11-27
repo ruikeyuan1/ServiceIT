@@ -1,4 +1,5 @@
 <?php
+
 function getContractFileName($contractId) : string{
     $filePathFetched = "";
     $conn = mysqli_connect("localhost", "root", "");
@@ -8,7 +9,7 @@ function getContractFileName($contractId) : string{
         die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
     }
 
-    if(mysqli_select_db($conn, "ServiceIT"))
+    if(mysqli_select_db($conn, "serviceIT"))
     {
         $query = " SELECT `file_path` FROM `contract` WHERE `id` = ?";
 
