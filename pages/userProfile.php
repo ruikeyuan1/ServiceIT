@@ -22,6 +22,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 $userID = 1;
 $_SESSION ['userId'] = $userID;
 
+//This function checks whether the user has logged in when accessing this page, if not user would be directed to
+//userLogout.php
 function checkUserLoginStatus(){
     if(isset($_GET['page'])){
         //If GET is present -> include that page
