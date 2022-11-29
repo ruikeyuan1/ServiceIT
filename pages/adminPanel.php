@@ -1,12 +1,30 @@
 <?php
 session_start();
+$adminID = 1;
+$_SESSION['adminId'] = $adminID;
+
+function checkAdminLoginStatus(){
+    if(isset($_GET['page'])){
+        //If GET is present -> include that page
+        unset($_SESSION ['adminId']);
+        header("Location: adminLogout.php");
+    }
+    else{
+        //No GET present -> Check if admin is logged in via SESSION
+        if(!isset($_SESSION['adminId'])){
+            header("Location: adminLogout.php");
+        }
+    }
+}
+
+checkAdminLoginStatus();
 
 $serviceNameSelected = "ticket";
 $serviceTypeSelected = "all";
 $serviceHandlingSelected = "all";
 $hideHandledService = false;
-$serviceToBeUpdated = array(0);
-$acceptedContractId = array(0);
+$serviceToBeUpdated = array();
+$acceptedContractId = array();
 
 require_once('dropDownBox.php');
 
@@ -31,10 +49,16 @@ $serviceHandlingArray = array(
     "all"
 );
 
-
-require('getAdminArray.php');
+require_once('getAdminArray.php');
 
 $adminArray = getAdminArray();
+
+function checkServiceHandling($serviceHandlingSelected) : bool{
+    if($serviceHandlingSelected == "unHandled"){
+        return true;
+    }
+    return false;
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['selectedDropDown'])) {
@@ -42,7 +66,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (in_array($_POST['serviceType'], $serviceTypeArray)) {
                 $serviceType = filter_input(INPUT_POST, 'serviceType');
                 $serviceTypeSelected = $serviceType;
-                echo $serviceTypeSelected;
             }else{
                 echo "wrong Input";
             }
@@ -52,85 +75,69 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (in_array($_POST['serviceName'], $serviceNameArray)) {
                 $serviceName = filter_input(INPUT_POST, 'serviceName');
                 $serviceNameSelected = $serviceName;
-                echo $serviceNameSelected;
             }else{
                 echo "wrong Input";
             }
         }
 
         if(isset($_POST['serviceHandlingType'])) {
-            echo $_POST['serviceHandlingType'];
             if (in_array($_POST['serviceHandlingType'], $serviceHandlingArray)) {
                 $serviceHandlingSelected = filter_input(INPUT_POST, 'serviceHandlingType');
-                if($serviceHandlingSelected == "unHandled"){
-                    $hideHandledService = true;
-                }else{
-                    $hideHandledService = false;
-                }
-
             }else{
                 echo "wrong handling Input";
             }
         }
-
     }
-
 
     if(isset($_POST['Save'])) {
         if(in_array($_POST['serviceTypeSaved'] , $serviceTypeArray)){
             if(in_array($_POST['serviceNameSaved'] , $serviceNameArray)){
                 if(in_array($_POST['serviceHandlingSaved'] , $serviceHandlingArray)){
+                    //These three inputs are assigned after immediately checking because the
+                    //checks for the filter have been completed.The system needs to remember what has been selected.
                     $serviceNameSelected = filter_input(INPUT_POST, 'serviceNameSaved');
                     $serviceTypeSelected = filter_input(INPUT_POST, 'serviceTypeSaved');
                     $serviceHandlingSelected = filter_input(INPUT_POST, 'serviceHandlingSaved');
 
-                    if($serviceHandlingSelected == "unHandled"){
-                        $hideHandledService = true;
-                    }else{
-                        $hideHandledService = false;
-                    }
-
                     if(in_array( $_POST['serviceStatus'] , $statusArray)){
-                        //echo  "The input: ".$_POST['serviceStatus']."is correct";
                         if(in_array($_POST['adminId'] , array_keys($adminArray))){
-                            //echo  "The input: ".$_POST['adminId']."is correct";
                             if(in_array($_POST['serviceId'] , $_SESSION['serviceToBeUpdated'])){
+                                unset($_SESSION['serviceToBeUpdated']);
                                 $serviceStatusSelected = filter_input(INPUT_POST, 'serviceStatus');
                                 $serviceIdSelected = filter_input(INPUT_POST, 'serviceId');
                                 $adminIdSelected = filter_input(INPUT_POST, 'adminId');
                                 updateService($serviceNameSelected, $serviceStatusSelected,$serviceIdSelected,$adminIdSelected);
                             }else{
-                                echo  "Wrong service Id Input";
+                                echo  "ServiceId cannot be empty and you can only select an displayed/existing service.";
                             }
                         }else{
-                            echo  "Wrong adminId Input";
+                            echo  "AdminId/Name cannot be empty and you can only select an existing administrator.";
                         }
                     }else{
-                        echo  "Wrong status Input";
+                        echo  "Status cannot be empty and you can only select an correct status.";
                     }
+                }else{
+                    echo  "Handling type cannot be empty and you can only select an correct handling type.";
                 }
             }else{
-                echo  "Wrong service name";
+                echo  "ServiceName(Like ticket) cannot be empty and you can only select an correct serviceName.";
             }
+        }else{
+            echo  "ServiceType(Like phone_repair) cannot be empty and you can only select an correct serviceType.";
         }
     }
 }
-
 
 function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdSelected, $adminIdSelected){
     if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
         //Prepare query as a statement
 
-        $query = "";
+        $query = "UPDATE `service_ticket` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
+
         if($serviceNameSelected == "newRequest"){
             $query = "UPDATE `service_request` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
-        }elseif ($serviceNameSelected == "ticket") {
-            $query = "UPDATE `service_ticket` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
         }
-//
-//echo $adminIdSelected."</br>";
-//        echo $serviceIdSelected."</br>";
-//        echo $serviceStatusSelected."</br>";
+
         if ($statement = mysqli_prepare($conn, $query)) {
             //Fill in ? parameters!
             mysqli_stmt_bind_param($statement, 'isi',$adminIdSelected, $serviceStatusSelected, $serviceIdSelected);
@@ -150,7 +157,6 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
         die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -168,6 +174,7 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
         <div class="header">
             <h3>Service IT</h3>
             <h1>Admin Panel</h1>
+            <a href='adminPanel.php?page=logout'>click here to log out</a>
         </div>
         <div>
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" method='post'>
@@ -195,8 +202,8 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
 
         <div>
             <?php
-                loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUpdated,$acceptedContractId,
-                $hideHandledService,$statusArray,$adminArray,$serviceHandlingSelected);
+                loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUpdated,$acceptedContractId,
+               $statusArray,$adminArray,$serviceHandlingSelected);
             ?>
         </div>
     </div>
@@ -204,23 +211,18 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
 </html>
 
 <?php
-
-
-function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUpdated,$acceptedContractId,
-                        $hideHandledService,$statusArray,$adminArray,$serviceHandlingSelected){
-    $adminID = 1;
-    $_SESSION ['adminId'] = $adminID;
+function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUpdated,$acceptedContractId,
+                        $statusArray,$adminArray,$serviceHandlingSelected){
     $checkBindPara = false;
-
-    if(!$_SESSION ['adminId'] == null) {
+    if(isset($_SESSION ['adminId'])) {
         if (!empty($_SESSION ['adminId'])) {
             echo "<h3>AdminId:" . $_SESSION ['adminId']."</h3>";
             // Open a connection to MySQL...
             // Create connection
             // Selecting the database (assuming it has already been created)
             if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
-                // Step #3: Create the query
-                $query = "";
+                //Create the query
+
                 if ($serviceNameSelected == "newRequest") {
                     if($serviceTypeSelected == "all"){
                         $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id 
@@ -230,8 +232,6 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
                         $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id 
                         FROM service_request 
                         INNER JOIN user ON user.id = service_request.user_id INNER JOIN contract ON user.id = contract.user_id AND service_request.service_type = ?;";
-                        $para = "";
-                        $para = $serviceTypeSelected;
                         $checkBindPara = true;
                     }
                 }else{
@@ -243,17 +243,15 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
                         $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.name, contract.id 
                         FROM service_ticket 
                         INNER JOIN user ON user.id = service_ticket.user_id INNER JOIN contract ON user.id = contract.user_id  AND service_ticket.service_type = ?;";
-                        $para = "";
-                        $para = $serviceTypeSelected;
                         $checkBindPara = true;
                     }
                 }
 
                 //Prepare query as a statement
                 if ($statement = mysqli_prepare($conn, $query)) {
-                    // Step #4.2: Fill in the ? parameters!
+                    //Fill in ? parameters!
                     if($checkBindPara == true) {
-                        mysqli_stmt_bind_param($statement, 's', $para);
+                        mysqli_stmt_bind_param($statement, 's', $serviceTypeSelected);
                     }
 
                     //Execute statement and check success
@@ -262,9 +260,9 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
                         die(mysqli_error($conn));
                     }
 
-                    // Step #6.1: Bind result to variables when fetching...
+                    //Bind result to variables when fetching...
                     mysqli_stmt_bind_result($statement, $service_id, $admin_id, $service_type, $ticket_status, $user_name, $contract_id);
-                    // Step #6.2: And buffer the result if and only if you want to check the number of rows
+                    //And buffer the result if and only if you want to check the number of rows
                     mysqli_stmt_store_result($statement);
 
                     //Create heading
@@ -274,37 +272,27 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
                         echo "<h2>List of new requests</h2>";
                     }
 
-
                     //Check if there are results in the statement
                     if (mysqli_stmt_num_rows($statement) > 0) {
-
-                        //echo "Number of rows: " . mysqli_stmt_num_rows($statement);
                         // Make table
-
                         echo "<div class='adminTable'><table>";
-
                         // Make table header
                         echo "<th>ID</th><th>Type</th><th>Status</th><th>AdminName</th><th>UserName</th><th>ContractID</th><th>Save</th>";
-
                         //Fetch all rows of data from the result statement
                         while (mysqli_stmt_fetch($statement)) {
-                            $serviceToBeUpdated[] += $service_id;
-                            $acceptedContractId[] += $contract_id;
-
-                            if(!($ticket_status == "Done" AND $hideHandledService == true)){
+                            if(!($ticket_status == "Done" AND checkServiceHandling($serviceHandlingSelected))){
                                 // Create row
+                                $serviceToBeUpdated[] += $service_id;
+                                $acceptedContractId[$contract_id] = $user_name;
                                 echo "<form action=" . htmlentities($_SERVER['PHP_SELF']) . " method='post'>";
                                 echo "<tr>";
 
                                 // Create cells
                                 echo "<td>" . $service_id . "</td>";
-                                //echo "<td>" . $admin_id . "</td>";
                                 echo "<td>" . $service_type . "</td>";
 
                                 echo '<td><select name="serviceStatus">';
-
                                 dropDownBox($statusArray, $ticket_status);
-
                                 echo '</select></td>';
 
                                 echo '<td><select name="adminId">';
@@ -340,7 +328,6 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
 
                         $_SESSION['serviceToBeUpdated'] = $serviceToBeUpdated;
                         $_SESSION['acceptedContractId'] = $acceptedContractId;
-
                     } else {
                         echo "No tickets or requests found";
                     }
@@ -358,9 +345,5 @@ function loadAdminTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUp
         }
     }
 }
-
-
-
-
 ?>
 

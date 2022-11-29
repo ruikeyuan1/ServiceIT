@@ -1,11 +1,12 @@
 <?php
 session_start();
-
+$adminID = 1;
+$_SESSION ['adminId'] = $adminID;
 
 define ('SITE_ROOT',realpath('upload/'));
 
 function fileUpload($contractId){
-    if ($_FILES["uploadedFile"]["size"] < 6000000)
+    if ($_FILES["uploadedFile"]["size"] < 1000000)
     {
         $acceptedFileTypes = ["application/pdf"];
         $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -49,12 +50,9 @@ function fileUpload($contractId){
             echo "Invalid file type. Must be pdf.";
         }
     }else{
-        echo "Invalid file size. Must be less than 3MB/3072KB.";
+        echo "Invalid file size. Must be less than 1000KB.";
     }
 }
-
-$adminID = 1;
-$_SESSION ['adminId'] = $adminID;
 
 function deleteStoredFile($contractId){
     if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
@@ -105,45 +103,6 @@ function deleteStoredFile($contractId){
     }
 }
 
-//insertNewContractIntoDataBase("emptyContract");
-function insertNewContractIntoDataBase($fileName){
-    if(!$_SESSION ['adminId'] == null) {
-        if (!empty($_SESSION ['adminId'])) {
-            echo "<p>File: ".$fileName."</p>";
-            echo "<p>Operated by the admin--AdminId: ".$_SESSION ['adminId']."</p>";
-            // Create connection
-            //Selecting the database (assuming it has already been created)
-            //Open a connection to MySQL...
-            if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
-                // Step #3: Create the query
-
-                $query = "INSERT INTO `contract`(`file_path`) VALUES (?)";
-
-                //Prepare query as a statement
-                if ($statement = mysqli_prepare($conn, $query)) {
-                    //Fill in ? parameters!
-                    mysqli_stmt_bind_param($statement, 's', $filePath);
-                    //Execute statement and check success
-                    if (!mysqli_stmt_execute($statement)) {
-                        echo "Error executing query";
-                        die(mysqli_error($conn));
-                    }
-                    echo "<br><br>--------------<br><br>";
-                    echo "<p>New contract".$filePath." inserted in database</p>";
-                    //Close the statement and free memory
-                    mysqli_stmt_close($statement);
-                } else {
-                    die(mysqli_error($conn));
-                }
-                //Close the connection!
-                mysqli_close($conn);
-            } else {
-                die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-            }
-        }
-    }
-}
-
 function updateContractIntoDatabase($contractId,$filePath){
     if(!$_SESSION ['adminId'] == null) {
         if (!empty($_SESSION ['adminId'])) {
@@ -176,7 +135,7 @@ function updateContractIntoDatabase($contractId,$filePath){
                 } else {
                     die(mysqli_error($conn));
                 }
-                // Step #10: Close the connection!
+                //Close the connection!
                 mysqli_close($conn);
             } else {
                 die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
@@ -184,8 +143,6 @@ function updateContractIntoDatabase($contractId,$filePath){
         }
     }
 }
-
-
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['upload'])) {
@@ -195,13 +152,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $contractId = filter_input(INPUT_POST, 'contractID');
                     fileUpload($contractId);
                 } else {
-                    echo "invalid contractID";
+                    echo "contractID is invalid.You can only upload an contract based the contract you selected";
                 }
             } else {
-                echo "empty input file";
+                echo "You cannot upload an empty file(fileName) or upload nothing.";
             }
         } else {
-            echo "empty contractId input";
+            echo "ContractId input is empty.Please select an contract to be updated.";
         }
     }
 }

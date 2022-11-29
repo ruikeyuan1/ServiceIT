@@ -20,7 +20,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $userID = 1;
-$_SESSION ['userID'] = $userID;
+$_SESSION ['userId'] = $userID;
+
+function checkUserLoginStatus(){
+    if(isset($_GET['page'])){
+        //If GET is present -> include that page
+        unset($_SESSION ['userId']);
+        header("Location: userLogout.php");
+    }
+    else{
+        //No GET present -> Check if admin is logged in via SESSION
+        if(!isset($_SESSION['userId'])){
+            header("Location: userLogout.php");
+        }
+    }
+}
+
+checkUserLoginStatus();
+
 ?>
 
 <!DOCTYPE html>
@@ -49,36 +66,32 @@ $_SESSION ['userID'] = $userID;
         </div>
         <div class="userProfileActionLinks">
             <h3>Service IT</h3>
-            <p><a href='#'>click here to log out</a></p>
+            <p><a href='userProfile.php?page=logout'>click here to log out</a></p>
             <p><a href='userContract.php?contractId=<?php echo $_SESSION ['userContractId']?>'>View contract</a></p>
         </div>
     </div>
     <div class="userProfileTable">
         <?php
-            loadUserServiceTable($_SESSION ['userID'],$selectedNameType);
+            loadUserProfileTable($_SESSION ['userId'],$selectedNameType);
         ?>
     </div>
 </div>
 </body>
 </html>
-
-
 <?php
-//loadUserServiceTable($_SESSION ['userID'],$selectedNameType);
-
 function loadUserInfo(){
     if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
-        // Step #3: Create the query
+        // Create the query
 
         $query = "SELECT user.name, user.email, contract.id 
-FROM `contract` , user 
-WHERE contract.user_id = user.id And user_id = ?";
+        FROM `contract` , user 
+        WHERE contract.user_id = user.id And user_id = ?";
 
         //Prepare query as a statement
         if ($statement = mysqli_prepare($conn, $query)) {
             //Fill in ? parameters!
 
-            mysqli_stmt_bind_param($statement, 'i', $_SESSION ['userID']);
+            mysqli_stmt_bind_param($statement, 'i', $_SESSION ['userId']);
 
             //Execute statement and check success
             if (!mysqli_stmt_execute($statement)) {
@@ -105,7 +118,7 @@ WHERE contract.user_id = user.id And user_id = ?";
         } else {
             die(mysqli_error($conn));
         }
-        // Step #10: Close the connection!
+        //  Close the connection!
         mysqli_close($conn);
 
     } else {
@@ -113,11 +126,9 @@ WHERE contract.user_id = user.id And user_id = ?";
     }
 }
 
-
-
-function loadUserServiceTable($userId,$selectedFilterType)
+function loadUserProfileTable($userId,$selectedFilterType)
 {
-    // Step #1: Open a connection to MySQL...
+    // Open a connection to MySQL...
     // Docker users need to use the service name (ex: mysql)
     $conn = mysqli_connect("localhost", "root", "");
 
@@ -126,10 +137,10 @@ function loadUserServiceTable($userId,$selectedFilterType)
         die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
     }
 
-    // Step #2: Selecting the database (assuming it has already been created)
+    //Selecting the database (assuming it has already been created)
     if (mysqli_select_db($conn, "ServiceIT")) {
 
-        // Step #3: Create the query
+        //Create the query
         $query = "";
         if($selectedFilterType == "ticket"){
             $query = "SELECT service_ticket.id,service_ticket.service_type, service_ticket.status
@@ -141,32 +152,31 @@ function loadUserServiceTable($userId,$selectedFilterType)
                         JOIN user ON user.id = service_request.user_id AND user.id = ?;";
         }
 
-        // Step #4.1: Prepare query as a statement
+        // Prepare query as a statement
         if ($statement = mysqli_prepare($conn, $query)) {
-            // Step #4.2: Fill in the ? parameters!
+            //Fill in ? parameter
              mysqli_stmt_bind_param($statement, 'i', $userId);
 
-            //Step #5: Execute statement and check success
+            // Execute statement and check success
             if (!mysqli_stmt_execute($statement)) {
                 die(mysqli_error($conn));
             }
 
-            // Step #6.1: Bind result to variables when fetching...
+            // Bind result to variables when fetching...
             mysqli_stmt_bind_result($statement, $serviceId, $serviceType, $serviceStatus);
             // Step #6.2: And buffer the result if and only if you want to check the number of rows
             mysqli_stmt_store_result($statement);
 
             //Create heading
 
-            // Step #7: Check if there are results in the statement
+            //Check if there are results in the statement
             if (mysqli_stmt_num_rows($statement) > 0) {
-                //echo "Number of rows: " . mysqli_stmt_num_rows($statement);
                  //Make table
                 echo "<div class='userProfileTable'><table border='1'>";
                 // Make table header
                 echo "<th style='text-align: left;'>ServiceID</th><th>ServiceType</th><th>ServiceStatus</th>";
 
-                // Step #8: Fetch all rows of data from the result statement
+                //Fetch all rows of data from the result statement
                 while (mysqli_stmt_fetch($statement)) {
 
                     // Create row
@@ -185,7 +195,7 @@ function loadUserServiceTable($userId,$selectedFilterType)
             } else {
                 echo "No admins found";
             }
-            // Step #9: Close the statement and free memory
+            //  Close the statement and free memory
             mysqli_stmt_close($statement);
         } else {
             die(mysqli_error($conn));
@@ -194,10 +204,9 @@ function loadUserServiceTable($userId,$selectedFilterType)
         die(mysqli_error($conn));
     }
 
-    // Step #10: Close the connection!
+    // Close the connection!
     mysqli_close($conn);
 }
-
 ?>
 
 

@@ -18,6 +18,7 @@ body {
     background-color: white;
 }
 
+/* user profile page*/
 .userProfileMain{
     padding: 50px;
     width: 100%;
@@ -116,8 +117,21 @@ body {
     height: 50px;
 }
 
-.userContractActionForm{
-    color: #125C90;
+/* user contract page*/
+
+.userContractDescription{
+    float: left;
+    color: white;
+}
+
+.userContractMain{
+    padding: 50px;
+    width: 100%;
+}
+
+.userContractContent{
+    display: flex;
+    justify-content: space-between;
 }
 
 .userContractDescription h1{
@@ -133,23 +147,28 @@ body {
     font-size: 25px;
 }
 
+.userContractAction{
+    display: flex;
+    flex-direction: column;
+}
+
 .contractActionForm a:hover, a:active {
     background-color: white;
 }
-sss
+
 .userContractActionForm a{
     color: white;
 }
 
-.userContractDescription{
-    float: left;
+.userContractActionForm{
+    color: #125C90;
+}
+
+.userContractActionForm p a{
+    background-color: #125C90;
     color: white;
 }
 
-.userContractMain{
-    padding: 50px;
-    width: 100%;
-}
 
 .userContractActionForm a:hover, a:active {
     background-color: #125C90;
@@ -163,21 +182,11 @@ sss
     display: inline-block;
 }
 
-.userContractActionForm p a{
-    background-color: #125C90;
-}
 
-.userContractAction{
-    display: flex;
-    flex-direction: column;
+/* admin panel page*/
+.adminPanelMain .header h3{
+    color: blue;
 }
-
-.userContractContent{
-    display: flex;
-    justify-content: space-between;
-}
-
-<!-- -->
 
 .adminPanelMain h3{
     font-weight:lighter;
@@ -201,6 +210,13 @@ sss
     padding: 0 10px;
 }
 
+.adminPanelMain{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
 .adminTable{
     border-style: solid;
     border-color: white;
@@ -217,19 +233,11 @@ sss
     text-decoration: underline;
 }
 
-
-.adminPanelMain{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-}
-
-.adminPanelMain th{
+.adminTable th{
     font-size: 25px;
 }
 
-.adminPanelMain tr{
+.adminTable tr{
     height: 50px;
 }
 
@@ -246,9 +254,7 @@ sss
     width: 800px;
 }
 
-.adminTable table{
-    color: white;
-}
+/* admin contract page*/
 
 .contractMain{
     padding: 50px;
@@ -267,20 +273,16 @@ sss
     color: white;
 }
 
-
 .contractDescription h1{
     margin-top: 0;
     font-size: 50px;
-    height: 30px;
+    height: 40px;
 }
-
-
 
 .contractDescription h3{
-    margin-top: 60px;
+    height: 25px;
     font-size: 25px;
 }
-
 
 .contractAction{
     display: flex;

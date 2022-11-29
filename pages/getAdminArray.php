@@ -1,6 +1,4 @@
-
 <?php
-
 
 function getAdminArray() : array{
     $adminArray = array();
@@ -24,7 +22,6 @@ function getAdminArray() : array{
             }
 
             mysqli_stmt_bind_result($statement, $id, $name);
-
             mysqli_stmt_store_result($statement);
 
             if(mysqli_stmt_num_rows($statement) > 0)
@@ -33,7 +30,6 @@ function getAdminArray() : array{
                 {
                     $adminArray = array_merge( $adminArray , [$id=>$name]) ;
                 }
-
             }else{
                 echo "No admins found";
             }
