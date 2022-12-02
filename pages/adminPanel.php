@@ -3,6 +3,7 @@ session_start();
 $adminID = 1;
 $_SESSION['adminId'] = $adminID;
 
+//This function checks whether the admin is logged in.If not the page will be directed to home page
 function checkAdminLoginStatus(){
     if(isset($_GET['page'])){
         //If GET is present -> include that page
@@ -18,41 +19,56 @@ function checkAdminLoginStatus(){
 }
 
 checkAdminLoginStatus();
-
+//variable for checking/tracking the display option for the name of the service(like service ticket)
 $serviceNameSelected = "ticket";
+//variable for checking/tracking the display option for the type of the service(like phone_repair)
 $serviceTypeSelected = "all";
+//variable for checking/tracking the display option(only shows the handled services or all services)
 $serviceHandlingSelected = "all";
-$hideHandledService = false;
+//array for checking if the service selected(save button clicked) exists in the displayed table
 $serviceToBeUpdated = array();
+//array for checking contractId input
 $acceptedContractId = array();
 
 require_once('dropDownBox.php');
 
+//Initialise array for service status. The array is used to check the input status and contains the display options
+//for dropDown box.
 $statusArray = array(
     "InProgress" ,
     "Done"
 );
 
+//Initialise array for service name. The array is used to check the input service name and contains the options
+//for dropDown box.
 $serviceNameArray = array(
     "ticket" ,
     "newRequest"
 );
 
+//Initialise array for service type. The array is used to check the input service type and contains the options
+//for dropDown box.
 $serviceTypeArray = array(
     "laptop_repair",
     "phone_repair",
+    "software_service",
+    "hosting_service",
     "all"
 );
 
+//Initialise array for service type. The array and contains the options
+//for dropDown box.
 $serviceHandlingArray = array(
     "unHandled",
     "all"
 );
 
+//require the page to get the existing admins and put the name and id into an associative array
+//The data is from the database and the id and name is fetched from a while loop
 require_once('getAdminArray.php');
-
 $adminArray = getAdminArray();
 
+//check if the service is handled or not while fetching the services data
 function checkServiceHandling($serviceHandlingSelected) : bool{
     if($serviceHandlingSelected == "unHandled"){
         return true;
@@ -60,52 +76,70 @@ function checkServiceHandling($serviceHandlingSelected) : bool{
     return false;
 }
 
+
+
+//check if it is a post request
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //check if the post request for the dropDown boxes is set.
     if(isset($_POST['selectedDropDown'])) {
+        //check if the serviceType is set
         if(isset($_POST['serviceType'])) {
+            //check if the service type selected exists
             if (in_array($_POST['serviceType'], $serviceTypeArray)) {
-                $serviceType = filter_input(INPUT_POST, 'serviceType');
-                $serviceTypeSelected = $serviceType;
+                //filter the serviceType and assign it to a variable
+                $serviceTypeSelected = filter_input(INPUT_POST, 'serviceType',FILTER_SANITIZE_SPECIAL_CHARS);
             }else{
-                echo "wrong Input";
+                echo "service type input is incorrect";
             }
         }
-
+        //check if the serviceName is set
         if(isset($_POST['serviceName'])) {
+            //check if the service name selected exists
             if (in_array($_POST['serviceName'], $serviceNameArray)) {
-                $serviceName = filter_input(INPUT_POST, 'serviceName');
-                $serviceNameSelected = $serviceName;
+                //filter the serviceName and assign it to a variable
+                $serviceNameSelected = filter_input(INPUT_POST, 'serviceName',FILTER_SANITIZE_SPECIAL_CHARS);
             }else{
-                echo "wrong Input";
+                echo "service name input is incorrect";
             }
         }
-
+        //check if the serviceHandlingType is set
         if(isset($_POST['serviceHandlingType'])) {
+            //check if the serviceHandlingType selected exists
             if (in_array($_POST['serviceHandlingType'], $serviceHandlingArray)) {
-                $serviceHandlingSelected = filter_input(INPUT_POST, 'serviceHandlingType');
+                //filter the serviceHandlingType  and assign it to a variable
+                $serviceHandlingSelected = filter_input(INPUT_POST, 'serviceHandlingType',FILTER_SANITIZE_SPECIAL_CHARS);
             }else{
-                echo "wrong handling Input";
+                echo "service handling type input is incorrect";
             }
         }
     }
 
     if(isset($_POST['Save'])) {
+        //check if the serviceTypeSaved input exists
         if(in_array($_POST['serviceTypeSaved'] , $serviceTypeArray)){
+            //check if the serviceNameSaved input exists
             if(in_array($_POST['serviceNameSaved'] , $serviceNameArray)){
+                //check if the serviceHandlingType input exists
                 if(in_array($_POST['serviceHandlingSaved'] , $serviceHandlingArray)){
                     //These three inputs are assigned after immediately checking because the
                     //checks for the filter have been completed.The system needs to remember what has been selected.
-                    $serviceNameSelected = filter_input(INPUT_POST, 'serviceNameSaved');
-                    $serviceTypeSelected = filter_input(INPUT_POST, 'serviceTypeSaved');
-                    $serviceHandlingSelected = filter_input(INPUT_POST, 'serviceHandlingSaved');
+                    $serviceNameSelected = filter_input(INPUT_POST, 'serviceNameSaved',FILTER_SANITIZE_SPECIAL_CHARS);
+                    $serviceTypeSelected = filter_input(INPUT_POST, 'serviceTypeSaved',FILTER_SANITIZE_SPECIAL_CHARS);
+                    $serviceHandlingSelected = filter_input(INPUT_POST, 'serviceHandlingSaved',FILTER_SANITIZE_SPECIAL_CHARS);
 
+                    //check if the service status input exists
                     if(in_array( $_POST['serviceStatus'] , $statusArray)){
+                        //check if the input service adminId is for an actual admin in the system
                         if(in_array($_POST['adminId'] , array_keys($adminArray))){
+                            //check if the input service serviceId is from one of the services displayed
                             if(in_array($_POST['serviceId'] , $_SESSION['serviceToBeUpdated'])){
+                                //unset the session as it is on longer useful
                                 unset($_SESSION['serviceToBeUpdated']);
-                                $serviceStatusSelected = filter_input(INPUT_POST, 'serviceStatus');
-                                $serviceIdSelected = filter_input(INPUT_POST, 'serviceId');
-                                $adminIdSelected = filter_input(INPUT_POST, 'adminId');
+                                //filter and assign the inputs after all checks
+                                $serviceStatusSelected = filter_input(INPUT_POST, 'serviceStatus',FILTER_SANITIZE_SPECIAL_CHARS);
+                                $serviceIdSelected = filter_input(INPUT_POST, 'serviceId',FILTER_SANITIZE_NUMBER_INT);
+                                $adminIdSelected = filter_input(INPUT_POST, 'adminId',FILTER_SANITIZE_NUMBER_INT);
+                                //call the function so the data saved is updated in database
                                 updateService($serviceNameSelected, $serviceStatusSelected,$serviceIdSelected,$adminIdSelected);
                             }else{
                                 echo  "ServiceId cannot be empty and you can only select an displayed/existing service.";
@@ -131,7 +165,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdSelected, $adminIdSelected){
     if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
         //Prepare query as a statement
-
         $query = "UPDATE `service_ticket` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
 
         if($serviceNameSelected == "newRequest"){
@@ -180,18 +213,21 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" method='post'>
                 <select name="serviceName" id="Service-type">
                     <?php
+                        //display drop down options for service name like new request and ticket
                         dropDownBox($serviceNameArray, $serviceNameSelected);
                     ?>
                 </select>
 
                 <select name="serviceType" id="Service-name">
                     <?php
+                        //display drop down options for service type like phone_repair and laptop_repair
                         dropDownBox($serviceTypeArray, $serviceTypeSelected);
                     ?>
                 </select>
 
                 <select name="serviceHandlingType" id="Service-name">
                     <?php
+                    //display handling display options like handled services and all services
                         dropDownBox($serviceHandlingArray, $serviceHandlingSelected);
                     ?>
                 </select>
@@ -202,6 +238,7 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
 
         <div>
             <?php
+                //load the admin panel table
                 loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUpdated,$acceptedContractId,
                $statusArray,$adminArray,$serviceHandlingSelected);
             ?>
@@ -213,7 +250,6 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
 <?php
 function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceToBeUpdated,$acceptedContractId,
                         $statusArray,$adminArray,$serviceHandlingSelected){
-    $checkBindPara = false;
     if(isset($_SESSION ['adminId'])) {
         if (!empty($_SESSION ['adminId'])) {
             echo "<h3>AdminId:" . $_SESSION ['adminId']."</h3>";
@@ -221,8 +257,10 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
             // Create connection
             // Selecting the database (assuming it has already been created)
             if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
-                //Create the query
-
+                //set the default variable(whether to bind parameter) to false
+                $checkBindPara = false;
+                //Create the query, and assign the fetching sql to $query based on the
+                //selected service type and service name
                 if ($serviceNameSelected == "newRequest") {
                     if($serviceTypeSelected == "all"){
                         $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id 
@@ -250,6 +288,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                 //Prepare query as a statement
                 if ($statement = mysqli_prepare($conn, $query)) {
                     //Fill in ? parameters!
+                    //if the $query has parameters that need to be bind with variable
                     if($checkBindPara == true) {
                         mysqli_stmt_bind_param($statement, 's', $serviceTypeSelected);
                     }
@@ -265,7 +304,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                     //And buffer the result if and only if you want to check the number of rows
                     mysqli_stmt_store_result($statement);
 
-                    //Create heading
+                    //check the service name for displaying the title
                     if($serviceNameSelected == "ticket"){
                         echo "<h2>List of tickets</h2>";
                     }else{
@@ -282,7 +321,11 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                         while (mysqli_stmt_fetch($statement)) {
                             if(!($ticket_status == "Done" AND checkServiceHandling($serviceHandlingSelected))){
                                 // Create row
+                                //update array for saving all the service id displayed.Later on the array will be
+                                // assigned to a session.
                                 $serviceToBeUpdated[] += $service_id;
+                                //update the associative array for saving displayed contractId and the user
+                                // having the contract
                                 $acceptedContractId[$contract_id] = $user_name;
                                 echo "<form action=" . htmlentities($_SERVER['PHP_SELF']) . " method='post'>";
                                 echo "<tr>";
@@ -296,7 +339,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                                 echo '</select></td>';
 
                                 echo '<td><select name="adminId">';
-
+                                //echo the admins that can be assigned to
                                 foreach ($adminArray as $adminId => $adminName) {
                                     if ($admin_id == $adminId) {
                                         echo "<option value=$admin_id selected>$adminName</option>";

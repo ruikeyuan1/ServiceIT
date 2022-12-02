@@ -1,19 +1,28 @@
 <?php
 session_start();
+//link the page that contains the display function for dropDown box
 require_once('dropDownBox.php');
+//set the default service name
 $selectedNameType = "ticket";
+
+//Initialise array for service name. The array is used to check the input service name and contains the options
+//for dropDown box.
 $serviceNameArray = array(
     "ticket" ,
     "newRequest"
 );
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //check if the post request for the dropDown box is set.
     if (isset($_POST['profileDropDown'])) {
+        //check if the serviceName is set
         if (isset($_POST['selectedNameType'])) {
+            //check if the serviceName is one of the service name in the system(check if it exists)
             if (in_array($_POST['selectedNameType'], $serviceNameArray)) {
-                $selectedNameType = filter_input(INPUT_POST, 'selectedNameType');
+                //filter and assign the service name to a variable
+                $selectedNameType = filter_input(INPUT_POST, 'selectedNameType',FILTER_SANITIZE_SPECIAL_CHARS);
             } else {
-                echo "wrong Input";
+                echo "service name input does not exist";
             }
         }
     }
@@ -22,8 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 $userID = 1;
 $_SESSION ['userId'] = $userID;
 
-//This function checks whether the user has logged in when accessing this page, if not user would be directed to
-//userLogout.php
+//This function checks whether the user has logged in when accessing this page.
 function checkUserLoginStatus(){
     if(isset($_GET['page'])){
         //If GET is present -> include that page
@@ -38,8 +46,9 @@ function checkUserLoginStatus(){
     }
 }
 
+//call the function to check if the user has logged in while visiting profile page
+//If not the page will be directed to home page or login page
 checkUserLoginStatus();
-
 ?>
 
 <!DOCTYPE html>
@@ -55,11 +64,13 @@ checkUserLoginStatus();
         <div class="userProfileDescription">
             <h1>Profile</h1>
             <?php
+                //load the basic information to be displayed like client name,etc
                 loadUserInfo();
             ?>
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" method='post'>
                 <select name="selectedNameType" id="Service-type">
                     <?php
+                    //display the dropDown box for selecting service names like ticket and new request.
                     dropDownBox($serviceNameArray,$selectedNameType);
                     ?>
                 </select>
@@ -74,6 +85,7 @@ checkUserLoginStatus();
     </div>
     <div class="userProfileTable">
         <?php
+            //load the table in the profile page
             loadUserProfileTable($_SESSION ['userId'],$selectedNameType);
         ?>
     </div>
@@ -93,7 +105,7 @@ function loadUserInfo(){
         if ($statement = mysqli_prepare($conn, $query)) {
             //Fill in ? parameters!
 
-            mysqli_stmt_bind_param($statement, 'i', $_SESSION ['userId']);
+            mysqli_stmt_bind_param($statement, 'i', $_SESSION['userId']);
 
             //Execute statement and check success
             if (!mysqli_stmt_execute($statement)) {
@@ -159,17 +171,16 @@ function loadUserProfileTable($userId,$selectedFilterType)
             //Fill in ? parameter
              mysqli_stmt_bind_param($statement, 'i', $userId);
 
-            // Execute statement and check success
+            //Execute statement and check success
             if (!mysqli_stmt_execute($statement)) {
                 die(mysqli_error($conn));
             }
 
-            // Bind result to variables when fetching...
+            //Bind result to variables when fetching...
             mysqli_stmt_bind_result($statement, $serviceId, $serviceType, $serviceStatus);
-            // Step #6.2: And buffer the result if and only if you want to check the number of rows
+            //And buffer the result if and only if you want to check the number of rows
             mysqli_stmt_store_result($statement);
 
-            //Create heading
 
             //Check if there are results in the statement
             if (mysqli_stmt_num_rows($statement) > 0) {

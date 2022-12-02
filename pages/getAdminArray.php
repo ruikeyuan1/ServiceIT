@@ -2,9 +2,7 @@
 
 function getAdminArray() : array{
     $adminArray = array();
-
     $conn = mysqli_connect("localhost", "root", "");
-
     if(!$conn)
     {
         die("There was an error connecting to the database. Error: " . mysqli_connect_errno());

@@ -148,8 +148,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['upload'])) {
         if (!empty($_POST['contractID'])) {
             if (!empty($_FILES["uploadedFile"]["tmp_name"])) {
-                if (in_array($_POST['contractID'], $_SESSION['acceptedContractId'])) {
-                    $contractId = filter_input(INPUT_POST, 'contractID');
+                if (in_array($_POST['contractID'], array_keys($_SESSION['acceptedContractId']))) {
+                    $contractId = filter_input(INPUT_POST, 'contractID',FILTER_SANITIZE_NUMBER_INT);
                     fileUpload($contractId);
                 } else {
                     echo "contractID is invalid.You can only upload an contract based the contract you selected";

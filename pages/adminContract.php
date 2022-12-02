@@ -26,7 +26,7 @@ function loadAdminContractPageContent(){
     if($_SERVER['REQUEST_METHOD'] == 'GET') {
         if(isset($_GET['contractId'])) {
             if (in_array($_GET['contractId'], array_keys($_SESSION['acceptedContractId']))) {
-                $contractId = filter_input(INPUT_GET, 'contractId');
+                $contractId = filter_input(INPUT_GET, 'contractId',FILTER_SANITIZE_NUMBER_INT);
                 $clientName = $_SESSION['acceptedContractId'][$contractId];
                 $dirName = "upload";
                 echo "<div class='contractAction'>";

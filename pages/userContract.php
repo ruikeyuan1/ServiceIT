@@ -25,7 +25,7 @@ function loadUserContractPageContent(){
     if($_SERVER['REQUEST_METHOD'] == 'GET') {
         if(isset($_GET['contractId'])) {
             if ($_GET['contractId'] == $_SESSION ['userContractId']) {
-                $contractId = filter_input(INPUT_GET, 'contractId');
+                $contractId = filter_input(INPUT_GET, 'contractId',FILTER_SANITIZE_NUMBER_INT);
                 $dirName = "upload";
                 echo "<div class='userContractAction'>";
                 echo "<div class='userContractContent'>";
