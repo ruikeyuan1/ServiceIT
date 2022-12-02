@@ -1,8 +1,5 @@
 <?php
-// Initialize the session
 session_start();
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: homePage.php");
     exit;
@@ -10,11 +7,9 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 require_once "connect.php";
 
-// Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
 
-// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Check if username is empty
@@ -33,21 +28,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
-        // Prepare 
+        
         $sql = "SELECT `id`, `username`, `password` FROM user WHERE username = ?";
         
         if($stmt = $conn->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
+            
             $stmt->bind_param("s", $param_username);
-            
-            // Set parameters
+
             $param_username = $username;
-            
-            // Attempt to execute the prepared statement
+
             if($stmt->execute()){
-                // Store result
+
                 $stmt->store_result();
                 
+                // Check if username exists, if yes then verify password
+                if($stmt->num_rows == 1){                    
+                        
                     $stmt->bind_result($id, $username, $hashed_password);
                     if($stmt->fetch()){
                         if(password_verify($password, $hashed_password)){
@@ -59,25 +55,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
-                            // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: homePage.php");
                         } else{
-                            // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
                         }
                     }
                 } else{
-                    // Username doesn't exist, display a generic error message
                     $login_err = "Invalid username or password.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
             $stmt->close();
         }
-    // Close connection
+    }
+    
     $conn->close();
 }
 ?>
@@ -89,7 +82,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta http-equiv = "X-UA-Compatible" content="IE=edge">
     <meta name = "viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="stylesheet.css" type="text/css">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  -->
     <title>Service IT</title>
 </head>
 <body>
@@ -107,14 +99,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             ?>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <input type = "text" name = "username" placeholder = "Enter a username" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+            <span><?php echo $username_err; ?></span>
             
             <input type="password" name="password" placeholder = "Enter a password" <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+            <span><?php echo $password_err; ?></span>
 
             <p>Forgot your password?</p>
             <button name = "Sign_In">Sign In</button>
-            <p>Don't have an account? <a href = "#">SignUp</a></p>
+            <p>Don't have an account? <a href = "registration.php">SignUp</a></p>
         </form>
     </div>
 </body>

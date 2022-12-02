@@ -100,25 +100,30 @@ a {
     font-weight: bold;
 }
 
-.errorBox {
-    width: 100%;
-    background-color: rgb(241, 74, 74);
-    padding: 10px;
-    margin: 10px;
+span {
+    color: red;
 }
 
-.errorBox a {
-    color: white;
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
 }
-
+    .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
 
 /* from here is css for adminPanel and userProfile */
 
-.adminPanelPage{
+.adminPanelPage {
     background-color: #125C90;
 }
 
-.userProfilePage{
+.userProfilePage {
     background-color: white;
 }
 
@@ -178,7 +183,7 @@ a {
     color: #125C90;
 }
 
-.userProfileActionLinks a:link, a:visited {
+.userProfileActionLinks a:link {
     border-radius: 8px;
     color: white;
     padding: 6px 10px;
@@ -237,7 +242,7 @@ a {
     font-size: 25px;
 }
 
-.userProfilePage h1, h2 {
+.userProfilePage h1 {
     font-weight: bold;
     color: #125C90;
     text-align: left;
@@ -295,7 +300,7 @@ a {
     text-align: center;
 }
 
-.adminPanelMain h1, h2 {
+.adminPanelMain h1 {
     font-weight: bold;
     color: white;
     text-align: center;
