@@ -1,8 +1,8 @@
 <?php
 require_once "connect.php";
 
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $email = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = $email_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -58,17 +58,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    //Validate email
+    if(filter_var("some@address.com", FILTER_VALIDATE_EMAIL)) {
+        $email_err = "Please enter an email."; 
+    }
+    else {
+        $email_err = "Invaid email.";
+        $email = trim($_POST["email"]);
+    }
+
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)){
         
-        $sql = "INSERT INTO user (`username`, `password`) VALUES (?, ?)";
+        $sql = "INSERT INTO user (`username`, `password`, `email`) VALUES (?, ?, ?)";
 
         if($stmt = $conn->prepare($sql)){
 
-            $stmt->bind_param("ss", $param_username, $param_password);
+            $stmt->bind_param("sss", $param_username, $param_password, $param_email);
             
             $param_username = $username;
              // password hash
             $param_password = password_hash($password, PASSWORD_DEFAULT);
+            $param_email = $email;
 
             if($stmt->execute()){
                 header("location: logInPage.php");
@@ -105,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <input type = "text" name = "username" placeholder = "Enter a username" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
             <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            <input type = "text" name = "email" placeholder = "Enter an email"/>
+            <input type = "text" name = "email" placeholder = "Enter an email"  <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
             <span class="invalid-feedback"><?php echo $email_err; ?></span>
             <input type = "password" name = "password" placeholder = "Enter a password" <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
             <span class="invalid-feedback"><?php echo $password_err; ?></span>
