@@ -96,132 +96,111 @@ checkUserLoginStatus();
 </html>
 <?php
 function loadUserInfo(){
-    $conn = mysqli_connect("localhost", "root", "", "serviceIT");
+    //load the php file for connecting database
+    require 'databaseConnect.php';
 
-    if(!$conn)
-    {
-        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-    }
+    // Create the query
+    $query = "SELECT user.name, user.email, contract.id 
+    FROM `contract` , user 
+    WHERE contract.user_id = user.id And user_id = ?";
 
-    if (mysqli_select_db($conn, "serviceIT")) {
-        // Create the query
+    //Prepare query as a statement
+    if ($statement = mysqli_prepare($conn, $query)) {
+        //Fill in ? parameters!
 
-        $query = "SELECT user.name, user.email, contract.id 
-        FROM `contract` , user 
-        WHERE contract.user_id = user.id And user_id = ?";
+        mysqli_stmt_bind_param($statement, 'i', $_SESSION['userId']);
 
-        //Prepare query as a statement
-        if ($statement = mysqli_prepare($conn, $query)) {
-            //Fill in ? parameters!
-
-            mysqli_stmt_bind_param($statement, 'i', $_SESSION['userId']);
-
-            //Execute statement and check success
-            if (!mysqli_stmt_execute($statement)) {
-                die(mysqli_error($conn));
-            }
-            mysqli_stmt_bind_result($statement, $name, $email, $contractId);
-
-            mysqli_stmt_store_result($statement);
-
-            if (mysqli_stmt_num_rows($statement) == 1) {
-                while (mysqli_stmt_fetch($statement))
-                {
-                    echo "<p><h3>Your Name: <span>".$name."</span></h3></p>";
-                    echo "<p><h3>Your Email: <span>".$email."</span></h3></p>";
-                    echo "<p><h3>Your contract ID:<span>".$contractId."</span></h3></p>";
-                    $_SESSION ['userContractId'] = $contractId;
-                }
-            }else{
-                "error:row < 1 or row >1";
-            }
-            //Close the statement and free memory
-            mysqli_stmt_close($statement);
-
-        } else {
+        //Execute statement and check success
+        if (!mysqli_stmt_execute($statement)) {
             die(mysqli_error($conn));
         }
-        //  Close the connection!
-        mysqli_close($conn);
+        mysqli_stmt_bind_result($statement, $name, $email, $contractId);
+
+        mysqli_stmt_store_result($statement);
+
+        if (mysqli_stmt_num_rows($statement) == 1) {
+            while (mysqli_stmt_fetch($statement))
+            {
+                echo "<p><h3>Your Name: <span>".$name."</span></h3></p>";
+                echo "<p><h3>Your Email: <span>".$email."</span></h3></p>";
+                echo "<p><h3>Your contract ID:<span>".$contractId."</span></h3></p>";
+                $_SESSION ['userContractId'] = $contractId;
+            }
+        }else{
+            "error:row < 1 or row >1";
+        }
+        //Close the statement and free memory
+        mysqli_stmt_close($statement);
 
     } else {
         die(mysqli_error($conn));
     }
+    //  Close the connection!
+    mysqli_close($conn);
+
 }
 
 function loadUserProfileTable($userId,$selectedFilterType)
 {
-    // Open a connection to MySQL...
-    // Docker users need to use the service name (ex: mysql)
-    $conn = mysqli_connect("localhost", "root", "");
+    //load the php file for connecting database
+    require 'databaseConnect.php';
 
-    // And test the connection
-    if (!$conn) {
-        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+    //Create the query
+    $query = "";
+    if($selectedFilterType == "ticket"){
+        $query = "SELECT service_ticket.id,service_ticket.service_type, service_ticket.status
+                    FROM service_ticket
+                    JOIN user ON user.id = service_ticket.user_id AND user.id = ?;";
+    }elseif ($selectedFilterType == "newRequest"){
+        $query = "SELECT service_request.id,service_request.service_type, service_request.status
+                    FROM service_request
+                    JOIN user ON user.id = service_request.user_id AND user.id = ?;";
     }
 
-    //Selecting the database (assuming it has already been created)
-    if (mysqli_select_db($conn, "ServiceIT")) {
+    // Prepare query as a statement
+    if ($statement = mysqli_prepare($conn, $query)) {
+        //Fill in ? parameter
+         mysqli_stmt_bind_param($statement, 'i', $userId);
 
-        //Create the query
-        $query = "";
-        if($selectedFilterType == "ticket"){
-            $query = "SELECT service_ticket.id,service_ticket.service_type, service_ticket.status
-                        FROM service_ticket
-                        JOIN user ON user.id = service_ticket.user_id AND user.id = ?;";
-        }elseif ($selectedFilterType == "newRequest"){
-            $query = "SELECT service_request.id,service_request.service_type, service_request.status
-                        FROM service_request
-                        JOIN user ON user.id = service_request.user_id AND user.id = ?;";
-        }
-
-        // Prepare query as a statement
-        if ($statement = mysqli_prepare($conn, $query)) {
-            //Fill in ? parameter
-             mysqli_stmt_bind_param($statement, 'i', $userId);
-
-            //Execute statement and check success
-            if (!mysqli_stmt_execute($statement)) {
-                die(mysqli_error($conn));
-            }
-
-            //Bind result to variables when fetching...
-            mysqli_stmt_bind_result($statement, $serviceId, $serviceType, $serviceStatus);
-            //And buffer the result if and only if you want to check the number of rows
-            mysqli_stmt_store_result($statement);
-
-
-            //Check if there are results in the statement
-            if (mysqli_stmt_num_rows($statement) > 0) {
-                 //Make table
-                echo "<div class='userProfileTable'><table border='1'>";
-                // Make table header
-                echo "<th style='text-align: left;'>ServiceID</th><th>ServiceType</th><th>ServiceStatus</th>";
-
-                //Fetch all rows of data from the result statement
-                while (mysqli_stmt_fetch($statement)) {
-
-                    // Create row
-                    echo "<tr>";
-
-                    // Create cells
-                    echo "<td>" . $serviceId . "</td>";
-                    echo "<td>" . $serviceType . "</td>";
-                    echo "<td>" . $serviceStatus . "</td>";
-
-                    // Close row
-                    echo "</tr>";
-                }
-                // Close table
-               echo "</table></div>";
-            } else {
-                echo "No admins found";
-            }
-            //  Close the statement and free memory
-            mysqli_stmt_close($statement);
-        } else {
+        //Execute statement and check success
+        if (!mysqli_stmt_execute($statement)) {
             die(mysqli_error($conn));
         }
+
+        //Bind result to variables when fetching...
+        mysqli_stmt_bind_result($statement, $serviceId, $serviceType, $serviceStatus);
+        //And buffer the result if and only if you want to check the number of rows
+        mysqli_stmt_store_result($statement);
+
+
+        //Check if there are results in the statement
+        if (mysqli_stmt_num_rows($statement) > 0) {
+             //Make table
+            echo "<div class='userProfileTable'><table border='1'>";
+            // Make table header
+            echo "<th style='text-align: left;'>ServiceID</th><th>ServiceType</th><th>ServiceStatus</th>";
+
+            //Fetch all rows of data from the result statement
+            while (mysqli_stmt_fetch($statement)) {
+
+                // Create row
+                echo "<tr>";
+
+                // Create cells
+                echo "<td>" . $serviceId . "</td>";
+                echo "<td>" . $serviceType . "</td>";
+                echo "<td>" . $serviceStatus . "</td>";
+
+                // Close row
+                echo "</tr>";
+            }
+            // Close table
+           echo "</table></div>";
+        } else {
+            echo "No admins found";
+        }
+        //  Close the statement and free memory
+        mysqli_stmt_close($statement);
     } else {
         die(mysqli_error($conn));
     }

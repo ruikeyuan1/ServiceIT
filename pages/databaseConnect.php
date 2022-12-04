@@ -1,14 +1,18 @@
 <?php
-$servername = "localhost";
-$username = "root";
+//initialise variables
+$hostName = "localhost";
+$userName = "root";
 $password = "";
 $database = "serviceIT";
+// Open a connection to MySQL...
+// Create connection
+// Selecting the database (assuming it has already been created)
+$conn = mysqli_connect($hostName, $userName, $password, $database);
 
-//$conn = mysqli_connect($servername, $username, $password , $database );
-//// And test the connection
-//if (!$conn) {
-//    die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-//}
-
+//Test the connection & Terminates execution and return the error message if connection fails
+if(!$conn)
+{
+    die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+}
 
 

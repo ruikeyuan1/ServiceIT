@@ -73,57 +73,47 @@ function fileUpload($contractId){
 }
 
 function deleteStoredFile($contractId){
-    $conn = mysqli_connect("localhost", "root", "");
+    //load the php file for connecting database
+    require 'databaseConnect.php';
 
-    if(!$conn)
-    {
-        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-    }
+    //Create the query
+    $query = "SELECT `file_path` FROM `contract` WHERE `id` = ?";
 
-    if (mysqli_select_db($conn, "serviceIT")) {
-        //Create the query
+    //Prepare query as a statement
+    if ($statement = mysqli_prepare($conn, $query)) {
+        //Fill in ? parameters
+        mysqli_stmt_bind_param($statement, 'i', $contractId);
 
-        $query = "SELECT `file_path` FROM `contract` WHERE `id` = ?";
-
-        //Prepare query as a statement
-        if ($statement = mysqli_prepare($conn, $query)) {
-            //Fill in ? parameters
-
-            mysqli_stmt_bind_param($statement, 'i', $contractId);
-
-            //Execute statement and check success
-            if (!mysqli_stmt_execute($statement)) {
-                echo "Error executing query";
-                die(mysqli_error($conn));
-            }
-            mysqli_stmt_bind_result($statement, $fileToBeDeleted);
-
-            mysqli_stmt_store_result($statement);
-            echo "<br><br>--------------<br><br>";
-
-            if (mysqli_stmt_num_rows($statement) == 1) {
-                while (mysqli_stmt_fetch($statement))
-                {
-                    if (file_exists(SITE_ROOT."/".$fileToBeDeleted))
-                    {
-                        unlink(SITE_ROOT."/".$fileToBeDeleted);
-                        echo "<p>".$fileToBeDeleted." deleted from database</p>";
-                    }else{
-                        echo "File does not exist in the folder";
-                    }
-                }
-            }else{
-                "error:row < 1 or row >1";
-            }
-            //Close the statement and free memory
-            mysqli_stmt_close($statement);
-        } else {
+        //Execute statement and check success
+        if (!mysqli_stmt_execute($statement)) {
+            echo "Error executing query";
             die(mysqli_error($conn));
         }
+        mysqli_stmt_bind_result($statement, $fileToBeDeleted);
 
+        mysqli_stmt_store_result($statement);
+        echo "<br><br>--------------<br><br>";
+
+        if (mysqli_stmt_num_rows($statement) == 1) {
+            while (mysqli_stmt_fetch($statement))
+            {
+                if (file_exists(SITE_ROOT."/".$fileToBeDeleted))
+                {
+                    unlink(SITE_ROOT."/".$fileToBeDeleted);
+                    echo "<p>".$fileToBeDeleted." deleted from database</p>";
+                }else{
+                    echo "File does not exist in the folder";
+                }
+            }
+        }else{
+            "error:row < 1 or row >1";
+        }
+        //Close the statement and free memory
+        mysqli_stmt_close($statement);
     } else {
         die(mysqli_error($conn));
     }
+
     //Close the connection!
     mysqli_close($conn);
 }
@@ -138,41 +128,31 @@ function updateContractIntoDatabase($contractId,$fileName){
             echo "<p>File: ".$fileName."</p>";
             //echo the adminId of the admin taking action
             echo "<p>Operated by the admin--AdminId: ".$_SESSION ['adminId']."</p>";
-            // Create connection
-            //Selecting the database (assuming it has already been created)
-            //Open a connection to MySQL...
-            $conn = mysqli_connect("localhost", "root", "", "serviceIT");
-            //return the error message and terminates the execution of the script if there are errors of connection
-            if(!$conn)
-            {
-                die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
-            }
 
-            if (mysqli_select_db($conn, "serviceIT")) {
-                //Create the query
-                $query = "UPDATE `contract` 
-                            SET `file_path` = ?
-                            WHERE contract.id = ?";
-                //Prepare query as a statement
-                if ($statement = mysqli_prepare($conn, $query)) {
-                    //Fill in ? parameters!
-                    mysqli_stmt_bind_param($statement, 'si', $filePath,$contractId);
-                    //Execute statement and check success
-                    if (!mysqli_stmt_execute($statement)) {
-                        echo "Error executing query";
-                        die(mysqli_error($conn));
-                    }
-                    echo "<br><br>--------------<br><br>";
-                    echo "<p>".$filePath." stored in database</p>";
-                    //Close the statement and free memory
-                    mysqli_stmt_close($statement);
-                } else {
+            //load the php file for connecting database
+            require 'databaseConnect.php';
+            //Create the query
+            $query = "UPDATE `contract` 
+                        SET `file_path` = ?
+                        WHERE contract.id = ?";
+
+            //Prepare query as a statement
+            if ($statement = mysqli_prepare($conn, $query)) {
+                //Fill in ? parameters!
+                mysqli_stmt_bind_param($statement, 'si', $filePath,$contractId);
+                //Execute statement and check success
+                if (!mysqli_stmt_execute($statement)) {
+                    echo "Error executing query";
                     die(mysqli_error($conn));
                 }
-                //Close the connection!
+                echo "<br><br>--------------<br><br>";
+                echo "<p>".$filePath." stored in database</p>";
+                //Close the statement and free memory
+                mysqli_stmt_close($statement);
             } else {
                 die(mysqli_error($conn));
             }
+            //Close the connection!
             mysqli_close($conn);
         }
     }
