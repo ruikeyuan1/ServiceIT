@@ -25,9 +25,14 @@ function loadAdminContractPageContent(){
     $contractId = null;
     if($_SERVER['REQUEST_METHOD'] == 'GET') {
         if(isset($_GET['contractId'])) {
+            //check if the contractId got is the contractId in the session.The session is assigned in the adminpanel
+            //page when fetching data
             if (in_array($_GET['contractId'], array_keys($_SESSION['acceptedContractId']))) {
+                //filter the contractId and assign to a variable
                 $contractId = filter_input(INPUT_GET, 'contractId',FILTER_SANITIZE_NUMBER_INT);
+                //assign the name of the client to a variable
                 $clientName = $_SESSION['acceptedContractId'][$contractId];
+                //define the name of the directory for loading(displaying) the contract later on
                 $dirName = "upload";
                 echo "<div class='contractAction'>";
                 echo "<div class='contractContent'>";

@@ -163,7 +163,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdSelected, $adminIdSelected){
-    if ($conn = mysqli_connect("localhost", "root", "", "ServiceIT")) {
+    $conn = mysqli_connect("localhost", "root", "");
+
+    if(!$conn)
+    {
+        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+    }
+
+    if (mysqli_select_db($conn, "serviceIT")) {
         //Prepare query as a statement
         $query = "UPDATE `service_ticket` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
 
@@ -184,11 +191,11 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
         } else {
             die(mysqli_error($conn));
         }
-        // Close the connection!
-        mysqli_close($conn);
     } else {
-        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+        die(mysqli_error($conn));
     }
+    // Close the connection!
+    mysqli_close($conn);
 }
 ?>
 
@@ -256,29 +263,36 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
             // Open a connection to MySQL...
             // Create connection
             // Selecting the database (assuming it has already been created)
-            if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
+            $conn = mysqli_connect("localhost", "root", "");
+
+            if(!$conn)
+            {
+                die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+            }
+
+            if (mysqli_select_db($conn, "serviceIT")) {
                 //set the default variable(whether to bind parameter) to false
                 $checkBindPara = false;
                 //Create the query, and assign the fetching sql to $query based on the
                 //selected service type and service name
                 if ($serviceNameSelected == "newRequest") {
                     if($serviceTypeSelected == "all"){
-                        $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id 
+                        $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.username, contract.id 
                         FROM service_request 
                         INNER JOIN user ON user.id = service_request.user_id INNER JOIN contract ON user.id = contract.user_id;";
                     }else{
-                        $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.name, contract.id 
+                        $query = "SELECT service_request.id, service_request.admin_id,service_request.service_type, service_request.status, user.username, contract.id 
                         FROM service_request 
                         INNER JOIN user ON user.id = service_request.user_id INNER JOIN contract ON user.id = contract.user_id AND service_request.service_type = ?;";
                         $checkBindPara = true;
                     }
                 }else{
                     if($serviceTypeSelected == "all"){
-                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.name, contract.id 
+                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.username, contract.id 
                         FROM service_ticket 
                         INNER JOIN user ON user.id = service_ticket.user_id INNER JOIN contract ON user.id = contract.user_id";
                     }else{
-                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.name, contract.id 
+                        $query = "SELECT service_ticket.id, service_ticket.admin_id,service_ticket.service_type, service_ticket.status, user.username, contract.id 
                         FROM service_ticket 
                         INNER JOIN user ON user.id = service_ticket.user_id INNER JOIN contract ON user.id = contract.user_id  AND service_ticket.service_type = ?;";
                         $checkBindPara = true;
@@ -380,11 +394,11 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                     die(mysqli_error($conn));
                 }
 
-                //Close the connection!
-                mysqli_close($conn);
             } else {
-                die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+                die(mysqli_error($conn));
             }
+            //Close the connection!
+            mysqli_close($conn);
         }
     }
 }

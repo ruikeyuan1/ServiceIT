@@ -10,5 +10,5 @@ $database = "serviceIT";
 //    die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
 //}
 
-?>
+
 

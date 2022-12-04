@@ -34,13 +34,15 @@ $_SESSION ['userId'] = $userID;
 //This function checks whether the user has logged in when accessing this page.
 function checkUserLoginStatus(){
     if(isset($_GET['page'])){
-        //If GET is present -> include that page
+        //include that page If GET is present
         unset($_SESSION ['userId']);
+        //direct back to home page
         header("Location: userLogout.php");
     }
     else{
-        //No GET present -> Check if admin is logged in via SESSION
+        //Check if admin is logged in via SESSION if No GET is present
         if(!isset($_SESSION['userId'])){
+            //direct back to home page
             header("Location: userLogout.php");
         }
     }
@@ -94,7 +96,14 @@ checkUserLoginStatus();
 </html>
 <?php
 function loadUserInfo(){
-    if ($conn = mysqli_connect("localhost", "root", "", "serviceIT")) {
+    $conn = mysqli_connect("localhost", "root", "", "serviceIT");
+
+    if(!$conn)
+    {
+        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+    }
+
+    if (mysqli_select_db($conn, "serviceIT")) {
         // Create the query
 
         $query = "SELECT user.name, user.email, contract.id 
@@ -136,7 +145,7 @@ function loadUserInfo(){
         mysqli_close($conn);
 
     } else {
-        die("There was an error connecting to the database. Error: " . mysqli_connect_errno());
+        die(mysqli_error($conn));
     }
 }
 

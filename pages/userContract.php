@@ -24,8 +24,12 @@ function loadUserContractPageContent(){
     $contractId = null;
     if($_SERVER['REQUEST_METHOD'] == 'GET') {
         if(isset($_GET['contractId'])) {
+            //check if the contractId got is the contractId in the session.The session is assigned in the userProfile
+            //page when fetching data
             if ($_GET['contractId'] == $_SESSION ['userContractId']) {
+                //filter the contractId and assign to a variable
                 $contractId = filter_input(INPUT_GET, 'contractId',FILTER_SANITIZE_NUMBER_INT);
+                //define the name of the directory for loading(displaying) the contract later on
                 $dirName = "upload";
                 echo "<div class='userContractAction'>";
                 echo "<div class='userContractContent'>";
