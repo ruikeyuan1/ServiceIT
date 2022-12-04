@@ -25,6 +25,24 @@
 	<h2>SERVICE</h2>
 </div>
 
+<div class="row">
+  <div class="column1">
+    <p>Laptop repair</p>
+    <img src="laptop.png" alt="Laptop">
+  </div>
+
+  <div class="column2">
+    <p>Phone repair</p>
+    <img src="phone.png" alt="Laptop">
+  </div>
+
+  <div class="column3">
+     <p>Hardware/Software</p>
+    <img src="hardware.png" alt="Laptop">
+  </div>
+
+</div>
+
 
 <div class="footer">
 	<p>Copyright &copy;2022 IT. All rights are reserved</p> 	

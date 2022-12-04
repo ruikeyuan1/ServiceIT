@@ -4,6 +4,7 @@ body {
 	box-sizing:  border-box;
 }
 
+/* Navbar */
 .navbar {
 	overflow: hidden;
 	background: #FFFFFF;
@@ -43,6 +44,41 @@ h2 {
 	color: #01579b;
 	font-size: 40px;
 	text-align: left;
+}
+
+/* Homepage styles */
+.column1 {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.column2 {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+.column3 {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+p {
+  text-align: center;
+}
+
+img {
+  border: 3px solid; 
+  color: #01579b;
+  border-radius: 30px;
+  width: 100%;
 }
 
 .footer {
