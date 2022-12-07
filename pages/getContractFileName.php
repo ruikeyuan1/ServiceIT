@@ -1,16 +1,18 @@
 <?php
-
-function getAdminArray() : array{
+function getContractFileName($contractId) : string{
     //create an array for storing the result to be returned
-    $adminArray = array();
+    $fileNameFetched = "";
     //load the php file for connecting database
-    require 'databaseConnect.php';
-    //Create the query(selecting all the existing admins in database)
-    $query = "SELECT `id`, `name` FROM `administrator`";
+   require 'databaseConnect.php';
+    //Create the query
+    $query = " SELECT `file_path` FROM `contract` WHERE `id` = ?";
 
     //Prepare query as a statement
     if($statement = mysqli_prepare($conn, $query))
     {
+        //Fill in  ? parameters
+        mysqli_stmt_bind_param($statement, 'i', $contractId);
+
         //Execute statement and check success
         if(!mysqli_stmt_execute($statement))
         {
@@ -18,20 +20,20 @@ function getAdminArray() : array{
         }
 
         //Bind result to variables when fetching...
-        mysqli_stmt_bind_result($statement, $id, $name);
+        mysqli_stmt_bind_result($statement, $fileName);
         //And buffer the result for checking the number of rows
         mysqli_stmt_store_result($statement);
 
         //Check if the number of rows fetched is correct
-        if(mysqli_stmt_num_rows($statement) > 0)
+        if(mysqli_stmt_num_rows($statement) == 1)
         {
             while (mysqli_stmt_fetch($statement))
             {
-                //assign the result(adminId with the name of the admin) to an associative array
-                $adminArray = array_merge($adminArray , [$id=>$name]);
+                //assign the result(fileName) to a new variable
+                $fileNameFetched = $fileName;
             }
         }else{
-            echo "No admins found";
+            echo "error fetching the data.The data should be one row.";
         }
 
         //Close the statement and free memory
@@ -42,9 +44,11 @@ function getAdminArray() : array{
 
     //Close the connection
     mysqli_close($conn);
-    return $adminArray;
+    //check if the variable is null, if so an empty string will be assigned.
+    //The empty string will be checked when displaying the contract file in contract pages
+    if($fileNameFetched == null){
+        return " ";
+    }
+    //return the filename fetched
+    return $fileNameFetched;
 }
-
-
-
-
