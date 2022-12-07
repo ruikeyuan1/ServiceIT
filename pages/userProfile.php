@@ -60,7 +60,7 @@ checkUserLoginStatus();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>UserProfile</title>
-    <link rel = "stylesheet" href="stylesheet.css" type="text/css">
+    <link rel = "stylesheet" href="Stylesheet.css" type="text/css">
 </head>
 <body class="userProfilePage">
 <div class="userProfileMain">
