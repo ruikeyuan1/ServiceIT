@@ -3,12 +3,121 @@
 }
 
 body {
+    background: #FFFFFF;
     font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
     width: 100%;
     margin: 0 auto;
-    background-color: white;
 }
+
+h1, h2 {
+    font-weight: bold;
+    color: #125C90;
+    text-align: center;
+    padding: 25px;
+}
+
+.header {
+    width: 100%;
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.logo {
+    color: #125C90;
+    float: left;
+    font-weight: bold;
+    margin: 7px;
+}
+
+button1 {
+    margin: 7px;
+    border-radius: 25px;
+    border: 1px solid #125C90;
+    color: #125C90;
+    font-size: 15px;
+    padding: 5px;
+    letter-spacing: 1px;
+    width: 65px;
+    float: right
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-height: 400px;
+}
+
+button {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    border: 1px solid #125C90;
+    background-color: #125C90   ;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    width: 300px;
+}
+
+form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+input,
+select {
+    background-color: #FFFFFF;
+    color: #125C90;
+    border: 1.5px solid #125C90;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 300px;
+    border-radius: 20px;
+}
+
+a {
+    color: #125C90;
+    font-size: 18px;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+span {
+    color: red;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* from here is css for adminPanel and userProfile */
 
 .adminPanelPage{
     background-color: #125C90;
@@ -42,10 +151,15 @@ body {
 .userProfileDescription h1{
     margin-top: 0px;
     font-size: 50px;
+    padding: 0px;
 }
 
 .userProfileDescription form{
     height: 50px;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    justify-content: left;
 }
 
 .userProfileDescription form select{
@@ -63,7 +177,14 @@ body {
     padding: 8px 32px;
     text-decoration: none;
     margin: 4px 2px;
+    width:50%;
     cursor: pointer;
+}
+
+.userProfileDescription h1{
+    margin-top: 0px;
+    font-size: 50px;
+    text-align: left;
 }
 
 .userProfileDescription h3{
@@ -135,6 +256,7 @@ body {
 }
 
 .userContractDescription h1{
+    padding: 0px;
     margin-top: 0;
     color: #125C90;
     font-size: 50px;
@@ -169,7 +291,6 @@ body {
     color: white;
 }
 
-
 .userContractActionForm a:hover, a:active {
     background-color: #125C90;
 }
@@ -181,12 +302,6 @@ body {
     text-decoration: none;
     display: inline-block;
 }
-
-
-/* admin panel page*/
-/*.adminPanelMain .header h3{*/
-/*    color: white;*/
-/*}*/
 
 .adminPanelMain h3{
     font-weight:lighter;
@@ -210,11 +325,27 @@ body {
     padding: 0 10px;
 }
 
+.adminPanelMain .header a{
+    color: #FFFFFF;
+}
+
 .adminPanelMain{
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
+}
+
+.adminPanelMain form{
+    background-color: #125C90;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.adminPanelMain select,input{
+    width: 100%;
 }
 
 .adminTable{
@@ -271,12 +402,15 @@ body {
 .contractDescription{
     float: left;
     color: white;
+
 }
 
 .contractDescription h1{
+    color: white;
+    padding: 0px;
     margin-top: 0;
     font-size: 50px;
-    height: 40px;
+    text-align: left;
 }
 
 .contractDescription h3{
@@ -302,7 +436,14 @@ body {
     color: #125C90;
 }
 
-
 .contractActionForm{
     color: white;
+    align-items: center;
 }
+
+.contractActionForm form{
+    display: flex;
+    flex-direction: row;
+    background-color: #125C90;
+}
+/* above here is css for adminPanel and userProfile */
