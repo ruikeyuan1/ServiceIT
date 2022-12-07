@@ -47,15 +47,21 @@ function loadAdminContractPageContent(){
                                 <input type="hidden" name="contractID" value='.$contractId.'>                          
                                 <p><input type="submit" name="upload" value="upload"/></p>
                             </form>
-                             <p><a href="adminPanel.php">Back to adminPanel</a></p>
-                             <p><a href='.$dirName."/".getContractFileName($contractId).'>Download Contract</a></p>
+                             <p><a href="adminPanel.php">Back to adminPanel</a></p>';
+                //check if there is a contract file assigned to the contractId sent
+                if(getContractFileName($contractId) != null AND trim(getContractFileName($contractId)) != ''){
+                    echo'<p><a href='.$dirName."/".getContractFileName($contractId).'>Download Contract</a></p>
                       </div>';
-                echo "</div>";
-
-                echo '<div class="contractView">
+                    echo "</div>";
+                    echo '<div class="contractView">
                             <iframe src='.$dirName."/".getContractFileName($contractId).' width="100%" height="500px"></iframe>
                       </div>';
-                echo "</div>";
+                    echo "</div>";
+                }else{
+                    echo 'no contract file attached, please upload a contract for the user';
+                    echo '</div>';
+                    echo '</div>';
+                }
             }else{
                 echo "Contract ID input invalid: ".$contractId;
             }

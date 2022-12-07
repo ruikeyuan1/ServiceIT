@@ -40,15 +40,22 @@ function loadUserContractPageContent(){
             
                   <div class="userContractActionForm">
                     <h3>Service IT</h3>
-                    <p><a href="userProfile.php">Back to profile</a></p>
-                    <p><a href='.$dirName."/".getContractFileName($contractId).'>Download Contract</a></p>
-                  </div>';
+                    <p><a href="userProfile.php">Back to profile</a></p>';
 
-                echo "</div>";
-                echo '<div class="userContractView">
-                            <iframe src='.$dirName."/".getContractFileName($contractId).' width="100%" height="500px"></iframe>
-                      </div>';
-                echo "</div>";
+                //check if there is a contract file assigned to the contractId sent
+                if(getContractFileName($contractId) != null AND trim(getContractFileName($contractId)) != ''){
+                    echo '<p><a href='.$dirName."/".getContractFileName($contractId).'>Download Contract</a></p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<div class="contractView">
+                               <iframe src='.$dirName."/".getContractFileName($contractId).' width="100%" height="500px"></iframe>
+                          </div>';
+                    echo "</div>";
+                }else{
+                    echo 'no contract file attached, please wait for administrators to upload a contract for you';
+                    echo '</div>';
+                    echo '</div>';
+                }
             }else{
                 echo "Contract ID input invalid: ".$contractId;
             }

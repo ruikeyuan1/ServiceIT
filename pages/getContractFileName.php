@@ -3,7 +3,7 @@ function getContractFileName($contractId) : string{
     //create an array for storing the result to be returned
     $fileNameFetched = "";
     //load the php file for connecting database
-    require 'databaseConnect.php';
+   require 'databaseConnect.php';
     //Create the query
     $query = " SELECT `file_path` FROM `contract` WHERE `id` = ?";
 
@@ -42,9 +42,13 @@ function getContractFileName($contractId) : string{
         die(mysqli_error($conn));
     }
 
-
     //Close the connection
     mysqli_close($conn);
+    //check if the variable is null, if so an empty string will be assigned.
+    //The empty string will be checked when displaying the contract file in contract pages
+    if($fileNameFetched == null){
+        return " ";
+    }
     //return the filename fetched
     return $fileNameFetched;
 }

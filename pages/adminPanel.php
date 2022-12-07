@@ -1,9 +1,9 @@
 <?php
 session_start();
 
+//admin id assigned for testing
 $adminID = 1;
 $_SESSION['adminId'] = $adminID;
-
 
 //This function checks whether the admin is logged in.If not the page will be directed to home page
 function checkAdminLoginStatus(){
@@ -11,8 +11,7 @@ function checkAdminLoginStatus(){
         //If GET is present -> include that page
         unset($_SESSION ['adminId']);
         header("Location: adminLogout.php");
-    }
-    else{
+    } else {
         //No GET present -> Check if admin is logged in via SESSION
         if(!isset($_SESSION['adminId'])){
             header("Location: adminLogout.php");
@@ -229,7 +228,7 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
 
                 <select name="serviceHandlingType" id="Service-name">
                     <?php
-                    //display handling display options like handled services and all services
+                        //display handling display options like handled services and all services
                         dropDownBox($serviceHandlingArray, $serviceHandlingSelected);
                     ?>
                 </select>

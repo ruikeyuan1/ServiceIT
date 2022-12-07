@@ -5,7 +5,6 @@ function getAdminArray() : array{
     $adminArray = array();
     //load the php file for connecting database
     require 'databaseConnect.php';
-
     //Create the query(selecting all the existing admins in database)
     $query = "SELECT `id`, `name` FROM `administrator`";
 
@@ -29,7 +28,7 @@ function getAdminArray() : array{
             while (mysqli_stmt_fetch($statement))
             {
                 //assign the result(adminId with the name of the admin) to an associative array
-                $adminArray = array_merge($adminArray , [$id=>$name]) ;
+                $adminArray = array_merge($adminArray , [$id=>$name]);
             }
         }else{
             echo "No admins found";
@@ -40,7 +39,6 @@ function getAdminArray() : array{
     }else{
         die(mysqli_error($conn));
     }
-
 
     //Close the connection
     mysqli_close($conn);

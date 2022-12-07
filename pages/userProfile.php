@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+//user id assigned for testing
+$userID = 1;
+$_SESSION ['userId'] = $userID;
+
 //link the page that contains the display function for dropDown box
 require_once('dropDownBox.php');
 //set the default service name
@@ -28,20 +33,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$userID = 1;
-$_SESSION ['userId'] = $userID;
 
 //This function checks whether the user has logged in when accessing this page.
 function checkUserLoginStatus(){
-    if(isset($_GET['page'])){
+    if (isset($_GET['page'])){
         //include that page If GET is present
         unset($_SESSION ['userId']);
         //direct back to home page
         header("Location: userLogout.php");
-    }
-    else{
+    } else {
         //Check if admin is logged in via SESSION if No GET is present
-        if(!isset($_SESSION['userId'])){
+        if (!isset($_SESSION['userId'])){
             //direct back to home page
             header("Location: userLogout.php");
         }
@@ -98,7 +100,6 @@ checkUserLoginStatus();
 function loadUserInfo(){
     //load the php file for connecting database
     require 'databaseConnect.php';
-
     // Create the query
     $query = "SELECT user.name, user.email, contract.id 
     FROM `contract` , user 
@@ -107,9 +108,7 @@ function loadUserInfo(){
     //Prepare query as a statement
     if ($statement = mysqli_prepare($conn, $query)) {
         //Fill in ? parameters!
-
         mysqli_stmt_bind_param($statement, 'i', $_SESSION['userId']);
-
         //Execute statement and check success
         if (!mysqli_stmt_execute($statement)) {
             die(mysqli_error($conn));
@@ -126,7 +125,7 @@ function loadUserInfo(){
                 echo "<p><h3>Your contract ID:<span>".$contractId."</span></h3></p>";
                 $_SESSION ['userContractId'] = $contractId;
             }
-        }else{
+        } else {
             "error:row < 1 or row >1";
         }
         //Close the statement and free memory
@@ -151,7 +150,7 @@ function loadUserProfileTable($userId,$selectedFilterType)
         $query = "SELECT service_ticket.id,service_ticket.service_type, service_ticket.status
                     FROM service_ticket
                     JOIN user ON user.id = service_ticket.user_id AND user.id = ?;";
-    }elseif ($selectedFilterType == "newRequest"){
+    } elseif ($selectedFilterType == "newRequest"){
         $query = "SELECT service_request.id,service_request.service_type, service_request.status
                     FROM service_request
                     JOIN user ON user.id = service_request.user_id AND user.id = ?;";
@@ -171,7 +170,6 @@ function loadUserProfileTable($userId,$selectedFilterType)
         mysqli_stmt_bind_result($statement, $serviceId, $serviceType, $serviceStatus);
         //And buffer the result if and only if you want to check the number of rows
         mysqli_stmt_store_result($statement);
-
 
         //Check if there are results in the statement
         if (mysqli_stmt_num_rows($statement) > 0) {

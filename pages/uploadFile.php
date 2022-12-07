@@ -1,8 +1,5 @@
 <?php
 session_start();
-$adminID = 1;
-$_SESSION ['adminId'] = $adminID;
-
 //define a root path(path the file to be saved) variable, so
 //it is easier to maintain the code(when changing the path to save the file)
 define ('SITE_ROOT',realpath('upload/'));
@@ -10,7 +7,7 @@ define ('SITE_ROOT',realpath('upload/'));
 function fileUpload($contractId){
     if ($_FILES["uploadedFile"]["size"] < 1000000)
     {
-        //declare a array that contains the accepted file types to check if the uploaded file is a pdf
+        //declare an array that contains the accepted file types to check if the uploaded file is a pdf
         $acceptedFileTypes = ["application/pdf"];
         $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
         //assign the file type of the uploaded file to a variable for upcoming type check
@@ -75,10 +72,8 @@ function fileUpload($contractId){
 function deleteStoredFile($contractId){
     //load the php file for connecting database
     require 'databaseConnect.php';
-
     //Create the query
     $query = "SELECT `file_path` FROM `contract` WHERE `id` = ?";
-
     //Prepare query as a statement
     if ($statement = mysqli_prepare($conn, $query)) {
         //Fill in ? parameters
@@ -97,12 +92,17 @@ function deleteStoredFile($contractId){
         if (mysqli_stmt_num_rows($statement) == 1) {
             while (mysqli_stmt_fetch($statement))
             {
-                if (file_exists(SITE_ROOT."/".$fileToBeDeleted))
-                {
-                    unlink(SITE_ROOT."/".$fileToBeDeleted);
-                    echo "<p>".$fileToBeDeleted." deleted from database</p>";
+                if($fileToBeDeleted != null){
+                    if (file_exists(SITE_ROOT."/".$fileToBeDeleted))
+                    {
+                        echo $fileToBeDeleted;
+                        unlink(SITE_ROOT."/".$fileToBeDeleted);
+                        echo "<p>".$fileToBeDeleted." deleted from database</p>";
+                    }else{
+                        echo "File does not exist in the folder";
+                    }
                 }else{
-                    echo "File does not exist in the folder";
+                    echo "File name is null, there is no previous contract.";
                 }
             }
         }else{
@@ -139,14 +139,14 @@ function updateContractIntoDatabase($contractId,$fileName){
             //Prepare query as a statement
             if ($statement = mysqli_prepare($conn, $query)) {
                 //Fill in ? parameters!
-                mysqli_stmt_bind_param($statement, 'si', $filePath,$contractId);
+                mysqli_stmt_bind_param($statement, 'si', $fileName,$contractId);
                 //Execute statement and check success
                 if (!mysqli_stmt_execute($statement)) {
                     echo "Error executing query";
                     die(mysqli_error($conn));
                 }
                 echo "<br><br>--------------<br><br>";
-                echo "<p>".$filePath." stored in database</p>";
+                echo "<p>".$fileName." stored in database</p>";
                 //Close the statement and free memory
                 mysqli_stmt_close($statement);
             } else {
