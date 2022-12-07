@@ -151,10 +151,15 @@ span {
 .userProfileDescription h1{
     margin-top: 0px;
     font-size: 50px;
+    padding: 0px;
 }
 
 .userProfileDescription form{
     height: 50px;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    justify-content: left;
 }
 
 .userProfileDescription form select{
@@ -172,7 +177,14 @@ span {
     padding: 8px 32px;
     text-decoration: none;
     margin: 4px 2px;
+    width:50%;
     cursor: pointer;
+}
+
+.userProfileDescription h1{
+    margin-top: 0px;
+    font-size: 50px;
+    text-align: left;
 }
 
 .userProfileDescription h3{
@@ -244,6 +256,7 @@ span {
 }
 
 .userContractDescription h1{
+    padding: 0px;
     margin-top: 0;
     color: #125C90;
     font-size: 50px;
@@ -278,7 +291,6 @@ span {
     color: white;
 }
 
-
 .userContractActionForm a:hover, a:active {
     background-color: #125C90;
 }
@@ -290,12 +302,6 @@ span {
     text-decoration: none;
     display: inline-block;
 }
-
-
-/* admin panel page*/
-/*.adminPanelMain .header h3{*/
-/*    color: white;*/
-/*}*/
 
 .adminPanelMain h3{
     font-weight:lighter;
@@ -319,11 +325,27 @@ span {
     padding: 0 10px;
 }
 
+.adminPanelMain .header a{
+    color: #FFFFFF;
+}
+
 .adminPanelMain{
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
+}
+
+.adminPanelMain form{
+    background-color: #125C90;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.adminPanelMain select,input{
+    width: 100%;
 }
 
 .adminTable{
@@ -380,12 +402,15 @@ span {
 .contractDescription{
     float: left;
     color: white;
+
 }
 
 .contractDescription h1{
+    color: white;
+    padding: 0px;
     margin-top: 0;
     font-size: 50px;
-    height: 40px;
+    text-align: left;
 }
 
 .contractDescription h3{
@@ -411,9 +436,14 @@ span {
     color: #125C90;
 }
 
-
 .contractActionForm{
     color: white;
+    align-items: center;
 }
 
+.contractActionForm form{
+    display: flex;
+    flex-direction: row;
+    background-color: #125C90;
+}
 /* above here is css for adminPanel and userProfile */

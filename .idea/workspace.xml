@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/adminLogout.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/getContractFileName.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/upload/Eeqest.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/upload/PPFINAL.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/upload/ServiceITdfd.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/userLogout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminContract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminPanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/databaseConnect.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/databaseConnect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dropDownBox.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dropDownBox.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/getAdminArray.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/getAdminArray.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/getContractFile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/upload/PresentationUnitestWorkshop.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/upload/projeOnintemplate.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/uploadFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/uploadFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/userContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userContract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/userProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Stylesheet.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
