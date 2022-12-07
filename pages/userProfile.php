@@ -2,8 +2,8 @@
 session_start();
 
 //user id assigned for testing
-$userID = 1;
-$_SESSION ['userId'] = $userID;
+//$userID = 1;
+$_SESSION ['userId'] = $_SESSION ['id'];
 
 //link the page that contains the display function for dropDown box
 require_once('dropDownBox.php');
@@ -195,7 +195,7 @@ function loadUserProfileTable($userId,$selectedFilterType)
             // Close table
            echo "</table></div>";
         } else {
-            echo "No admins found";
+            echo "No services found";
         }
         //  Close the statement and free memory
         mysqli_stmt_close($statement);

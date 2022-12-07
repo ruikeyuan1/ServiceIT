@@ -3,7 +3,7 @@
 $hostName = "localhost";
 $userName = "root";
 $password = "";
-$database = "serviceIT";
+$database = "service";
 // Open a connection to MySQL...
 // Create connection
 // Selecting the database (assuming it has already been created)
