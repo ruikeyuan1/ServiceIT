@@ -1,0 +1,207 @@
+* {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  color: #125C90;
+}
+
+*[v-cloak] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
+.wrapper {
+  margin-top: 111px;
+  display: inline-block;
+  padding: 20px;
+  font-family: Arial;
+}
+.wrapper .inner {
+  position: relative;
+}
+.wrapper .inner .message {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 2;
+  background-color: #fff;
+  font-size: 32px;
+  font-weight: 600;
+  gap: 16px;
+}
+.wrapper .inner .message .button {
+  font-size: 24px;
+  text-decoration: none;
+  background-color: #125C90;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 32px;
+}
+.wrapper .inner .message:not(.active) {
+  opacity: 0;
+  pointer-events: none;
+}
+.wrapper .suptitle {
+  margin: 18px;
+  margin-right: 0;
+  text-align: right;
+  font-weight: 600;
+}
+.wrapper .bigtitle {
+  margin: 16px 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+.wrapper .inputs {
+  margin: 8px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 500px;
+}
+.wrapper .inputs input {
+  border: 1px solid #125C90;
+  border-radius: 50px;
+  margin: 8px 0;
+  padding: 4px 16px;
+  font-size: 16px;
+}
+.wrapper .block {
+  margin: 24px 0;
+}
+.wrapper .block .block_title {
+  font-weight: 600;
+}
+.wrapper .block .block_content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 32px;
+  margin: 8px 0;
+}
+.wrapper .block .block_content.two {
+  margin-top: 16px;
+}
+.wrapper .block .block_content.two textarea {
+  border-radius: 10px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 500px;
+  height: 60px;
+  resize: none;
+  padding: 8px;
+  border: 1px solid #125C90;
+}
+.wrapper .block .block_content.two button {
+  border: 0px;
+  cursor: pointer;
+  background-color: #225C90;
+  height: 40px;
+  color: #fff;
+  width: 100px;
+  letter-spacing: 1px;
+  font-size: 16px;
+  border-radius: 50px;
+}
+.wrapper .block .block_content.two button:active {
+  opacity: 0.9;
+}
+.wrapper .block .block_content .radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+}
+.wrapper .block .block_content .radio .radio_input {
+  cursor: pointer;
+  position: relative;
+}
+.wrapper .block .block_content .radio .radio_input:focus {
+  border: 0px;
+}
+.wrapper .block .block_content .radio .radio_input:after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: -2px;
+  z-index: 1;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid #125C90;
+}
+.wrapper .block .block_content .radio .radio_input:checked:after {
+  background-color: #125C90;
+}
+.wrapper .block .block_content .radio .radio_text {
+  position: relative;
+  top: 2px;
+  font-weight: 600;
+}
+.wrapper .form_footer .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 24px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.wrapper .form_footer .links .link {
+  cursor: pointer;
+  text-decoration: none;
+}
+.wrapper .form_footer .links .link:hover {
+  text-decoration: underline;
+}
+.wrapper .form_footer .copyright {
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 10px;
+  height: 20px;
+  text-align: right;
+}
