@@ -22,7 +22,33 @@
 
   if (!empty($_POST['name'])) {
     $db = new Database;
-    $test = $db->query("INSERT INTO `service_request` (`id`, `status`, `description`, `service_type`, `name`, `email`, `user_id`, `admin_id`) VALUES (NULL, 'inProcess', '".$_POST['description']."', '".$_POST['service_type']."', '".$_POST['name']."', '".$_POST['email']."', 1, 1);");
+
+    $result = $db->query("SELECT * FROM `user` WHERE `email` = '".quotemeta($_POST['email'])."'");
+
+    $user = false;
+
+    while ($row = $result->fetch_assoc()) {
+      $user = $row['id'];
+      break;
+    }
+
+    if ($user != false) {
+      $result = $db->query("SELECT * FROM `contract` WHERE `user_id` = ".$user."");
+
+      $check = false;
+
+      while ($row = $result->fetch_assoc()) {
+        $check = true;
+        break;
+      }
+
+      if (!$check) {
+        $db->query("INSERT INTO `contract` (`id`, `file_path`, `user_id`) VALUES (NULL, '', ".$user.");");
+      }
+      
+      $db->query("INSERT INTO `service_request` (`id`, `status`, `description`, `service_type`, `name`, `email`, `user_id`, `admin_id`) VALUES (NULL, 'inProcess', '".$_POST['description']."', '".$_POST['service_type']."', '".$_POST['name']."', '".$_POST['email']."', ".$user.", 1);");
+    }
+
     exit('ok');
   }
 ?>
@@ -55,7 +81,7 @@
 
           <div class="inputs">
             <input name="name" required minlength="3" placeholder="Name and lastname" type="text">
-            <input name="email" required  placeholder="Email" type="email">
+            <input name="email" required  placeholder="Email (the one you entered during registration)" type="email">
           </div>
           
           <div class="block">
