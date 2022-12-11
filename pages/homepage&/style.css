@@ -1,4 +1,4 @@
-body {
+ody {
 	margin:  0;
 	font-family : Helvatica, sans-serif;
 	box-sizing:  border-box;
@@ -46,21 +46,21 @@ h2 {
 	text-align: left;
 }
 
-/* Homepage styles */
-.column1 {
+/* Homepage/ticket page styles */
+.item1 {
   float: left;
-  width: 33.33%;
+  width: 24.24%;
   padding: 5px;
 }
 
-.column2 {
+.item2 {
   float: left;
-  width: 33.33%;
+  width: 24.24%;
   padding: 5px;
 }
-.column3 {
+.item3 {
   float: left;
-  width: 33.33%;
+  width: 24.24%;
   padding: 5px;
 }
 
@@ -78,12 +78,22 @@ img {
   border: 3px solid; 
   color: #01579b;
   border-radius: 30px;
-  width: 100%;
+  width: 380px;
+  height:300px;
 }
 
+figcaption {
+	text-align: center;
+	font-size: 23px;
+	color: #01579b;
+}
 .footer {
 	text-align: right;
 	color: #01579b;
+}
+
+.footerbottom {
+	text-align: right;
 }
 
 h3 {
