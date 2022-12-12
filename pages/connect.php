@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 
 // Create connection
-$conn = new mysqli($server, $username, $password, "service");
+$conn = new mysqli($server, $username, $password, "serviceIT");
 
 // Check connection
 if ($conn->connect_error) {
