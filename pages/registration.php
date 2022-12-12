@@ -49,9 +49,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Validate email
     if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter a password.";   
+        $email_err = "Please enter an email.";   
     } elseif(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $password_err = "Please correct email";
+        $email_err = "Please correct email";
     } else{
         $email = trim($_POST["email"]);
     }
@@ -103,7 +103,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $conn->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang = "en">

@@ -11,10 +11,10 @@
 <body>
 
 <div class="navbar">
-  <a class="home" href="#home">Home</a>
-  <a href="#News Service">News Service</a>
-  <a href="#Ticket">Ticket</a>
-  <a href="#Profile">Profile</a>
+  <a class="home" href="home.php">Home</a>
+  <a href="">News Service</a>
+  <a href="ticketTEST.php">Ticket</a>
+  <a href="userProfile.php">Profile</a>
 </div>  
 
 <div class="header">
@@ -29,17 +29,17 @@
                 
                 <figure class="item1">
                   <figcaption href="" class="caption">Laptop Repair</figcaption>
-                  <img src="laptop.png" alt="laptop">
+                  <img src="img/laptop.png" alt="laptop">
                 </figure>
 
                 <figure class="item2">
                   <figcaption href="" class="caption">Phone Repair</figcaption>
-                  <img src="phone.png" alt="bill">
+                  <img src="img/phone.png" alt="bill">
                 </figure>
 
                 <figure class="item3">
                   <figcaption href="" class="caption">Hardware/Software</figcaption>
-                  <img src="hardware.png" alt="Hardware">
+                  <img src="img/hardware.png" alt="Hardware">
                 </figure>
 </div>
 
