@@ -1,53 +1,67 @@
 <?php
+session_start();
 require_once "connect.php";
 
 $name = $email = $description = "";
 $name_err = $email_err = $description_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    // Validate name
+    
+    //Validate name 
     if(empty(trim($_POST["name"]))){
         $name_err = "Please enter a name.";
-    }else{
-      $name = trim($_POST["name"]);
+    } else{
+        $name = trim($_POST["name"]);
     }
-    
-    //Validate email 
+
+    //Validate email
     if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter an email.";
+        $email_err = "Please enter a valid email.";   
     } else{
         $email = trim($_POST["email"]);
     }
 
     //Validate description
     if(empty(trim($_POST["description"]))){
-      $description_err = "Please enter an email.";
+        $description_err = "Please enter a description.";   
     } else{
-      $description = trim($_POST["description"]);
+        $description = trim($_POST["description"]);
     }
 
     
     if(empty($name_err) && empty($email_err) && empty($description_err)){
         
-        $sql = "INSERT INTO service_ticket (`user_name`, `usr_email`, `description`) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO service_ticket (`user_name`, `user_email`, `description`) VALUES (?, ?, ?)";
 
         if($stmt = $conn->prepare($sql)){
 
-            $stmt->bind_param("ssss", $param_name, $param_email, $param_description);
+            if($stmt->bind_param("sss", $param_name, $param_email, $param_description)) {
             
-            $param_name = $name;
-            $param_email = $email;
-            $param_description = $description;
+                $param_name = $name;
+                $param_email = $email;
+                $param_description = $description;
+                
+                if($stmt->execute()){
+                    echo "Executed!";
+                } else{
+                    //echo "Something went wrong. Please try again later.";
+                    echo "Error executing:" . $conn->error;
+                }
 
-            $stmt->close();
+                $stmt->close();
+            } else{
+            echo "Error binding:" . $conn->error;
         }
+        } else{
+            echo "Error peparing:" . $conn->error;
+        }
+    } else{
+        echo "Please fill in all the fileds before submission!";
     }
     
     $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,28 +74,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
     <div class="navbar">
-      <a class="home" href="#home">Home</a>
-      <a href="#News Service">News Service</a>
-      <a href="#Ticket">Ticket</a>
-      <a href="#Profile">Profile</a>
+        <a class="home" href="#home">Home</a>
+        <a href="#News Service">News Service</a>
+        <a href="#Ticket">Ticket</a>
+        <a href="#Profile">Profile</a>
     </div>  
 <div class="header">
     <div clas="logo">SERVICE IT</div>
 </div>
     <div class="container">
-      <form action="/action_page.php" menthod="post">
-      <h3>Order a ticket</h3>
+   
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+        <h3>Order a ticket</h3>
+            <input type="text" name="name" placeholder="Enter your name">
+            <input type="text" name="email" placeholder="Your your email">
+            <label for="subject">Describe the problem</label>
+            <textarea id="subject" name="description" placeholder=" " style="height:200px"></textarea>
+            <input type="submit" value="Submit"> 
 
-        <input type="text" name="name" placeholder="Enter your name"  <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
-        <span class="invalid-feedback"><?php echo $name_err; ?></span>
-        <input type="text" name="email" placeholder="Your your email" <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-            <span class="invalid-feedback"><?php echo $email_err; ?></span>
-        <label for="subject">Describe the problem</label>
-        <textarea id="subject" name="email" placeholder=" " style="height:200px" <?php echo (!empty($description_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $description; ?>"></textarea>
-        <span class="invalid-feedback"><?php echo $description_err; ?></span>
-        <input type="submit" value="Submit">
-
-      </form>
+        </form> 
     </div>
-  </body>    
-</html>
+    </body>    
+</html> 
