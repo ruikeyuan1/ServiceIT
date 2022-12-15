@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
@@ -15,38 +15,34 @@
   <a href="#News Service">News Service</a>
   <a href="#Ticket">Ticket</a>
   <a href="#Profile">Profile</a>
-</div>	
+</div>  
 
 <div class="header">
-	<h1>SERVICE IT</h1>
+  <h1>SERVICE IT</h1>
 </div>
 
 <div class="main">
-	<h2>SERVICE</h2>
+  <h2>SERVICE</h2>
 </div>
 
-<div class="row">
-  <div class="column1">
-    <p>Laptop repair</p>
-    <img src="laptop.png" alt="Laptop">
-  </div>
+<div class="flex-container">
+                
+                <figure class="item1">
+                  <figcaption href="" class="caption">Laptop Repair</figcaption>
+                  <img src="laptop.png" alt="laptop">
+                </figure>
 
-  <div class="column2">
-    <p>Phone repair</p>
-    <img src="phone.png" alt="Laptop">
-  </div>
+                <figure class="item2">
+                  <figcaption href="" class="caption">Phone Repair</figcaption>
+                  <img src="phone.png" alt="bill">
+                </figure>
 
-  <div class="column3">
-     <p>Hardware/Software</p>
-    <img src="hardware.png" alt="Laptop">
-  </div>
-
+                <figure class="item3">
+                  <figcaption href="" class="caption">Hardware/Software</figcaption>
+                  <img src="hardware.png" alt="Hardware">
+                </figure>
 </div>
 
-
-<div class="footer">
-	<p>Copyright &copy;2022 IT. All rights are reserved</p> 	
-</div>
 
 </body>
 </html>

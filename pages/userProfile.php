@@ -2,8 +2,8 @@
 session_start();
 
 //user id assigned for testing
-//$userID = 1;
-$_SESSION ['userId'] = $_SESSION ['id'];
+////$userID = 1;
+//$_SESSION ['userId'] = $_SESSION ['id'];
 
 //link the page that contains the display function for dropDown box
 require_once('dropDownBox.php');
@@ -38,14 +38,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 function checkUserLoginStatus(){
     if (isset($_GET['page'])){
         //include that page If GET is present
-        unset($_SESSION ['userId']);
+        unset($_SESSION['userId']);
+        //unset($_SESSION['id']);
         //direct back to home page
-        header("Location: userLogout.php");
+        header("Location: userLog.php");
     } else {
         //Check if admin is logged in via SESSION if No GET is present
         if (!isset($_SESSION['userId'])){
             //direct back to home page
-            header("Location: userLogout.php");
+            header("Location: userLog.php");
         }
     }
 }
@@ -63,6 +64,7 @@ checkUserLoginStatus();
     <link rel = "stylesheet" href="Stylesheet.css" type="text/css">
 </head>
 <body class="userProfilePage">
+
 <div class="userProfileMain">
     <div class="userProfileContent">
         <div class="userProfileDescription">
@@ -94,6 +96,7 @@ checkUserLoginStatus();
         ?>
     </div>
 </div>
+
 </body>
 </html>
 <?php
