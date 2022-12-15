@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+if(isset($_SESSION["userLoggedin"]) && $_SESSION["userLoggedin"] === true){
     header("location: home.php");
     exit;
 }
@@ -51,11 +51,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             session_start();
                             
                             // Store data in session variables
-                            $_SESSION["loggedin"] = true;
+                            $_SESSION["userLoggedin"] = true;
                             $_SESSION["userId"] = $id;
                             $_SESSION["username"] = $username;                            
                             
-                            header("location: homePage.php");
+                            header("location: home.php");
                         } else{
                             $login_err = "Invalid username or password.";
                         }

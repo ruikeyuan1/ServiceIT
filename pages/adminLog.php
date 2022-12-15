@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+if(isset($_SESSION["adminLoggedin"]) && $_SESSION["adminLoggedin"] === true){
     header("location: adminPanel.php");
     exit;
 }
@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             session_start();
                             
                             // Store data in session variables
-                            $_SESSION["loggedin"] = true;
+                            $_SESSION["adminLoggedin"] = true;
                             $_SESSION["adminId"] = $id;
                             $_SESSION["username"] = $username;                            
                             
