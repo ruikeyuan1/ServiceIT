@@ -3,7 +3,7 @@ session_start();
 
 //user id assigned for testing
 //$userID = 1;
-$_SESSION ['userId'] = $_SESSION ['id'];
+//$_SESSION ['userId'] = $_SESSION ['id'];
 
 //link the page that contains the display function for dropDown box
 require_once('dropDownBox.php');
@@ -40,12 +40,12 @@ function checkUserLoginStatus(){
         //include that page If GET is present
         unset($_SESSION ['userId']);
         //direct back to home page
-        header("Location: logInPage.php");
+        header("Location: userLogout.php");
     } else {
         //Check if admin is logged in via SESSION if No GET is present
         if (!isset($_SESSION['userId'])){
             //direct back to home page
-            header("Location: logInPage.php");
+            header("Location: userLogout.php");
         }
     }
 }

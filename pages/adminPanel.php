@@ -2,8 +2,8 @@
 session_start();
 
 //admin id assigned for testing
-$adminID = 1;
-$_SESSION['adminId'] = $adminID;
+//$adminID = 1;
+//$_SESSION['adminId'] = $adminID;
 
 //This function checks whether the admin is logged in.If not the page will be directed to home page
 function checkAdminLoginStatus(){

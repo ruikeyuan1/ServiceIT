@@ -1,6 +1,9 @@
 <?php
-echo "<p>this is user page.</p>";
-echo "<p>please login as a user.</p>";
-echo "<p><a href='#'>back to home page</a></p>";
+session_start();
+//echo "<p>this is user page.</p>";
+//echo "<p>please login as a user.</p>";
+//echo "<p><a href='userProfile.php'>back to home page</a></p>";
+$_SESSION["loggedin"] = false;
+header("Location: logInPage.php");
 
 
