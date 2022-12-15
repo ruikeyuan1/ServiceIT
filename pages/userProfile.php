@@ -2,8 +2,8 @@
 session_start();
 
 //user id assigned for testing
-////$userID = 1;
-//$_SESSION ['userId'] = $_SESSION ['id'];
+//$userID = 1;
+$_SESSION ['userId'] = $_SESSION ['id'];
 
 //link the page that contains the display function for dropDown box
 require_once('dropDownBox.php');
@@ -38,15 +38,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 function checkUserLoginStatus(){
     if (isset($_GET['page'])){
         //include that page If GET is present
-        unset($_SESSION['userId']);
-        //unset($_SESSION['id']);
+        unset($_SESSION ['userId']);
         //direct back to home page
-        header("Location: userLog.php");
+        header("Location: logInPage.php");
     } else {
         //Check if admin is logged in via SESSION if No GET is present
         if (!isset($_SESSION['userId'])){
             //direct back to home page
-            header("Location: userLog.php");
+            header("Location: logInPage.php");
         }
     }
 }
@@ -64,14 +63,13 @@ checkUserLoginStatus();
     <link rel = "stylesheet" href="Stylesheet.css" type="text/css">
 </head>
 <body class="userProfilePage">
-
 <div class="userProfileMain">
     <div class="userProfileContent">
         <div class="userProfileDescription">
             <h1>Profile</h1>
             <?php
-                //load the basic information to be displayed like client name,etc
-                loadUserInfo();
+            //load the basic information to be displayed like client name,etc
+            loadUserInfo();
             ?>
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" method='post'>
                 <select name="selectedNameType" id="Service-type">
@@ -91,12 +89,11 @@ checkUserLoginStatus();
     </div>
     <div class="userProfileTable">
         <?php
-            //load the table in the profile page
-            loadUserProfileTable($_SESSION ['userId'],$selectedNameType);
+        //load the table in the profile page
+        loadUserProfileTable($_SESSION ['userId'],$selectedNameType);
         ?>
     </div>
 </div>
-
 </body>
 </html>
 <?php
@@ -162,7 +159,7 @@ function loadUserProfileTable($userId,$selectedFilterType)
     // Prepare query as a statement
     if ($statement = mysqli_prepare($conn, $query)) {
         //Fill in ? parameter
-         mysqli_stmt_bind_param($statement, 'i', $userId);
+        mysqli_stmt_bind_param($statement, 'i', $userId);
 
         //Execute statement and check success
         if (!mysqli_stmt_execute($statement)) {
@@ -176,7 +173,7 @@ function loadUserProfileTable($userId,$selectedFilterType)
 
         //Check if there are results in the statement
         if (mysqli_stmt_num_rows($statement) > 0) {
-             //Make table
+            //Make table
             echo "<div class='userProfileTable'><table border='1'>";
             // Make table header
             echo "<th style='text-align: left;'>ServiceID</th><th>ServiceType</th><th>ServiceStatus</th>";
@@ -196,7 +193,7 @@ function loadUserProfileTable($userId,$selectedFilterType)
                 echo "</tr>";
             }
             // Close table
-           echo "</table></div>";
+            echo "</table></div>";
         } else {
             echo "No services found";
         }

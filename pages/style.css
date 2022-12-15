@@ -1,9 +1,11 @@
-ody {
-	margin:  0;
-	font-family : Helvatica, sans-serif;
-	box-sizing:  border-box;
+body {
+        margin:  0;
+        font-family : Helvatica, sans-serif;
+        box-sizing:  border-box;
 }
-
+h2 {
+    text-align: left;
+}
 /* Navbar */
 .navbar {
 	overflow: hidden;

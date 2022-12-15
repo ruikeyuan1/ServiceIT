@@ -198,7 +198,7 @@ span {
 
 .userProfileActionLinks a:link, a:visited {
     border-radius: 8px;
-    color: white;
+    /* color: white; */
     padding: 6px 10px;
     text-align: center;
     text-decoration: none;
@@ -344,9 +344,9 @@ span {
     align-items: center;
 }
 
-.adminPanelMain select,input{
+/* .adminPanelMain select,input{
     width: 100%;
-}
+} */
 
 .adminTable{
     border-style: solid;
@@ -445,3 +445,8 @@ span {
     background-color: #125C90;
 }
 /* above here is css for adminPanel and userProfile */
+ody {
+	margin:  0;
+	font-family : Helvatica, sans-serif;
+	box-sizing:  border-box;
+}

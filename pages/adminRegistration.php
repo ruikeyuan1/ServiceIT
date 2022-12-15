@@ -1,8 +1,8 @@
 <?php
 require_once "connect.php";
 
-$username = $password = $email = $confirm_password = $name = "";
-$username_err = $password_err = $confirm_password_err = $email_err = $name_err = "";
+$username = $password = $confirm_password = $name = "";
+$username_err = $password_err = $confirm_password_err = $name_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else{
 
-        $sql = "SELECT id FROM user WHERE username = ?";
+        $sql = "SELECT id FROM administrator WHERE username = ?";
         
         if($stmt = $conn->prepare($sql)){
 
@@ -47,15 +47,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $name = trim($_POST["userName"]);
     }
 
-    //Validate email
-    if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter an email.";   
-    } elseif(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $email_err = "Please correct email";
-    } else{
-        $email = trim($_POST["email"]);
-    }
-
     // Validate password
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter a password.";     
@@ -75,14 +66,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($name_err)){
+
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($name_err)){
         
-        $sql = "INSERT INTO user (`username`, `password`, `email`, `name`) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO administrator (`username`, `password`, `name`) VALUES (?, ?, ?)";
 
         if($stmt = $conn->prepare($sql)){
 
-            $stmt->bind_param("ssss", $param_username, $param_password, $param_email, $param_name);
+            $stmt->bind_param("sss", $param_username, $param_password, $param_name);
             
             $param_username = $username;
              // password hash
@@ -91,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_name = $name;
 
             if($stmt->execute()){
-                header("location: logInPage.php");
+                header("location: adminLog.php");
             } else{
                 echo "Something went wrong. Please try again later.";
             }
@@ -116,7 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <div class = "header">
         <div class = "logo">Service IT</div>
-        <button1 name = "admin" onclick="document.location='adminLog.php'">admin</button1>
+        <button1 name = "admin" onclick="document.location='logInPage.php'">client</button1>
     </div>
     <div class = "container" id = "container"> 
         <h1>Welcome to Service IT</h1>
@@ -126,8 +117,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <span class="invalid-feedback"><?php echo $username_err; ?></span>
             <input type = "text" name = "userName" placeholder = "Enter a name" <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
             <span class="invalid-feedback"><?php echo $name_err; ?></span>
-            <input type = "text" name = "email" placeholder = "Enter an email"  <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-            <span class="invalid-feedback"><?php echo $email_err; ?></span>
             <input type = "password" name = "password" placeholder = "Enter a password" <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
             <span class="invalid-feedback"><?php echo $password_err; ?></span>
             <input type = "password" name = "confirm_password" placeholder = "Confirm the password" <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">

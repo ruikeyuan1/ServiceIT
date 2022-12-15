@@ -5,12 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/adminRegistration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/img/hardware.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/img/laptop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/img/phone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/ticket.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminPanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/adminLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminLog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/adminLogout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminLogout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/connect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/databaseConnect.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/databaseConnect.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/homepage&amp;/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/homepage&amp;/home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/homepage&amp;/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/homepage&amp;/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/logInPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logOut.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/testing.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/userProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

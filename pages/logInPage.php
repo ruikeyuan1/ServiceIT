@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: homePage.php");
+    header("location: home.php");
     exit;
 }
 
@@ -104,7 +104,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <input type="password" name="password" placeholder = "Enter a password" <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
             <span><?php echo $password_err; ?></span>
 
-            <p>Forgot your password?</p>
             <button name = "Sign_In">Sign In</button>
             <p>Don't have an account? <a href = "registration.php">SignUp</a></p>
         </form>
