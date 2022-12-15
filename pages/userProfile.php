@@ -40,12 +40,14 @@ function checkUserLoginStatus(){
         //include that page If GET is present
         unset($_SESSION ['userId']);
         //direct back to home page
-        header("Location: userLogout.php");
+        $_SESSION["userLoggedin"] = false;
+        header("Location: logInPage.php");
     } else {
         //Check if admin is logged in via SESSION if No GET is present
         if (!isset($_SESSION['userId'])){
             //direct back to home page
-            header("Location: userLogout.php");
+            $_SESSION["userLoggedin"] = false;
+            header("Location: logInPage.php");
         }
     }
 }

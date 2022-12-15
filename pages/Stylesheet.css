@@ -198,7 +198,7 @@ span {
 
 .userProfileActionLinks a:link, a:visited {
     border-radius: 8px;
-    /* color: white; */
+    /*color: #125C90; */
     padding: 6px 10px;
     text-align: center;
     text-decoration: none;
@@ -207,6 +207,7 @@ span {
 
 .userProfileActionLinks p a{
     background-color: #125C90;
+    color: white;
 }
 
 .userProfileActionLinks a:hover, a:active {
@@ -344,9 +345,9 @@ span {
     align-items: center;
 }
 
-/* .adminPanelMain select,input{
+.adminPanelMain select,input{
     width: 100%;
-} */
+}
 
 .adminTable{
     border-style: solid;

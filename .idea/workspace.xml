@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminLog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminLogout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminLogout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/adminLogout.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/adminPanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logInPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/userLogout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userLogout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/userLogout.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/userProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +105,7 @@
       <workItem from="1670788216378" duration="1111000" />
       <workItem from="1670843555840" duration="3562000" />
       <workItem from="1671092755618" duration="4310000" />
+      <workItem from="1671108462235" duration="1819000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommitToMain">
       <created>1668206818332</created>

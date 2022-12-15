@@ -10,11 +10,13 @@ function checkAdminLoginStatus(){
     if(isset($_GET['page'])){
         //If GET is present -> include that page
         unset($_SESSION ['adminId']);
-        header("Location: adminLogout.php");
+        $_SESSION["adminLoggedin"] = false;
+        header("Location: adminLog.php");
     } else {
         //No GET present -> Check if admin is logged in via SESSION
         if(!isset($_SESSION['adminId'])){
-            header("Location: adminLogout.php");
+            $_SESSION["adminLoggedin"] = false;
+            header("Location: adminLog.php");
         }
     }
 }
