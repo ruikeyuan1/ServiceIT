@@ -13,7 +13,7 @@
 <div class="navbar">
   <a class="home" href="home.php">Home</a>
   <a href="">News Service</a>
-  <a href="ticketTEST.php">Ticket</a>
+  <a href="ticket.php">Ticket</a>
   <a href="userProfile.php">Profile</a>
 </div>  
 
