@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
+                            $_SESSION["adminId"] = $id;
                             $_SESSION["username"] = $username;                            
                             
                             header("location: adminPanel.php");
@@ -104,8 +104,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <input type="password" name="password" placeholder = "Enter a password" <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
             <span><?php echo $password_err; ?></span>
 
-            <p>Forgot your password?</p>
             <button name = "Sign_In">Sign In</button>
+            <p>Don't have an account? <a href = "adminRegistration.php">SignUp</a></p>
         </form>
     </div>
 </body>
