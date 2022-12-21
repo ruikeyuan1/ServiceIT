@@ -61,7 +61,8 @@ function loadUserContractPageContent(){
                     echo "Contract ID input invalid: ".$contractId;
                 }
             }else{
-                echo "session Contract ID not set(you don't have a contract yet)";
+                echo "session Contract ID not set(you don't have a contract yet),a contract is generated for you 
+                once your first service request is issued.";
             }
         }
     }

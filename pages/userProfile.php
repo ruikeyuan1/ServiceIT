@@ -39,6 +39,7 @@ function checkUserLoginStatus(){
     if (isset($_GET['page'])){
         //include that page If GET is present
         unset($_SESSION ['userId']);
+        unset($_SESSION ['userContractId']);
         //direct back to home page
         $_SESSION["userLoggedin"] = false;
         header("Location: logInPage.php");
@@ -85,7 +86,7 @@ checkUserLoginStatus();
         </div>
         <div class="userProfileActionLinks">
             <h3>Service IT</h3>
-            <p><a href='userProfile.php?page=logout'>click here to log out</a></p>
+            <p><a href='userProfile.php?page=logout'>logout</a></p>
             <p><a href='userContract.php?contractId=<?php if(isset($_SESSION['userContractId'])){echo $_SESSION['userContractId'];} ?>'>View contract</a></p>
         </div>
     </div>

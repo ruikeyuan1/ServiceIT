@@ -60,7 +60,7 @@ button {
     margin-bottom: 25px;
     border-radius: 20px;
     border: 1px solid #125C90;
-    background-color: #125C90   ;
+    background-color: #125C90;
     color: #FFFFFF;
     font-size: 12px;
     font-weight: bold;
@@ -111,7 +111,8 @@ span {
     border: 1px solid transparent;
     border-radius: 0.25rem;
 }
-    .alert-danger {
+
+.alert-danger {
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
@@ -119,42 +120,42 @@ span {
 
 /* from here is css for adminPanel and userProfile */
 
-.adminPanelPage{
+.adminPanelPage {
     background-color: #125C90;
 }
 
-.userProfilePage{
+.userProfilePage {
     background-color: white;
 }
 
 /* user profile page*/
-.userProfileMain{
+.userProfileMain {
     padding: 50px;
     width: 100%;
 }
 
-.userProfileContent{
+.userProfileContent {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.userProfileDescription{
+.userProfileDescription {
     color: #125C90;
     width: 400px;
 }
 
-.userProfileDescription h3 span{
+.userProfileDescription h3 span {
     color: gray;
 }
 
-.userProfileDescription h1{
+.userProfileDescription h1 {
     margin-top: 0px;
     font-size: 50px;
     padding: 0px;
 }
 
-.userProfileDescription form{
+.userProfileDescription form {
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -162,7 +163,7 @@ span {
     justify-content: left;
 }
 
-.userProfileDescription form select{
+.userProfileDescription form select {
     width: 30%;
     padding: 8px 20px;
     border: none;
@@ -170,29 +171,29 @@ span {
     background-color: #f1f1f1;
 }
 
-.userProfileDescription form input[type=submit]{
+.userProfileDescription form input[type=submit] {
     background-color: #125C90;
     border: none;
     color: white;
     padding: 8px 32px;
     text-decoration: none;
     margin: 4px 2px;
-    width:50%;
+    width: 50%;
     cursor: pointer;
 }
 
-.userProfileDescription h1{
+.userProfileDescription h1 {
     margin-top: 0px;
     font-size: 50px;
     text-align: left;
 }
 
-.userProfileDescription h3{
+.userProfileDescription h3 {
     margin-top: 0px;
     font-size: 25px;
 }
 
-.userProfileActionLinks{
+.userProfileActionLinks {
     color: #125C90;
 }
 
@@ -205,7 +206,7 @@ span {
     display: inline-block;
 }
 
-.userProfileActionLinks p a{
+.userProfileActionLinks p a {
     background-color: #125C90;
     color: white;
 }
@@ -214,7 +215,7 @@ span {
     background-color: #125C90;
 }
 
-.userProfileTable table{
+.userProfileTable table {
     padding: 10px;
     border-style: solid;
     border-color: #125C90;
@@ -231,32 +232,32 @@ span {
     text-decoration: underline;
 }
 
-.userProfileTable table th{
+.userProfileTable table th {
     font-size: 25px;
 }
 
-.userProfileTable table tr{
+.userProfileTable table tr {
     height: 50px;
 }
 
 /* user contract page*/
 
-.userContractDescription{
+.userContractDescription {
     float: left;
     color: white;
 }
 
-.userContractMain{
+.userContractMain {
     padding: 50px;
     width: 100%;
 }
 
-.userContractContent{
+.userContractContent {
     display: flex;
     justify-content: space-between;
 }
 
-.userContractDescription h1{
+.userContractDescription h1 {
     padding: 0px;
     margin-top: 0;
     color: #125C90;
@@ -264,13 +265,13 @@ span {
     height: 30px;
 }
 
-.userContractDescription h3{
+.userContractDescription h3 {
     color: #125C90;
     margin-top: 60px;
     font-size: 25px;
 }
 
-.userContractAction{
+.userContractAction {
     display: flex;
     flex-direction: column;
 }
@@ -279,15 +280,15 @@ span {
     background-color: white;
 }
 
-.userContractActionForm a{
+.userContractActionForm a {
     color: white;
 }
 
-.userContractActionForm{
+.userContractActionForm {
     color: #125C90;
 }
 
-.userContractActionForm p a{
+.userContractActionForm p a {
     background-color: #125C90;
     color: white;
 }
@@ -304,8 +305,8 @@ span {
     display: inline-block;
 }
 
-.adminPanelMain h3{
-    font-weight:lighter;
+.adminPanelMain h3 {
+    font-weight: lighter;
     color: white;
     text-align: center;
 }
@@ -326,18 +327,18 @@ span {
     padding: 0 10px;
 }
 
-.adminPanelMain .header a{
+.adminPanelMain .header a {
     color: #FFFFFF;
 }
 
-.adminPanelMain{
+.adminPanelMain {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
 }
 
-.adminPanelMain form{
+.adminPanelMain form {
     background-color: #125C90;
     display: flex;
     width: 100%;
@@ -345,18 +346,18 @@ span {
     align-items: center;
 }
 
-.adminPanelMain select,input{
+.adminPanelMain select, input {
     width: 100%;
 }
 
-.adminTable{
+.adminTable {
     border-style: solid;
     border-color: white;
     border-width: 2px;
     border-radius: 10px;
 }
 
-.adminTable a{
+.adminTable a {
     color: white;
 }
 
@@ -365,20 +366,20 @@ span {
     text-decoration: underline;
 }
 
-.adminTable th{
+.adminTable th {
     font-size: 25px;
 }
 
-.adminTable tr{
+.adminTable tr {
     height: 50px;
 }
 
-.adminPanelMain tr:hover{
-    background-color:lightgreen;
+.adminPanelMain tr:hover {
+    background-color: lightgreen;
     box-shadow: 9px 9px 10px gray;
 }
 
-.adminPanelMain table{
+.adminPanelMain table {
     border: none;
     color: white;
     font-size: 25px;
@@ -388,23 +389,23 @@ span {
 
 /* admin contract page*/
 
-.contractMain{
+.contractMain {
     padding: 50px;
     width: 100%;
 }
 
-.contractActionForm{
+.contractActionForm {
     display: flex;
     flex-direction: column;
     float: right;
 }
 
-.contractDescription{
+.contractDescription {
     float: left;
     color: white;
 }
 
-.contractDescription h1{
+.contractDescription h1 {
     color: white;
     padding: 0px;
     margin-top: 0;
@@ -412,12 +413,12 @@ span {
     text-align: left;
 }
 
-.contractDescription h3{
+.contractDescription h3 {
     height: 25px;
     font-size: 25px;
 }
 
-.contractAction{
+.contractAction {
     display: flex;
     flex-direction: column;
 }
@@ -431,25 +432,26 @@ span {
     display: inline-block;
 }
 
-.contractActionForm a{
+.contractActionForm a {
     color: #125C90;
 }
 
-.contractActionForm{
+.contractActionForm {
     color: white;
     align-items: center;
 }
 
-.contractActionForm form{
+.contractActionForm form {
     display: flex;
     flex-direction: row;
     background-color: #125C90;
 }
+
 /* above here is css for adminPanel and userProfile */
 ody {
-	margin:  0;
-	font-family : Helvatica, sans-serif;
-	box-sizing:  border-box;
+    margin: 0;
+    font-family: Helvatica, sans-serif;
+    box-sizing: border-box;
 }
 
 /* from here is css for homepage,ticketpage and contactpage*/
@@ -459,7 +461,7 @@ ody {
     overflow: hidden;
     background: #FFFFFF;
     position: fixed;
-    bottom:  2%;
+    bottom: 2%;
     width: 100%;
 }
 
@@ -498,38 +500,39 @@ h2, h3 {
 
 /* Homepage/ticket page styles */
 .item1 {
-  float: left;
-  width: 24.24%;
-  padding: 5px;
+    float: left;
+    width: 24.24%;
+    padding: 5px;
 }
 
 .item2 {
-  float: left;
-  width: 24.24%;
-  padding: 5px;
+    float: left;
+    width: 24.24%;
+    padding: 5px;
 }
+
 .item3 {
-  float: left;
-  width: 24.24%;
-  padding: 5px;
+    float: left;
+    width: 24.24%;
+    padding: 5px;
 }
 
 .row::after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
 }
 
 p {
-  text-align: center;
+    text-align: center;
 }
 
 img {
-  border: 3px solid; 
-  color: #01579b;
-  border-radius: 30px;
-  width: 380px;
-  height:300px;
+    border: 3px solid;
+    color: #01579b;
+    border-radius: 30px;
+    width: 380px;
+    height: 300px;
 }
 
 figcaption {
@@ -537,6 +540,7 @@ figcaption {
     font-size: 23px;
     color: #01579b;
 }
+
 .footer {
     text-align: right;
     color: #01579b;
@@ -549,33 +553,34 @@ figcaption {
 h3, h2 {
     font-size: 40px;
 }
-input[type=text],textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #01579b;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-  color: #01579b;
+
+input[type=text], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #01579b;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    color: #01579b;
 }
 
 input[type=submit] {
-  background-color: #01579b;
-  color: white;
-  padding: 14px 40px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
+    background-color: #01579b;
+    color: white;
+    padding: 14px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
 }
 
 input[type=submit]:hover {
-  background-color: #01579b;
+    background-color: #01579b;
 }
 
 .container {
-  border-radius: 5px;
-  padding: 20px;
-  color: #01579b;
+    border-radius: 5px;
+    padding: 20px;
+    color: #01579b;
 }
