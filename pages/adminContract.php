@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="Stylesheet.css" type="text/css">
+    <link rel = "stylesheet" href="stylesheet.css" type="text/css">
 
     <title>Admin Panel</title>
 </head>
@@ -50,7 +50,8 @@ function loadAdminContractPageContent(){
                              <p><a href="adminPanel.php">Back to adminPanel</a></p>';
                 //check if there is a contract file assigned to the contractId sent
                 if(getContractFileName($contractId) != null AND trim(getContractFileName($contractId)) != ''){
-                    echo'<p><a href='.$dirName."/".getContractFileName($contractId).'>Download Contract</a></p>
+                    ////display the download button so admins can click the button and download the pdf
+                    echo '<p><a href='.$dirName."/".getContractFileName($contractId).' download='.getContractFileName($contractId).'>Download Contract</a></p>
                       </div>';
                     echo "</div>";
                     echo '<div class="contractView">

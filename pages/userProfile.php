@@ -62,7 +62,7 @@ checkUserLoginStatus();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>UserProfile</title>
-    <link rel = "stylesheet" href="Stylesheet.css" type="text/css">
+    <link rel = "stylesheet" href="stylesheet.css" type="text/css">
 </head>
 <body class="userProfilePage">
 <div class="userProfileMain">
@@ -86,7 +86,7 @@ checkUserLoginStatus();
         <div class="userProfileActionLinks">
             <h3>Service IT</h3>
             <p><a href='userProfile.php?page=logout'>click here to log out</a></p>
-            <p><a href='userContract.php?contractId=<?php echo $_SESSION ['userContractId']?>'>View contract</a></p>
+            <p><a href='userContract.php?contractId=<?php if(isset($_SESSION['userContractId'])){echo $_SESSION['userContractId'];} ?>'>View contract</a></p>
         </div>
     </div>
     <div class="userProfileTable">
