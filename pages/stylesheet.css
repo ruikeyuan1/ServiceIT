@@ -182,19 +182,25 @@ span {
     cursor: pointer;
 }
 
-.userProfileDescription h1 {
+.userProfileDescription h1.tag {
     margin-top: 0px;
     font-size: 50px;
     text-align: left;
 }
 
-.userProfileDescription h3 {
+.userProfileDescription h3.tag {
     margin-top: 0px;
     font-size: 25px;
 }
 
 .userProfileActionLinks {
     color: #125C90;
+}
+
+.userProfileActionLinks h3.tag{
+    margin-top: 0px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .userProfileActionLinks a:link, a:visited {
@@ -305,17 +311,27 @@ span {
     display: inline-block;
 }
 
-.adminPanelMain h3 {
+.adminPanelMain h3.tag {
     font-weight: lighter;
     color: white;
     text-align: center;
+    font-size: 100%;
 }
 
-.adminPanelMain h1, h2 {
+.adminPanelMain h1.tag{
     font-weight: bold;
     color: white;
     text-align: center;
     padding: 10px;
+    font-size: 160%;
+}
+
+.adminPanelMain h2.tag{
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 130%;
 }
 
 .adminPanelMain .header {
@@ -346,7 +362,7 @@ span {
     align-items: center;
 }
 
-.adminPanelMain select, input {
+.adminPanelMain select.panelInput,input.panelInput {
     width: 100%;
 }
 
@@ -402,10 +418,9 @@ span {
 
 .contractDescription {
     float: left;
-    color: white;
 }
 
-.contractDescription h1 {
+.contractDescription h1.tag {
     color: white;
     padding: 0px;
     margin-top: 0;
@@ -413,9 +428,10 @@ span {
     text-align: left;
 }
 
-.contractDescription h3 {
+.contractDescription h3.tag {
     height: 25px;
     font-size: 25px;
+    color: white;
 }
 
 .contractAction {

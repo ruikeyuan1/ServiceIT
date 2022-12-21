@@ -37,9 +37,9 @@ function loadAdminContractPageContent(){
                 echo "<div class='contractAction'>";
                 echo "<div class='contractContent'>";
                 echo '<div class="contractDescription">     
-                            <h1>Contract: </h1>                    
-                            <h3>Contract ID: '.$contractId.'</h3>
-                            <h3>Client Name: '.$clientName.'</h3>
+                            <h1 class="tag">Contract: </h1>                    
+                            <h3 class="tag">Contract ID: '.$contractId.'</h3>
+                            <h3 class="tag">Client Name: '.$clientName.'</h3>
                       </div>
                       <div class="contractActionForm">
                             <form action="uploadFile.php" method="post" enctype="multipart/form-data">

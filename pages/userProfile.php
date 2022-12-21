@@ -69,7 +69,7 @@ checkUserLoginStatus();
 <div class="userProfileMain">
     <div class="userProfileContent">
         <div class="userProfileDescription">
-            <h1>Profile</h1>
+            <h1 class="tag">Profile</h1>
             <?php
             //load the basic information to be displayed like client name,etc
             loadUserInfo();
@@ -85,7 +85,7 @@ checkUserLoginStatus();
             </form>
         </div>
         <div class="userProfileActionLinks">
-            <h3>Service IT</h3>
+            <h3 class="tag">Service IT</h3>
             <p><a href='userProfile.php?page=logout'>logout</a></p>
             <p><a href='userContract.php?contractId=<?php if(isset($_SESSION['userContractId'])){echo $_SESSION['userContractId'];} ?>'>View contract</a></p>
         </div>
@@ -123,9 +123,9 @@ function loadUserInfo(){
         if (mysqli_stmt_num_rows($statement) == 1) {
             while (mysqli_stmt_fetch($statement))
             {
-                echo "<p><h3>Your Name: <span>".$name."</span></h3></p>";
-                echo "<p><h3>Your Email: <span>".$email."</span></h3></p>";
-                echo "<p><h3>Your contract ID:<span>".$contractId."</span></h3></p>";
+                echo "<p><h3 class='tag'>Your Name: <span>".$name."</span></h3></p>";
+                echo "<p><h3 class='tag'>Your Email: <span>".$email."</span></h3></p>";
+                echo "<p><h3 class='tag'>Your contract ID:<span>".$contractId."</span></h3></p>";
                 $_SESSION ['userContractId'] = $contractId;
             }
         } else {

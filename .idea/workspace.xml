@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/userContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/adminContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/adminPanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/stylesheet.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/userProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +106,7 @@
       <workItem from="1671092755618" duration="4310000" />
       <workItem from="1671108462235" duration="2630000" />
       <workItem from="1671610630271" duration="3422000" />
-      <workItem from="1671614311480" duration="293000" />
+      <workItem from="1671614311480" duration="5646000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommitToMain">
       <created>1668206818332</created>

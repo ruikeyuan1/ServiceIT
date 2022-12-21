@@ -205,37 +205,36 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
     <title>Admin Panel</title>
 </head>
 <body class="adminPanelPage">
-
     <div class="adminPanelMain">
         <div class="header">
-            <h3>Service IT</h3>
-            <h1>Admin Panel</h1>
+            <h3 class='tag'>Service IT</h3>
+            <h1 class='tag'>Admin Panel</h1>
             <a href='adminPanel.php?page=logout'>click here to log out</a>
         </div>
         <div>
-            <form action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" method='post'>
-                <select name="serviceName" id="Service-type">
+            <form class="adminPanelForm" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" method='post'>
+                <select class="panelInput" name="serviceName" id="Service-type">
                     <?php
                         //display drop down options for service name like new request and ticket
                         dropDownBox($serviceNameArray, $serviceNameSelected);
                     ?>
                 </select>
 
-                <select name="serviceType" id="Service-name">
+                <select class="panelInput" name="serviceType" id="Service-name">
                     <?php
                         //display drop down options for service type like phone_repair and laptop_repair
                         dropDownBox($serviceTypeArray, $serviceTypeSelected);
                     ?>
                 </select>
 
-                <select name="serviceHandlingType" id="Service-name">
+                <select class="panelInput" name="serviceHandlingType" id="Service-name">
                     <?php
                         //display handling display options like handled services and all services
                         dropDownBox($serviceHandlingArray, $serviceHandlingSelected);
                     ?>
                 </select>
 
-                <input type='submit' name='selectedDropDown' value='Confirm'>
+                <input class="panelInput" type='submit' name='selectedDropDown' value='Confirm'>
             </form>
         </div>
 
@@ -255,7 +254,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                         $statusArray,$adminArray,$serviceHandlingSelected){
     if(isset($_SESSION ['adminId'])) {
         if (!empty($_SESSION ['adminId'])) {
-            echo "<h3>AdminId:" . $_SESSION ['adminId']."</h3>";
+            echo "<h3 class='tag'>AdminId:" . $_SESSION ['adminId']."</h3>";
             //load the php file for connecting database
             require 'databaseConnect.php';
 
@@ -308,9 +307,9 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
 
                 //check the service name for displaying the title
                 if($serviceNameSelected == "ticket"){
-                    echo "<h2>List of tickets</h2>";
+                    echo "<h2 class='tag'>List of tickets</h2>";
                 }else{
-                    echo "<h2>List of new requests</h2>";
+                    echo "<h2 class='tag'>List of new requests</h2>";
                 }
 
                 //Check if there are results in the statement
@@ -336,11 +335,11 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                             echo "<td>" . $service_id . "</td>";
                             echo "<td>" . $service_type . "</td>";
 
-                            echo '<td><select name="serviceStatus">';
+                            echo '<td><select class="panelInput" name="serviceStatus">';
                             dropDownBox($statusArray, $ticket_status);
                             echo '</select></td>';
 
-                            echo '<td><select name="adminId">';
+                            echo '<td><select class="panelInput" name="adminId">';
                             //echo the admins that can be assigned to
                             foreach ($adminArray as $adminId => $adminName) {
                                 if ($admin_id == $adminId) {
@@ -361,7 +360,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
 
                             echo "<td>" . $user_name . "</td>";
                             echo "<td>" . $contract . "</td>";
-                            echo "<td><input type='submit' name='Save' value='Save'></td>";
+                            echo "<td><input class='panelInput' type='submit' name='Save' value='Save'></td>";
                             // Close row
                             echo "</tr>";
                             echo "</form>";
