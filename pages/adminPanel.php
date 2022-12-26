@@ -80,7 +80,6 @@ function checkServiceHandling($serviceHandlingSelected) : bool{
 }
 
 
-
 //check if it is a post request
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     //check if the post request for the dropDown boxes is set.
