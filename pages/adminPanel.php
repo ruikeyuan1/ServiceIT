@@ -167,7 +167,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdSelected, $adminIdSelected){;
     //load the php file for connecting database
-    require 'databaseConnect.php';
+    require 'connect.php';
     //Prepare query as a statement
     $query = "UPDATE `service_ticket` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
 
@@ -256,7 +256,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
         if (!empty($_SESSION ['adminId'])) {
             echo "<h3 class='tag'>AdminId:" . $_SESSION ['adminId']."</h3>";
             //load the php file for connecting database
-            require 'databaseConnect.php';
+            require 'connect.php';
 
             //set the default variable(whether to bind parameter) to false
             $checkBindPara = false;

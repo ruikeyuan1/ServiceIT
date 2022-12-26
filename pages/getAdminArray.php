@@ -4,7 +4,7 @@ function getAdminArray() : array{
     //create an array for storing the result to be returned
     $adminArray = array();
     //load the php file for connecting database
-    require 'databaseConnect.php';
+    require 'connect.php';
     //Create the query(selecting all the existing admins in database)
     $query = "SELECT `id`, `name` FROM `administrator`";
 

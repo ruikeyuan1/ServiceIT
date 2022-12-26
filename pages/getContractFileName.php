@@ -3,7 +3,7 @@ function getContractFileName($contractId) : string{
     //create an array for storing the result to be returned
     $fileNameFetched = "";
     //load the php file for connecting database
-   require 'databaseConnect.php';
+   require 'connect.php';
     //Create the query
     $query = " SELECT `file_path` FROM `contract` WHERE `id` = ?";
 

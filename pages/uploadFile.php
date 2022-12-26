@@ -71,7 +71,7 @@ function fileUpload($contractId){
 
 function deleteStoredFile($contractId){
     //load the php file for connecting database
-    require 'databaseConnect.php';
+    require 'connect.php';
     //Create the query
     $query = "SELECT `file_path` FROM `contract` WHERE `id` = ?";
     //Prepare query as a statement
@@ -130,7 +130,7 @@ function updateContractIntoDatabase($contractId,$fileName){
             echo "<p>Operated by the admin--AdminId: ".$_SESSION ['adminId']."</p>";
 
             //load the php file for connecting database
-            require 'databaseConnect.php';
+            require 'connect.php';
             //Create the query
             $query = "UPDATE `contract` 
                         SET `file_path` = ?

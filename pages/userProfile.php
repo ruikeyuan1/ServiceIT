@@ -102,7 +102,7 @@ checkUserLoginStatus();
 <?php
 function loadUserInfo(){
     //load the php file for connecting database
-    require 'databaseConnect.php';
+    require 'connect.php';
     // Create the query
     $query = "SELECT user.name, user.email, contract.id 
     FROM `contract` , user 
@@ -145,7 +145,7 @@ function loadUserInfo(){
 function loadUserProfileTable($userId,$selectedFilterType)
 {
     //load the php file for connecting database
-    require 'databaseConnect.php';
+    require 'connect.php';
 
     //Create the query
     $query = "";
