@@ -58,10 +58,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
     <div class="navbar">
-        <a class="home" href="#home">Home</a>
-        <a href="#News Service">News Service</a>
-        <a href="#Ticket">Ticket</a>
-        <a href="#Profile">Profile</a>
+        <a class="home" href="home">Home</a>
+        <a href="News Service">News Service</a>
+        <a href="Ticket">Ticket</a>
+        <a href="Profile">Profile</a>
+        <a href="contactform">ContactUs</a>
     </div>  
 <div class="header">
     <div class="logo">SERVICE IT</div>
