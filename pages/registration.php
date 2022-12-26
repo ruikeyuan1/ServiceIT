@@ -119,22 +119,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <button1 name = "admin" onclick="document.location='adminLog.php'">admin</button1>
     </div>
     <div class = "container" id = "container"> 
-        <h1>Welcome to Service IT</h1>
-        <h2>Register</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <input type = "text" name = "username" placeholder = "Enter a username" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-            <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            <input type = "text" name = "userName" placeholder = "Enter a name" <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
-            <span class="invalid-feedback"><?php echo $name_err; ?></span>
-            <input type = "text" name = "email" placeholder = "Enter an email"  <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-            <span class="invalid-feedback"><?php echo $email_err; ?></span>
-            <input type = "password" name = "password" placeholder = "Enter a password" <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-            <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            <input type = "password" name = "confirm_password" placeholder = "Confirm the password" <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            <button name = "Sign_Up">Sign Up</button>
-            <p>Alredy have an account? <a href = "logInPage.php">SignIn</a></p>
-        </form>
+        <div class = "loginTitle">
+            <h1 class = "tag">Welcome to Service IT</h1>
+            <h2 class = "tag">Register</h2>
+        </div>
+        <div class = "loginForm">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+                <input type = "text" name = "username" placeholder = "Enter a username" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                <input type = "text" name = "userName" placeholder = "Enter a name" <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
+                <span class="invalid-feedback"><?php echo $name_err; ?></span>
+                <input type = "text" name = "email" placeholder = "Enter an email"  <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                <input type = "password" name = "password" placeholder = "Enter a password" <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                <input type = "password" name = "confirm_password" placeholder = "Confirm the password" <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                <button name = "Sign_Up">Sign Up</button>
+                <p>Alredy have an account? <a href = "logInPage.php">SignIn</a></p>
+            </form>
+        </div>
     </div>
 </body>
 </html>
