@@ -1,3 +1,5 @@
+/* css for registaration and log in system ----------------------------------*/
+
 * {
     box-sizing: border-box;
 }
@@ -10,7 +12,7 @@ body {
     margin: 0 auto;
 }
 
-h1, h2 {
+.loginTitle h1.tag, h2.tag {
     font-weight: bold;
     color: #125C90;
     text-align: center;
@@ -82,7 +84,7 @@ form {
     text-align: center;
 }
 
-input,
+.loginForm  form input[type=password], form input[type=text],
 select {
     background-color: #FFFFFF;
     color: #125C90;
@@ -117,7 +119,7 @@ span {
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
-
+/* ---------------------------------------------------------------------- */
 /* from here is css for adminPanel and userProfile */
 
 .adminPanelPage {
@@ -127,8 +129,9 @@ span {
 .userProfilePage {
     background-color: white;
 }
+/* ---------------------------------------------------------------------- */
+/* user profile page -----------------------------------------------------*/
 
-/* user profile page*/
 .userProfileMain {
     padding: 50px;
     width: 100%;
@@ -245,8 +248,8 @@ span {
 .userProfileTable table tr {
     height: 50px;
 }
-
-/* user contract page*/
+/* ---------------------------------------------------------------------- */
+/* user contract page --------------------------------------------------- */
 
 .userContractDescription {
     float: left;
@@ -402,8 +405,8 @@ span {
     text-align: left;
     width: 800px;
 }
-
-/* admin contract page*/
+/* ---------------------------------------------------------------------- */
+/* admin contract page ---------------------------------------------------*/
 
 .contractMain {
     padding: 50px;
@@ -462,17 +465,18 @@ span {
     flex-direction: row;
     background-color: #125C90;
 }
+/* ---------------------------------------------------------------------- */
+/* above here is css for adminPanel and userProfile --------------------- */
 
-/* above here is css for adminPanel and userProfile */
 ody {
     margin: 0;
     font-family: Helvatica, sans-serif;
     box-sizing: border-box;
 }
-
-/* from here is css for homepage,ticketpage and contactpage*/
-
+/* ---------------------------------------------------------------------- */
+/* from here is css for homepage,ticketpage and contactpage -------------- */
 /* Navbar */
+
 .navbar {
     overflow: hidden;
     background: #FFFFFF;
@@ -513,8 +517,9 @@ h2, h3 {
     font-size: 40px;
     text-align: left;
 }
+/* ---------------------------------------------------------------------- */
+/* Homepage/ticket page styles------------------------------------------- */
 
-/* Homepage/ticket page styles */
 .item1 {
     float: left;
     width: 24.24%;

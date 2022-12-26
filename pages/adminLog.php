@@ -90,23 +90,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <button1 name = "client" onclick="document.location='LogInPage.php'">client</button1>
     </div>
     <div class = "container" id = "container"> 
-        <h1>Welcome to Service IT</h1>
-        <h2>Log in</h2>
+        <div class = "loginTitle">
+            <h1 class = "tag">Welcome to Service IT</h1>
+            <h2 class = "tag">Log in</h2>
+        </div>
             <?php 
             if(!empty($login_err)){
                 echo '<div class="alert alert-danger">' . $login_err . '</div>';
             }        
             ?>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <input type = "text" name = "username" placeholder = "Enter a username" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-            <span><?php echo $username_err; ?></span>
-            
-            <input type="password" name="password" placeholder = "Enter a password" <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-            <span><?php echo $password_err; ?></span>
+            <div class = "loginForm">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <input type = "text" name = "username" placeholder = "Enter a username" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                    <span><?php echo $username_err; ?></span>
+                    
+                    <input type="password" name="password" placeholder = "Enter a password" <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                    <span><?php echo $password_err; ?></span>
 
-            <button name = "Sign_In">Sign In</button>
-            <p>Don't have an account? <a href = "adminRegistration.php">SignUp</a></p>
-        </form>
+                    <button name = "Sign_In">Sign In</button>
+                    <p>Don't have an account? <a href = "adminRegistration.php">SignUp</a></p>
+                </form>
+            </div>
     </div>
 </body>
 </html>
