@@ -90,7 +90,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <button1 name = "client" onclick="document.location='LogInPage.php'">client</button1>
     </div>
     <div class = "container" id = "container"> 
-        
+        <div class = "loginTitle">
+            <h1 class = "tag">Welcome to Service IT</h1>
+            <h2 class = "tag">Log in</h2>
+        </div>
             <?php 
             if(!empty($login_err)){
                 echo '<div class="alert alert-danger">' . $login_err . '</div>';
