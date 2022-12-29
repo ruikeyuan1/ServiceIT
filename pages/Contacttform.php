@@ -86,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </div> 
 
 </head>
-<body>
+</body>
 
 <h3>Contact Form</h3>
 
