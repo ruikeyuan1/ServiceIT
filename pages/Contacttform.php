@@ -6,12 +6,12 @@ $name = $email = $message = "";
 $name_err = $email_err = $message_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+
     //Validate name 
-    if(empty(trim($_POST["name"]))){
+    if(empty(trim($_POST["firstname"]))){
         $name_err = "Please enter a name.";
     } else{
-        $name = trim($_POST["name"]);
+        $name = trim($_POST["firstname"]);
     }
 
     //Validate email
@@ -39,12 +39,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
                 $param_name = $name;
                 $param_email = $email;
-                $param_description = $message;
+                $param_message = $message;
                 
                 if($stmt->execute()){
-                    echo "Executed!";
+                    echo "Your form is submitted! We will contact you soon.";
                 } else{
-                    //echo "Something went wrong. Please try again later.";
                     echo "Error executing:" . $conn->error;
                 }
 
@@ -53,10 +52,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "Error binding:" . $conn->error;
         }
         } else{
-            echo "Error peparing:" . $conn->error;
+            echo "Error preparing:" . $conn->error;
         }
     } else{
-        echo "Please fill in all the fileds before submission!";
+        echo "Please fill in all the fields before submission!";
     }
     
     $conn->close();
@@ -91,12 +90,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <h3>Contact Form</h3>
 
 <div class="container">
-  <form action="/action_page.php">
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="fname">First Name</label>
     <input type="text" id="fname" name="firstname" placeholder=" ">
 
-    <label for="lname">Email</label>
-    <input type="text" id="lname" name="lastname" placeholder=" ">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder=" ">
 
     <label for="subject">Message</label>
     <textarea id="message" name="message" placeholder="Write something you would like to know.."></textarea>
