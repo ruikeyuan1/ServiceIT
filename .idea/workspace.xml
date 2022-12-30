@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminContract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/adminPanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/getAdminArray.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/getContractFileName.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/userContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userContract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/userProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Requirements/requirements.md" beforeDir="false" afterPath="$PROJECT_DIR$/databaseSqlFile/requirements.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstCommitTest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +108,7 @@
       <workItem from="1671962204580" duration="669000" />
       <workItem from="1672062041746" duration="3140000" />
       <workItem from="1672354060609" duration="2982000" />
-      <workItem from="1672357195836" duration="2557000" />
+      <workItem from="1672357195836" duration="3350000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommitToMain">
       <created>1668206818332</created>
