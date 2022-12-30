@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 //This function checks whether the admin is logged in.If not the page will be directed to home page
 function checkAdminLoginStatus(){
     if(isset($_GET['page'])){
@@ -29,7 +28,7 @@ $serviceToBeUpdated = array();
 //array for checking contractId input
 $acceptedContractId = array();
 
-require_once('dropDownBox.php');
+require_once('functions.php');
 
 //Initialise array for service status. The array is used to check the input status and contains the display options
 //for dropDown box.
@@ -64,7 +63,7 @@ $serviceHandlingArray = array(
 
 //require the page to get the existing admins and put the name and id into an associative array
 //The data is from the database and the id and name is fetched from a while loop
-require_once('getAdminArray.php');
+
 $adminArray = getAdminArray();
 
 //check if the service is handled or not while fetching the services data
@@ -253,7 +252,6 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
             echo "<h3 class='tag'>AdminId:" . $_SESSION ['adminId']."</h3>";
             //load the php file for connecting database
             require 'connect.php';
-
             //set the default variable(whether to bind parameter) to false
             $checkBindPara = false;
             //Create the query, and assign the fetching sql to $query based on the

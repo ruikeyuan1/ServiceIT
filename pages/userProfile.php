@@ -2,7 +2,7 @@
 session_start();
 
 //link the page that contains the display function for dropDown box
-require_once('dropDownBox.php');
+require_once('functions.php');
 //set the default service name
 $selectedNameType = "ticket";
 
