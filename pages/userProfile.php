@@ -1,12 +1,8 @@
 <?php
 session_start();
 
-//user id assigned for testing
-//$userID = 1;
-//$_SESSION ['userId'] = $_SESSION ['id'];
-
 //link the page that contains the display function for dropDown box
-require_once('dropDownBox.php');
+require_once('functions.php');
 //set the default service name
 $selectedNameType = "ticket";
 
@@ -148,12 +144,11 @@ function loadUserProfileTable($userId,$selectedFilterType)
     require 'connect.php';
 
     //Create the query
-    $query = "";
     if($selectedFilterType == "ticket"){
         $query = "SELECT service_ticket.id,service_ticket.service_type, service_ticket.status
                     FROM service_ticket
                     JOIN user ON user.id = service_ticket.user_id AND user.id = ?;";
-    } elseif ($selectedFilterType == "newRequest"){
+    } else {
         $query = "SELECT service_request.id,service_request.service_type, service_request.status
                     FROM service_request
                     JOIN user ON user.id = service_request.user_id AND user.id = ?;";

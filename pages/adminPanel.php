@@ -1,10 +1,5 @@
 <?php
 session_start();
-
-//admin id assigned for testing
-//$adminID = 1;
-//$_SESSION['adminId'] = $adminID;
-
 //This function checks whether the admin is logged in.If not the page will be directed to home page
 function checkAdminLoginStatus(){
     if(isset($_GET['page'])){
@@ -33,7 +28,7 @@ $serviceToBeUpdated = array();
 //array for checking contractId input
 $acceptedContractId = array();
 
-require_once('dropDownBox.php');
+require_once('functions.php');
 
 //Initialise array for service status. The array is used to check the input status and contains the display options
 //for dropDown box.
@@ -59,7 +54,7 @@ $serviceTypeArray = array(
     "all"
 );
 
-//Initialise array for service type. The array and contains the options
+//Initialise array for service type. The array contains the options
 //for dropDown box.
 $serviceHandlingArray = array(
     "unHandled",
@@ -68,7 +63,7 @@ $serviceHandlingArray = array(
 
 //require the page to get the existing admins and put the name and id into an associative array
 //The data is from the database and the id and name is fetched from a while loop
-require_once('getAdminArray.php');
+
 $adminArray = getAdminArray();
 
 //check if the service is handled or not while fetching the services data
@@ -123,8 +118,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if(in_array($_POST['serviceNameSaved'] , $serviceNameArray)){
                 //check if the serviceHandlingType input exists
                 if(in_array($_POST['serviceHandlingSaved'] , $serviceHandlingArray)){
-                    //These three inputs are assigned after immediately checking because the
+                    //These three inputs are assigned immediately after checking because the
                     //checks for the filter have been completed.The system needs to remember what has been selected.
+                    //If not, there are errors displaying the table if they are assigned to variables at the end.
                     $serviceNameSelected = filter_input(INPUT_POST, 'serviceNameSaved',FILTER_SANITIZE_SPECIAL_CHARS);
                     $serviceTypeSelected = filter_input(INPUT_POST, 'serviceTypeSaved',FILTER_SANITIZE_SPECIAL_CHARS);
                     $serviceHandlingSelected = filter_input(INPUT_POST, 'serviceHandlingSaved',FILTER_SANITIZE_SPECIAL_CHARS);
@@ -256,7 +252,6 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
             echo "<h3 class='tag'>AdminId:" . $_SESSION ['adminId']."</h3>";
             //load the php file for connecting database
             require 'connect.php';
-
             //set the default variable(whether to bind parameter) to false
             $checkBindPara = false;
             //Create the query, and assign the fetching sql to $query based on the
@@ -300,7 +295,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                 }
 
                 //Bind result to variables when fetching...
-                mysqli_stmt_bind_result($statement, $service_id, $admin_id, $service_type, $ticket_status, $user_name, $contract_id);
+                mysqli_stmt_bind_result($statement, $serviceIdFetched, $adminIdFetched, $serviceTypeFetched, $ticketStatusFetched, $userNameFetched, $contractIdFetched);
                 //And buffer the result if and only if you want to check the number of rows
                 mysqli_stmt_store_result($statement);
 
@@ -319,30 +314,30 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
                     echo "<th>ID</th><th>Type</th><th>Status</th><th>AdminName</th><th>UserName</th><th>ContractID</th><th>Save</th>";
                     //Fetch all rows of data from the result statement
                     while (mysqli_stmt_fetch($statement)) {
-                        if(!($ticket_status == "Done" AND checkServiceHandling($serviceHandlingSelected))){
+                        if(!($ticketStatusFetched == "Done" AND checkServiceHandling($serviceHandlingSelected))){
                             // Create row
                             //update array for saving all the service id displayed.Later on the array will be
                             // assigned to a session.
-                            $serviceToBeUpdated[] += $service_id;
+                            $serviceToBeUpdated[] += $serviceIdFetched;
                             //update the associative array for saving displayed contractId and the user
                             // having the contract
-                            $acceptedContractId[$contract_id] = $user_name;
+                            $acceptedContractId[$contractIdFetched] = $userNameFetched;
                             echo "<form action=" . htmlentities($_SERVER['PHP_SELF']) . " method='post'>";
                             echo "<tr>";
 
                             // Create cells
-                            echo "<td>" . $service_id . "</td>";
-                            echo "<td>" . $service_type . "</td>";
+                            echo "<td>" . $serviceIdFetched . "</td>";
+                            echo "<td>" . $serviceTypeFetched . "</td>";
 
                             echo '<td><select class="panelInput" name="serviceStatus">';
-                            dropDownBox($statusArray, $ticket_status);
+                            dropDownBox($statusArray, $ticketStatusFetched);
                             echo '</select></td>';
 
                             echo '<td><select class="panelInput" name="adminId">';
                             //echo the admins that can be assigned to
                             foreach ($adminArray as $adminId => $adminName) {
-                                if ($admin_id == $adminId) {
-                                    echo "<option value=$admin_id selected>$adminName</option>";
+                                if ($adminIdFetched == $adminId) {
+                                    echo "<option value=$adminIdFetched selected>$adminName</option>";
                                 } else {
                                     echo "<option value=$adminId>$adminName</option>";
                                 }
@@ -350,14 +345,14 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
 
                             echo '</select></td>';
 
-                            echo "<input type='hidden' name='serviceId' value='$service_id'>";
+                            echo "<input type='hidden' name='serviceId' value='$serviceIdFetched'>";
                             echo "<input type='hidden' name='serviceTypeSaved' value='$serviceTypeSelected'>";
                             echo "<input type='hidden' name='serviceNameSaved' value='$serviceNameSelected'>";
                             echo "<input type='hidden' name='serviceHandlingSaved' value='$serviceHandlingSelected'>";
 
-                            $contract = '<a href="adminContract.php?contractId='.$contract_id.'">'.$contract_id.'</a>';
+                            $contract = '<a href="adminContract.php?contractId='.$contractIdFetched.'">'.$contractIdFetched.'</a>';
 
-                            echo "<td>" . $user_name . "</td>";
+                            echo "<td>" . $userNameFetched . "</td>";
                             echo "<td>" . $contract . "</td>";
                             echo "<td><input class='panelInput' type='submit' name='Save' value='Save'></td>";
                             // Close row
@@ -369,7 +364,10 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
 
                     echo "</table></div>";
 
+                    // session to be used for checking the value from post request in the post request checks at beginning of this page
+                    // Admins cannot update a service which serviceId is not displayed in the current table.
                     $_SESSION['serviceToBeUpdated'] = $serviceToBeUpdated;
+                    // session to be used for checking the value from get request in contract page
                     $_SESSION['acceptedContractId'] = $acceptedContractId;
                 } else {
                     echo "No tickets or requests found";

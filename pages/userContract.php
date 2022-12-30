@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,6 @@ session_start();
 </html>
 <?php
 function loadUserContractPageContent(){
-    require_once('getContractFileName.php');
     $contractId = null;
     if($_SERVER['REQUEST_METHOD'] == 'GET') {
         if(isset($_GET['contractId'])) {
