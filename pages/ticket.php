@@ -4,7 +4,6 @@ require_once "connect.php";
 
 $user_id = $_SESSION["userId"];
 $user_name = $_SESSION["username"];
-$user_email = $_SESSION["userEmail"];
 $description = "";
 $description_err = "";
 
@@ -20,11 +19,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if(empty($description_err)){
         
-        $sql = "INSERT INTO service_ticket (`user_id`, `user_name`,`user_email`,`description`) VALUES (?,?,?)";
+        $sql = "INSERT INTO service_ticket (`user_id`, `user_name`,`description`) VALUES (?,?,?)";
 
         if($stmt = $conn->prepare($sql)){
 
-            if($stmt->bind_param("isss",$user_id,$user_name,$user_email,$param_description)) {
+            if($stmt->bind_param("iss",$user_id,$user_name,$param_description)) {
 
                 $param_description = $description;
                 
