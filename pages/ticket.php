@@ -2,6 +2,8 @@
 session_start();
 require_once "connect.php";
 
+$user_id = $_SESSION["userId"];
+$user_name = $_SESSION["username"];
 $description = "";
 $description_err = "";
 
@@ -17,12 +19,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if(empty($description_err)){
         
-        $sql = "INSERT INTO service_ticket (`description`) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO service_ticket (`user_id`, `user_name`,`description`) VALUES (?,?,?)";
 
         if($stmt = $conn->prepare($sql)){
 
-            if($stmt->bind_param("sss",$param_description)) {
-            
+            if($stmt->bind_param("iss",$user_id,$user_name,$param_description)) {
+
                 $param_description = $description;
                 
                 if($stmt->execute()){
@@ -52,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <title>TicketPage</title>
 </head>
 
