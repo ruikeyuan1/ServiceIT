@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/upload/Eeqest.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/databaseSqlFile/instruction.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/adminContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/adminPanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/adminPanel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/upload/PPFINAL.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/upload/PPFINAL2).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/upload/ServiceITdfd.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/upload/cover_letter_draft_Ruike_Yuan.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/uploadFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/uploadFile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/userContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/userProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +122,9 @@
       <workItem from="1672062041746" duration="3140000" />
       <workItem from="1672354060609" duration="2982000" />
       <workItem from="1672357195836" duration="3921000" />
+      <workItem from="1672479698900" duration="740000" />
+      <workItem from="1672835563580" duration="1082000" />
+      <workItem from="1672871759866" duration="862000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommitToMain">
       <created>1668206818332</created>

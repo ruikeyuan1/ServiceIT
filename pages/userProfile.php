@@ -13,7 +13,7 @@ $serviceNameArray = array(
     "newRequest"
 );
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //check if the post request for the dropDown box is set.
     if (isset($_POST['profileDropDown'])) {
         //check if the serviceName is set
@@ -142,9 +142,8 @@ function loadUserProfileTable($userId,$selectedFilterType)
 {
     //load the php file for connecting database
     require 'connect.php';
-
     //Create the query
-    if($selectedFilterType == "ticket"){
+    if ($selectedFilterType == "ticket"){
         $query = "SELECT service_ticket.id,service_ticket.service_type, service_ticket.status
                     FROM service_ticket
                     JOIN user ON user.id = service_ticket.user_id AND user.id = ?;";
@@ -200,7 +199,6 @@ function loadUserProfileTable($userId,$selectedFilterType)
     } else {
         die(mysqli_error($conn));
     }
-
     // Close the connection!
     mysqli_close($conn);
 }

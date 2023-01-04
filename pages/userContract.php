@@ -22,11 +22,11 @@ require_once('functions.php');
 <?php
 function loadUserContractPageContent(){
     $contractId = null;
-    if($_SERVER['REQUEST_METHOD'] == 'GET') {
-        if(isset($_GET['contractId'])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        if (isset($_GET['contractId'])) {
             //check if the contractId got is the contractId in the session.The session is assigned in the userProfile
             //page when fetching data
-            if(isset($_SESSION ['userContractId'])){
+            if (isset($_SESSION ['userContractId'])){
                 if ($_GET['contractId'] == $_SESSION ['userContractId']) {
                     //filter the contractId and assign to a variable
                     $contractId = filter_input(INPUT_GET, 'contractId',FILTER_SANITIZE_NUMBER_INT);
@@ -38,12 +38,11 @@ function loadUserContractPageContent(){
                         <h1>Contract: </h1>                    
                         <h3>Contract ID: '.$contractId.'</h3>
                     </div>
-            
-                  <div class="userContractActionForm">
+                    <div class="userContractActionForm">
                     <h3>Service IT</h3>
                     <p><a href="userProfile.php">Back to profile</a></p>';
                     //check if there is a contract file assigned to the contractId sent
-                    if(getContractFileName($contractId) != null AND trim(getContractFileName($contractId)) != ''){
+                    if (getContractFileName($contractId) != null && trim(getContractFileName($contractId)) != ''){
                         //display the download button so user can click the button and download the pdf
                         echo '<p><a href='.$dirName."/".getContractFileName($contractId).' download='.getContractFileName($contractId).'>Download Contract</a></p>';
                         echo '</div>';
@@ -52,15 +51,15 @@ function loadUserContractPageContent(){
                                <iframe src='.$dirName."/".getContractFileName($contractId).' width="100%" height="500px"></iframe>
                           </div>';
                         echo "</div>";
-                    }else{
+                    } else {
                         echo 'no contract file attached, please wait for administrators to upload a contract for you';
                         echo '</div>';
                         echo '</div>';
                     }
-                }else{
+                } else {
                     echo "Contract ID input invalid: ".$contractId;
                 }
-            }else{
+            } else {
                 echo "session Contract ID not set(you don't have a contract yet),a contract is generated for you 
                 once your first service request is issued.";
             }

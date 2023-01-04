@@ -49,7 +49,7 @@ function loadAdminContractPageContent(){
                             </form>
                              <p><a href="adminPanel.php">Back to adminPanel</a></p>';
                 //check if there is a contract file assigned to the contractId sent
-                if(getContractFileName($contractId) != null AND trim(getContractFileName($contractId)) != ''){
+                if (getContractFileName($contractId) != null && trim(getContractFileName($contractId)) != ''){
                     ////display the download button so admins can click the button and download the pdf
                     echo '<p><a href='.$dirName."/".getContractFileName($contractId).' download='.getContractFileName($contractId).'>Download Contract</a></p>
                       </div>';
@@ -58,15 +58,15 @@ function loadAdminContractPageContent(){
                             <iframe src='.$dirName."/".getContractFileName($contractId).' width="100%" height="500px"></iframe>
                       </div>';
                     echo "</div>";
-                }else{
+                } else {
                     echo 'no contract file attached, please upload a contract for the user';
                     echo '</div>';
                     echo '</div>';
                 }
-            }else{
+            } else {
                 echo "Contract ID input invalid: ".$contractId;
             }
-        }else{
+        } else {
             echo "the contractId needs to be set and cannot be null";
         }
     }

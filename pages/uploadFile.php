@@ -13,14 +13,14 @@ function fileUpload($contractId){
         //assign the file type of the uploaded file to a variable for upcoming type check
         $uploadedFileType = finfo_file($fileInfo, $_FILES["uploadedFile"]["tmp_name"]);
         //check if the file type of the uploaded file is correct
-        if(in_array($uploadedFileType, $acceptedFileTypes))
+        if (in_array($uploadedFileType, $acceptedFileTypes))
         {
             //If there are errors regarding uploaded file
             if ($_FILES["uploadedFile"]["error"] > 0)
             {
                 //echo the error
                 echo "Error: " . $_FILES["uploadedFile"]["error"] . "<br />";
-            }else{
+            } else {
                 //echo the name of the uploaded file
                 echo "<br />Upload: " . $_FILES["uploadedFile"]["name"] . "<br />";
                 //echo the file type of the uploaded file(contract)
@@ -31,7 +31,7 @@ function fileUpload($contractId){
                 if (file_exists( SITE_ROOT."/".$_FILES["uploadedFile"]["name"])){
                     //echo that there is a same existing contract
                     echo $_FILES["uploadedFile"]["name"] . "<p>"." already exists. ". "<p/>";
-                }else{
+                } else {
                     //assign the file name to a variable
                     $file = $_FILES["uploadedFile"]["name"];
                     //get the info of the file and assign it to an array variable.(an array saving different attributes
@@ -42,11 +42,11 @@ function fileUpload($contractId){
                     echo "<p>"."FileName: " . $fileName . "<p/>";
 
                     //check if the length of the file name is less than 50 and has at least 1 uppercase
-                    if(strlen($fileName) > 50 or ctype_lower($fileName)){
+                    if (strlen($fileName) > 50 or ctype_lower($fileName)){
                         echo "The original file name must not exceed 50 characters and must contain at least 1 uppercase.";
-                    }else{
+                    } else {
                         //Transfer the file from the temporary folder to the upload folder using the original upload name
-                        if(move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], SITE_ROOT."/".$_FILES["uploadedFile"]["name"])){
+                        if (move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], SITE_ROOT."/".$_FILES["uploadedFile"]["name"])){
                             //echo that the file has been uploaded and successfully stored in the right path
                             echo "<p>"."Stored in folder"."</p>";
                                 //call the function to delete the former contract.So the newest contract with the
@@ -54,17 +54,17 @@ function fileUpload($contractId){
                                 deleteStoredFile($contractId);
                                 //call the function to update the contract uploaded to the database
                                 updateContractIntoDatabase($contractId,$_FILES["uploadedFile"]["name"]);
-                        }else {
+                        } else {
                             echo "Something went wrong while uploading(while moving file from temporary folder).";
                         }
                     }
                 }
                 echo '<p><a href="adminPanel.php">Go back to AdminPanel</a></p>';
             }
-        }else{
+        } else {
             echo "Invalid file type. Must be pdf.";
         }
-    }else{
+    } else {
         echo "Invalid file size. Must be less than 1000KB.";
     }
 }
@@ -92,20 +92,20 @@ function deleteStoredFile($contractId){
         if (mysqli_stmt_num_rows($statement) == 1) {
             while (mysqli_stmt_fetch($statement))
             {
-                if($fileToBeDeleted != null){
+                if ($fileToBeDeleted != null){
                     if (file_exists(SITE_ROOT."/".$fileToBeDeleted))
                     {
                         echo $fileToBeDeleted;
                         unlink(SITE_ROOT."/".$fileToBeDeleted);
                         echo "<p>".$fileToBeDeleted." deleted from database</p>";
-                    }else{
+                    } else {
                         echo "File does not exist in the folder";
                     }
-                }else{
+                } else {
                     echo "File name is null, there is no previous contract.";
                 }
             }
-        }else{
+        } else {
             "error:row < 1 or row >1";
         }
         //Close the statement and free memory
@@ -120,7 +120,7 @@ function deleteStoredFile($contractId){
 
 function updateContractIntoDatabase($contractId,$fileName){
     //make sure the admin has logged in
-    if(!$_SESSION ['adminId'] == null) {
+    if (!$_SESSION ['adminId'] == null) {
         if (!empty($_SESSION ['adminId'])) {
             //echo the contractId of the contract uploaded
             echo "<p>ContractId: ".$contractId."</p>";
@@ -158,9 +158,9 @@ function updateContractIntoDatabase($contractId,$fileName){
     }
 }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //check if the post request with name 'upload' is set
-    if(isset($_POST['upload'])) {
+    if (isset($_POST['upload'])) {
         //check if the posted contractID is not empty
         if (!empty($_POST['contractID'])) {
             //check if the file name posted is not empty

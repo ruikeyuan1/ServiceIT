@@ -11,10 +11,10 @@ function getAdminArray() : array{
     $query = "SELECT `id`, `name` FROM `administrator`";
 
     //Prepare query as a statement
-    if($statement = mysqli_prepare($conn, $query))
+    if ($statement = mysqli_prepare($conn, $query))
     {
         //Execute statement and check success
-        if(!mysqli_stmt_execute($statement))
+        if (!mysqli_stmt_execute($statement))
         {
             die(mysqli_error($conn));
         }
@@ -25,20 +25,20 @@ function getAdminArray() : array{
         mysqli_stmt_store_result($statement);
 
         //Check if the number of rows fetched is correct
-        if(mysqli_stmt_num_rows($statement) > 0)
+        if (mysqli_stmt_num_rows($statement) > 0)
         {
             while (mysqli_stmt_fetch($statement))
             {
                 //assign the result(adminId with the name of the admin) to an associative array
                 $adminArray = array_merge($adminArray , [$id=>$name]);
             }
-        }else{
+        } else {
             echo "No admins found";
         }
 
         //Close the statement and free memory
         mysqli_stmt_close($statement);
-    }else{
+    } else {
         die(mysqli_error($conn));
     }
 
@@ -56,13 +56,13 @@ function getContractFileName($contractId) : string{
     $query = " SELECT `file_path` FROM `contract` WHERE `id` = ?";
 
     //Prepare query as a statement
-    if($statement = mysqli_prepare($conn, $query))
+    if ($statement = mysqli_prepare($conn, $query))
     {
         //Fill in  ? parameters
         mysqli_stmt_bind_param($statement, 'i', $contractId);
 
         //Execute statement and check success
-        if(!mysqli_stmt_execute($statement))
+        if (!mysqli_stmt_execute($statement))
         {
             die(mysqli_error($conn));
         }
@@ -73,20 +73,20 @@ function getContractFileName($contractId) : string{
         mysqli_stmt_store_result($statement);
 
         //Check if the number of rows fetched is correct
-        if(mysqli_stmt_num_rows($statement) == 1)
+        if (mysqli_stmt_num_rows($statement) == 1)
         {
             while (mysqli_stmt_fetch($statement))
             {
                 //assign the result(fileName) to a new variable
                 $fileNameFetched = $fileName;
             }
-        }else{
+        } else {
             echo "error fetching the data.The data should be one row.";
         }
 
         //Close the statement and free memory
         mysqli_stmt_close($statement);
-    }else{
+    } else {
         die(mysqli_error($conn));
     }
 
@@ -104,8 +104,8 @@ function getContractFileName($contractId) : string{
 //This is the dropDownBox function made for dropDown boxes in admin panel page and userprofile page
 //The variable $valueToBeChecked is the value to be selected.The if-else statement checks if the $valueToBeChecked
 //exists in the list of options to be displayed.
-function dropDownBox($Array,$valueToBeChecked){
-    foreach($Array as $value) {
+function dropDownBox($array,$valueToBeChecked){
+    foreach ($array as $value) {
         if ($valueToBeChecked == $value) {
             echo "<option value=$valueToBeChecked selected>$valueToBeChecked</option>";
         }
