@@ -3,8 +3,6 @@ session_start();
 
 
 $user_id = $_SESSION["userId"];
-//print($_SESSION["userId"]);
-$user_id = 1;
 $user_name = $_SESSION["username"];
 $admin_id = 0;
 $status ="InProgress";
