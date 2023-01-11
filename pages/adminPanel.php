@@ -204,7 +204,9 @@ function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdS
         <div class="header">
             <h3 class='tag'>Service IT</h3>
             <h1 class='tag'>Admin Panel</h1>
-            <a href='adminPanel.php?page=logout'>click here to log out</a>
+            <a href='/users.php'>users</a>
+            <a href='/chatAdmin.php'>join in chat</a>
+            <a href='adminPanel.php?page=logout'>log out</a>
         </div>
         <div>
             <form class="adminPanelForm" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" method='post'>

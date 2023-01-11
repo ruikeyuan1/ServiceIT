@@ -91,6 +91,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_name = $name;
 
             if($stmt->execute()){
+                mail($email, "Service IT - Thank you for registering!", "Thank you for registering on our Service IT website!"); 
+
                 header("location: logInPage.php");
             } else{
                 echo "Something went wrong. Please try again later.";

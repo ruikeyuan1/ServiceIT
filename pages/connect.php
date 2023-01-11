@@ -2,7 +2,7 @@
 //initialise variables
 $hostName = "localhost";
 $userName = "root";
-$password = "";
+$password = "123123";
 $database = "service";
 // Open a connection to MySQL...
 // Create connection
