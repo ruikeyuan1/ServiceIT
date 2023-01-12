@@ -29,6 +29,19 @@ CREATE TABLE `administrator`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
+
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `Contact_form`
+--
+
+CREATE TABLE `Contact_form` (
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 -- Table structure for contract
 -- ----------------------------
