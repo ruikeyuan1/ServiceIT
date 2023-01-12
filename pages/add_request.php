@@ -76,9 +76,10 @@
 						</div>
 
 						<div class="checkboxes">
-							<label class="checkbox"><input type="radio" name="type" checked value="laptop repair">Laptop repair</label>
-							<label class="checkbox"><input type="radio" name="type" value="phone repair">Phone repair</label>
-							<label class="checkbox"><input type="radio" name="type" value="hardware / software problems">hardware / software problems</label>
+							<label class="checkbox"><input type="radio" name="type" checked value="laptop_repair">Laptop repair</label>
+							<label class="checkbox"><input type="radio" name="type" value="phone_repair">Phone repair</label>
+							<label class="checkbox"><input type="radio" name="type" value="software_service">software problems</label>
+                            <label class="checkbox"><input type="radio" name="type" value="hosting_service">hosting service</label>
 						</div>	
 					</div>
 
