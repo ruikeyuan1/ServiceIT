@@ -13,15 +13,7 @@
     return mysqli_real_escape_string($conn, $_POST[$value]);
   }
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		mail($_POST['emai'], "Service IT - Thanks for the Service Request!", "Thank you for the Service Request."); 
-    $sql = "INSERT INTO `service_request` (`user_id`, `status`, `description`, `service_type`, `admin_id`) VALUES (".$_SESSION['userId'].", 'InProgress', '".sqlValue('text')."', '".sqlValue('type')."', 0)";
-    $result = mysqli_query($conn, $sql);
-    header('Location: '.$_SERVER['PHP_SELF']);
-    exit;
-  }
-
-  function checkUserContract($id) {
+	function checkUserContract($id) {
     global $conn;
 
     $check_contract = mysqli_query($conn, "SELECT * FROM `contract` WHERE `user_id` = ".$id."");
@@ -33,6 +25,20 @@
     }
 
     mysqli_close($conn);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		mail($_POST['emai'], "Service IT - Thanks for the Service Request!", "Thank you for the Service Request.");
+
+		if (checkUserContract($_SESSION['userId'])) {
+			$sql = "INSERT INTO `contract` (`file_path`, `user_id`) VALUES ('', ".$_SESSION['userId'].")";
+    	$result = mysqli_query($conn, $sql);
+		}
+
+    $sql = "INSERT INTO `service_request` (`user_id`, `status`, `description`, `service_type`, `admin_id`) VALUES (".$_SESSION['userId'].", 'InProgress', '".sqlValue('text')."', '".sqlValue('type')."', 0)";
+    $result = mysqli_query($conn, $sql);
+    header('Location: '.$_SERVER['PHP_SELF']);
+    exit;
   }
 ?>
 
