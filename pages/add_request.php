@@ -13,7 +13,7 @@
     return mysqli_real_escape_string($conn, $_POST[$value]);
   }
 
-	function checkUserContract($id) {
+	function checkUserContract($id):bool {
     global $conn;
 		// for cntr
     $check_contract = mysqli_query($conn, "SELECT * FROM `contract` WHERE `user_id` = ".$id."");
