@@ -66,8 +66,7 @@
 
 				<form class="items_wrapper" method="post">
 					<div class="items_inner">
-						<input class="input" type="text" name="name" required placeholder="Enter your name and lastname">
-						<input class="input" type="email" name="email" required placeholder="Enter your Email">
+
 					</div>
 
 					<div class="items_inner">
