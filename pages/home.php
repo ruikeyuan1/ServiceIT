@@ -30,17 +30,17 @@
 <div class="flex-container"> 
   <figure class="item1">
     <figcaption href="" class="caption">Laptop Repair</figcaption>
-    <img src="laptop.png" alt="laptop">
+    <img src="img/laptop.png" alt="laptop">
   </figure>
 
   <figure class="item2">
     <figcaption href="" class="caption">Phone Repair</figcaption>
-    <img src="phone2.png" alt="bill">
+    <img src="img/phone2.png" alt="bill">
   </figure>
 
   <figure class="item3">
     <figcaption href="" class="caption">Hardware/Software</figcaption>
-    <img src="hardware.png" alt="Hardware">
+    <img src="img/hardware.png" alt="Hardware">
   </figure>
 </div>
 
