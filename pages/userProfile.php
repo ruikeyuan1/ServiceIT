@@ -89,7 +89,7 @@ checkUserLoginStatus();
     <div class="userProfileTable">
         <?php
         //load the table in the profile page
-        loadUserProfileTable($_SESSION ['userId'],$selectedNameType);
+        loadUserProfileTable($_SESSION['userId'],$selectedNameType);
         ?>
     </div>
 </div>

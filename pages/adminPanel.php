@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 //This function checks whether the admin is logged in.If not the page will be directed to home page
 function checkAdminLoginStatus(){
     if (isset($_GET['page'])){
@@ -160,9 +162,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+
+
 function updateService($serviceNameSelected, $serviceStatusSelected, $serviceIdSelected, $adminIdSelected){;
     //load the php file for connecting database
     require 'connect.php';
+
     //Prepare query as a statement
     $query = "UPDATE `service_ticket` SET `admin_id`= ? ,`status`= ? WHERE `id` = ?";
 
@@ -254,6 +259,7 @@ function loadAdminPanelTable($serviceNameSelected,$serviceTypeSelected,$serviceT
             echo "<h3 class='tag'>AdminId:" . $_SESSION ['adminId']."</h3>";
             //load the php file for connecting database
             require 'connect.php';
+
             //set the default variable(whether to bind parameter) to false
             $checkBindPara = false;
             //Create the query, and assign the fetching sql to $query based on the
