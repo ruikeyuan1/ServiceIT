@@ -30,7 +30,7 @@
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		mail($_POST['emai'], "Service IT - Thanks for the Service Request!", "Thank you for the Service Request.");
 
-		if (checkUserContract($_SESSION['userId'])) {
+		if (!checkUserContract($_SESSION['userId'])) {
 			$sql = "INSERT INTO `contract` (`file_path`, `user_id`) VALUES ('', ".$_SESSION['userId'].")";
     	$result = mysqli_query($conn, $sql);
 		}
