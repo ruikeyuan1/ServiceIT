@@ -13,9 +13,9 @@
 <div class="navbar">
   <a class="home.php" href="#home">Home</a>
   <a href="add_request.php">News Service</a>
-  <a href="Ticket.php">Ticket</a>
+  <a href="ticket.php">Ticket</a>
   <a href="userProfile.php">Profile</a>
-  <a href="Contacttform.php">ContactUs</a>
+  <a href="contactform.php">ContactUs</a>
   <a href="chat.php">Chat</a>
 </div>  
 

@@ -119,11 +119,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
     <div class="navbar">
-        <a class="home" href="home">Home</a>
-        <a href="News Service">News Service</a>
-        <a href="Ticket">Ticket</a>
-        <a href="Profile">Profile</a>
-        <a href="contactform">ContactUs</a>
+        <a class="home.php" href="home">Home</a>
+        <a href="add_request.php">News Service</a>
+        <a href="ticket.php">Ticket</a>
+        <a href="userProfile.php">Profile</a>
+        <a href="contactform.php">ContactUs</a>
+        <a href="chat.php">Chat</a>
     </div> 
      
 <div class="header">
