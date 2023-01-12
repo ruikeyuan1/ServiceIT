@@ -12,8 +12,9 @@ body {
     margin: 0 auto;
 }
 
-.loginTitle h1.tag, h2.tag {
+.loginTitle h1.tagTitle, h2.tagTitle {
     font-weight: bold;
+    font-size: 26px;
     color: #125C90;
     text-align: center;
     padding: 25px;
@@ -68,6 +69,7 @@ button {
     font-weight: bold;
     padding: 12px 45px;
     letter-spacing: 1px;
+    text-align-last: center;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     width: 300px;

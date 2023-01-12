@@ -91,8 +91,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     <div class = "container" id = "container"> 
         <div class = "loginTitle">
-            <h1 class = "tag">Welcome to Service IT</h1>
-            <h2 class = "tag">Log in</h2>
+            <h1 class = "tagTitle">Welcome to Service IT</h1>
+            <h2 class = "tagTitle">Log in</h2>
         </div>
             <?php 
             if(!empty($login_err)){

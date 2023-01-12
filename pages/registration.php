@@ -122,8 +122,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     <div class = "container" id = "container"> 
         <div class = "loginTitle">
-            <h1 class = "tag">Welcome to Service IT</h1>
-            <h2 class = "tag">Register</h2>
+            <h1 class = "tagTitle">Welcome to Service IT</h1>
+            <h2 class = "tagTitle">Register</h2>
         </div>
         <div class = "loginForm">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
