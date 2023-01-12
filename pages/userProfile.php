@@ -93,8 +93,7 @@ checkUserLoginStatus();
         ?>
     </div>
 </div>
-</body>
-</html>
+
 <?php
 function loadUserInfo(){
     //load the php file for connecting database
@@ -204,18 +203,6 @@ function loadUserProfileTable($userId,$selectedFilterType)
 }
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheet.css">
-    <title>TicketPage</title>
-</head>
-
-<body>
     <div class="navbar">
         <a class="home.php" href="home">Home</a>
         <a href="add_request.php">News Service</a>
@@ -223,12 +210,7 @@ function loadUserProfileTable($userId,$selectedFilterType)
         <a href="userProfile.php">Profile</a>
         <a href="contactform.php">ContactUs</a>
         <a href="chat.php">Chat</a>
-    </div> 
-     
-<div class="header">
-    <div class="logo">SERVICE IT</div>
-</div>
-
+    </div>
     </body>    
 </html> 
 

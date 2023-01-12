@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d0db879b-adb3-4ce8-acad-97740b386010" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/add_request.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/add_request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/databaseSqlFile/originalSql/service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/databaseSqlFile/originalSql/service.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/connect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/userProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userProfile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +122,7 @@
       <workItem from="1673428482886" duration="141000" />
       <workItem from="1673430330629" duration="50000" />
       <workItem from="1673479731515" duration="1914000" />
-      <workItem from="1673525611225" duration="596000" />
+      <workItem from="1673525611225" duration="1129000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommitToMain">
       <created>1668206818332</created>

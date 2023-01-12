@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 30, 2022 at 12:37 AM
+-- Generation Time: Jan 12, 2023 at 03:14 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `service`
+-- Database: `serviceP`
 --
 
 -- --------------------------------------------------------
@@ -42,9 +42,7 @@ INSERT INTO `administrator` (`id`, `username`, `name`, `password`) VALUES
 (0, 'data', 'Dada', '[value-4]'),
 (1, 'abu', 'Abu', '[value-4]'),
 (2, 'titi', 'titi', 'titi1234'),
-(3, 'keketty2', 'tjsahdjas', '$2y$10$AxrFhWQp7swTdxqvuV0OqeNZe4n3h36UMoDwtFO2gJt32/jocMrdG'),
-(4, 'polina', 'polina', '$2y$10$WACC03U8VoQAk8G7GtKIueuE0qfb9AKNG6yw.dgNQsY.9Hs/GPjHm'),
-(5, 'kekeYuan', 'dad', '$2y$10$UIjEB4qlbOEkx/r3xV8BpeIBUPnXuaMcFO8GeU0wLrpCb/ZAEsLvi');
+(3, 'Ameli', 'Lia', '$2y$10$kILA4d2c2CIsNm/Oz8G.2OMfsWp0g6QLOFyeODT6o5WgZYJeK6ofS');
 
 -- --------------------------------------------------------
 
@@ -63,9 +61,10 @@ CREATE TABLE `contract` (
 --
 
 INSERT INTO `contract` (`id`, `file_path`, `user_id`) VALUES
-(1, 'cover_letter_draft_Ruike_Yuan.pdf', 1),
-(2, 'CV_-_Ruike_Yuan.pdf', 2),
-(3, 'CoursesToBeF.pdf', 3);
+(1, 'PresentationUnitestWorkshop.pdf', 1),
+(2, 'projeOnintemplate.pdf', 2),
+(3, 'Foscolo.pdf', 3),
+(6, '', 4);
 
 -- --------------------------------------------------------
 
@@ -87,13 +86,18 @@ CREATE TABLE `service_request` (
 --
 
 INSERT INTO `service_request` (`id`, `user_id`, `admin_id`, `status`, `description`, `service_type`) VALUES
-(1, 1, 2, 'Done', '[value-5]', 'phone_repair'),
+(1, 1, 0, 'Done', '[value-5]', 'phone_repair'),
 (2, 2, 2, 'Done', '[value-5]', 'phone_repair'),
 (3, 2, 2, 'Done', '[value-5]', 'laptop_repair'),
-(4, 2, 2, 'Done', '[value-5]', 'phone_repair'),
-(5, 1, 0, 'InProgress', '[value-5]', 'laptop_repair'),
-(6, 1, 2, 'Done', '[value-5]', 'laptop_repair'),
-(7, 1, 2, 'InProgress', '[value-5]', 'laptop_repair');
+(4, 2, 2, 'InProgress', '[value-5]', 'phone_repair'),
+(5, 1, 2, 'Done', '[value-5]', 'laptop_repair'),
+(6, 1, 1, 'Done', '[value-5]', 'laptop_repair'),
+(7, 1, 2, 'Done', '[value-5]', 'laptop_repair'),
+(8, 3, 0, 'InProgress', 'check', 'phone repair'),
+(9, 3, 0, 'InProgress', 'ooops', 'software_service'),
+(10, 3, 0, 'InProgress', 'oke', 'hosting_service'),
+(11, 3, 0, 'InProgress', 'final check', 'software_service'),
+(12, 4, 0, 'InProgress', 'test data\r\n', 'phone_repair');
 
 -- --------------------------------------------------------
 
@@ -103,8 +107,8 @@ INSERT INTO `service_request` (`id`, `user_id`, `admin_id`, `status`, `descripti
 
 CREATE TABLE `service_ticket` (
   `id` int(5) NOT NULL,
-  `user_id` int(5) NOT NULL,
-  `admin_id` int(5) NOT NULL,
+  `user_id` int(5) DEFAULT NULL,
+  `admin_id` int(5) DEFAULT NULL,
   `status` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `service_type` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL
@@ -115,10 +119,15 @@ CREATE TABLE `service_ticket` (
 --
 
 INSERT INTO `service_ticket` (`id`, `user_id`, `admin_id`, `status`, `description`, `service_type`) VALUES
-(1, 1, 3, 'Done', '[value-5]', 'phone_repair'),
-(2, 1, 0, 'Done', '[value-5]', 'laptop_repair'),
-(3, 3, 2, 'InProgress', '[value-5]', 'laptop_repair'),
-(5, 3, 3, 'Done', '[value-5]', 'laptop_repair');
+(1, 1, 1, 'InProgress', '[value-5]', 'phone_repair'),
+(2, 1, 1, 'InProgress', '[value-5]', 'laptop_repair'),
+(3, 1, 0, 'InProgress', '[value-5]', 'laptop_repair'),
+(5, 2, 2, 'InProgress', '[value-5]', 'laptop_repair'),
+(30, 3, 0, 'InProgress', 'lia', 'phone'),
+(31, 3, 0, 'Done', 'lia', 'phone'),
+(32, 3, 0, 'Done', 'lia', 'software_service'),
+(33, 3, 0, 'InProgress', 'hmmm', 'software_service'),
+(34, 4, 0, 'InProgress', 'test ticket', 'phone_repair');
 
 -- --------------------------------------------------------
 
@@ -141,9 +150,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `email`) VALUES
 (1, 'Ruike Yuan', 'myYuan', 'ruike1234', 'keketty@163.com'),
 (2, 'Kaiser Aftab', 'myAdtab', 'kaiser1234', 'kaiser@163.com'),
-(3, 'RuikeYuan', 'keketty', '$2y$10$u53CLOuodxenT/9D2YUv9eAMRgaretpSGRr13D2mYsTsWIwgs63Qu', 'yuanruike2002@outlook.com'),
-(4, 'Ruike', 'keketty1', '$2y$10$G7ojwo4XnD3050zTDxB8ROmjKkCdmZLu/WGKDtFBpA264/fhXbHom', 'Di'),
-(5, 'polina', 'polina', '$2y$10$pkmRnBo8wtLZLkgmcc/NQ.sQtrRb6nqNmH8IXP1Bn2mcGClQNJi6u', 'yuanruike2002@outlook.com');
+(3, 'Liaafernando', 'Lia', '$2y$10$d0d8jMFZb0rO1yHwnnPVLuWdtCNautnnhdVKDtHgrtLyV5xApmWTS', 'liafernando@gmail.com'),
+(4, 'Abu', 'Abu', '$2y$10$baL.SHpjLqyy5IhARHbny.Y6QBllwQDPQ2T3.M/.rhGWt/Xdnb.fK', 'Abu@abu');
 
 --
 -- Indexes for dumped tables
@@ -192,31 +200,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `administrator`
 --
 ALTER TABLE `administrator`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `contract`
 --
 ALTER TABLE `contract`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `service_ticket`
 --
 ALTER TABLE `service_ticket`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
