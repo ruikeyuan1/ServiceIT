@@ -15,7 +15,7 @@
 
 	function checkUserContract($id) {
     global $conn;
-
+		// for cntr
     $check_contract = mysqli_query($conn, "SELECT * FROM `contract` WHERE `user_id` = ".$id."");
 
     if (mysqli_num_rows($check_contract) > 0) {
