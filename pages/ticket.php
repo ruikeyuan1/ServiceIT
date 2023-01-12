@@ -24,7 +24,7 @@ if($stmt = $conn->prepare($sql)){
 
     if($stmt->bind_param("i",$user_id)) {                      
         if($stmt->execute()){
-            echo "Your form is submitted!";
+            //echo "Your form is submitted!";//
         } else{
             //echo "Something went wrong. Please try again later.";
             echo "Error executing:" . $conn->error;
